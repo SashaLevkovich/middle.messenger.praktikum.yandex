@@ -1,0 +1,6 @@
+export { InputTemplate } from './input'
+export { ContainerTemplate } from './container'
+export { LoginFormTemplate } from './loginForm'
+export { TitleTemplate } from './title'
+export { ButtonTemplate } from './button'
+export { LinkTemplate } from './link'

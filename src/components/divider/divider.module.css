@@ -1,0 +1,10 @@
+.divider {
+  display: block;
+  position: relative;
+  font-size: 14px;
+  line-height: 36px;
+  letter-spacing: 2%;
+  text-transform: uppercase;
+  color: #868686;
+  padding: 0 10px;
+}
