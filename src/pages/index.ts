@@ -1,1 +1,2 @@
-export { renderLoginForm } from './login/loginForm'
+export { renderLogin } from './login/login'
+export { renderSignUp } from './signUp/signUp'

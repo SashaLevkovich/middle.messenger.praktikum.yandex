@@ -1,0 +1,7 @@
+{{#> ContainerTemplate}}
+  <form class='{{styles.form}}{{#if className}} {{ className }}{{/if}}'>
+    {{#each children}}
+      {{{this}}}
+    {{/each}}
+  </form>
+{{/ ContainerTemplate}}

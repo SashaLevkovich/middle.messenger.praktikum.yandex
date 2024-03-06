@@ -4,3 +4,9 @@
   align-items: center;
   row-gap: 20px;
 }
+
+.container {
+  max-width: 450px;
+  padding: 16px 50px;
+  margin: 0 auto;
+}

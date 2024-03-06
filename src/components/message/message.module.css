@@ -1,0 +1,45 @@
+.messageContainer {
+  position: relative;
+  background-color: #272729;
+  padding: 11px;
+  border-radius: 0 6px 6px 6px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.messageContainerWithImg {
+  position: relative;
+  padding: 0;
+  max-width: 400px;
+
+  border-radius: 6px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.messageTextWithImg {
+  padding: 11px;
+  font-size: 12px;
+  line-height: 17px;
+  color: #fff;
+}
+
+.message {
+  font-size: 12px;
+  line-height: 17px;
+  color: #fff;
+}
+
+.dispatchTimeContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.dispatchTime {
+  font-size: 9px;
+  line-height: 9px;
+  color: #999999;
+}

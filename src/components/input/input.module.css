@@ -15,4 +15,15 @@
       outline: solid 2px #94a3b8;
     }
   }
+
+  &[data-hasLabel='false'] label {
+    display: none;
+  }
+
+  &[data-hasLabel='true'] label {
+    display: block;
+    color: #b8b8b8;
+    line-height: 24px;
+    margin-bottom: 5px;
+  }
 }

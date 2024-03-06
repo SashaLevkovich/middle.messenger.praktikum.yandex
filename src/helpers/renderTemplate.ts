@@ -17,8 +17,6 @@ export const renderTemplate = ({
   styles,
   containerId,
 }: TParams): string | void => {
-  console.log(context)
-
   const render = compile(template)
 
   const html = render({ ...context, styles })

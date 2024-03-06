@@ -1,4 +1,4 @@
-import { ITemplateData } from 'src/helpers/renderTemplate'
+import { ITemplateData } from '../../helpers/renderTemplate'
 
 export const loginContext: ITemplateData = {
   hasLabel: false,

@@ -1,0 +1,27 @@
+<li class='{{styles.chatItem}}'>
+  <div class='{{styles.chatItemContainer}}'>
+    <div class='{{styles.chatItemBody}}'>
+      {{#if avatar}}
+        <img class='{{styles.chatUserAvatar}}' src={{avatar}} />
+      {{else}}
+        <div class='{{styles.chatAvatar}}'></div>
+      {{/if}}
+
+      <div class='{{styles.messageContainer}}'>
+        <span class='{{styles.userName}}'>
+          {{userName}}
+        </span>
+
+        <p class='{{styles.message}}'>{{message}}</p>
+      </div>
+    </div>
+    <div class='{{styles.info}}'>
+      <span class='{{styles.time}}'>
+        {{time}}
+      </span>
+      {{#if badge}}
+        <div class='{{styles.badge}}'>{{badge}}</div>
+      {{/if}}
+    </div>
+  </div>
+</li>

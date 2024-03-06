@@ -1,0 +1,13 @@
+<main class="{{styles.dialog}}">
+  {{>DialogHeaderTemplate avatar=avatar userName=userName}}
+  
+  <section class="{{styles.chat}}">
+    <div class="{{styles.chatContainer}}">
+      {{#each messageData}}
+        {{{this}}}
+      {{/each}}
+      </div>
+  </section>
+
+  {{>MessageSubmissionPanelTemplate}}
+</main>
