@@ -1,5 +1,7 @@
 import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
+
 import { ErrorPageTemplate } from '@/templates'
+
 import ErrorStyles from './error.module.css'
 import DividerStyles from '@/components/divider/divider.module.css'
 import TitleStyles from '@/components/title/title.module.css'

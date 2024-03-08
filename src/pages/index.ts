@@ -1,2 +1,6 @@
 export { renderLogin } from './login/login'
 export { renderSignUp } from './signUp/signUp'
+export { renderChats } from './chats/chats'
+export { renderProfile } from './profile/profile'
+export { renderChangePassword } from './changePassword/changePassword'
+export { renderError } from './error/error'

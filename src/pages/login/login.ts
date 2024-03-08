@@ -1,5 +1,5 @@
 import { renderTemplate, ITemplateData } from '@/helpers/renderTemplate.ts'
-import { FormTemplate } from '@/templates/index.ts'
+import { FormTemplate } from '@/templates'
 import LoginFormStyles from './login.module.css'
 
 export const renderLogin = (

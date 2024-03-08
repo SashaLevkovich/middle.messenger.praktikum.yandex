@@ -1,6 +1,7 @@
 import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
 
 import { ProfiePageTempale } from '@/templates'
+
 import ProfileStyles from './profile.module.css'
 import FileInputStyles from '@/components/fileInput/fileInput.module.css'
 import TitleStyles from '@/components/title/title.module.css'

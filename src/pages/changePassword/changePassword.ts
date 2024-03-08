@@ -1,5 +1,7 @@
 import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
-import { ChangePasswordPageTemplate } from '@/templates/changePasswordPage'
+
+import { ChangePasswordPageTemplate } from '@/templates'
+
 import ButtonStyles from '@/components/button/button.module.css'
 import ChangePasswordStyles from './changePassword.module.css'
 import ProfileStyles from '@/pages/profile/profile.module.css'
