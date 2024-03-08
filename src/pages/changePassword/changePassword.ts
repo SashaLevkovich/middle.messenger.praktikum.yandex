@@ -3,7 +3,6 @@ import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
 import { ChangePasswordPageTemplate } from '@/templates'
 
 import ButtonStyles from '@/components/button/button.module.css'
-import ChangePasswordStyles from './changePassword.module.css'
 import ProfileStyles from '@/pages/profile/profile.module.css'
 
 export const renderChangePassword = (
@@ -15,7 +14,6 @@ export const renderChangePassword = (
     styles: {
       ...ProfileStyles,
       ...ButtonStyles,
-      ...ChangePasswordStyles,
       ...styles,
     },
     context: changePasswordContext,
