@@ -1,5 +1,5 @@
-import { InputTemplate } from '../../templates'
-import { ITemplateData, renderTemplate } from '../../helpers/renderTemplate'
+import { InputTemplate } from '@/templates'
+import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
 
 import InputStyles from './input.module.css'
 

@@ -1,9 +1,10 @@
+import { ITemplateData } from '@/helpers/renderTemplate'
 import {
   renderButton,
   renderInput,
   renderLink,
   renderTitle,
-} from '../../components'
+} from '@/components'
 import {
   buttonContext,
   emailContext,
@@ -25,3 +26,17 @@ export const PhoneInput = renderInput(phoneContext)
 export const PasswordInput = renderInput(passwordContext)
 export const SignUpButton = renderButton(buttonContext)
 export const Link = renderLink(linkContext)
+
+export const signUpPageContext: ITemplateData = {
+  children: [
+    Title,
+    EmailInput,
+    LoginInput,
+    NameInput,
+    LastnameInput,
+    PhoneInput,
+    PasswordInput,
+    SignUpButton,
+    Link,
+  ],
+}

@@ -1,5 +1,5 @@
-import { renderChatItem } from '../../components/chatItem/chatItem'
-import { renderMessage } from '../../components/message/message'
+import { renderChatItem } from '@/components/chatItem/chatItem'
+import { renderMessage } from '@/components/message/message'
 import { chatListContext, messageContext } from './context'
 
 export const ChatItems: string[] = []

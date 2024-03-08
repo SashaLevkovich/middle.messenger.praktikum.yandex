@@ -1,4 +1,6 @@
-import { ITemplateData } from '../../helpers/renderTemplate'
+import { ITemplateData } from '@/helpers/renderTemplate'
+
+import cameraUrl from '@/assets/images/camera.png'
 
 export interface IChatItem extends ITemplateData {
   avatar?: string
@@ -86,7 +88,8 @@ export const messageContext = [
     dispatchTime: '12:21',
   },
   {
-    imgSrc: '../../assets/images/camera.png',
+    imgSrc: cameraUrl,
+    id: cameraUrl,
     dispatchTime: '12:22',
   },
 ]

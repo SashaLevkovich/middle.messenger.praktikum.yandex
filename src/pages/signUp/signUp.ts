@@ -1,7 +1,7 @@
-import { ITemplateData, renderTemplate } from '../../helpers/renderTemplate'
+import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
 
 import SingUpStyles from './signUp.module.css'
-import { FormTemplate } from '../../templates'
+import { FormTemplate } from '@/templates'
 
 export const renderSignUp = (
   signUpContext: ITemplateData,
@@ -15,3 +15,12 @@ export const renderSignUp = (
 
   return SignUp
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const signUpButton = document.getElementById('signUpButton')
+  if (signUpButton) {
+    signUpButton.addEventListener('click', () => {
+      window.location.href = '/chats'
+    })
+  }
+})

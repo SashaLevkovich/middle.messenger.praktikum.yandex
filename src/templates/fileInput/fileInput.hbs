@@ -1,0 +1,13 @@
+<div class='{{styles.loadAvatar}}'>
+  {{#if avatarSrc}}
+    <div class='{{styles.avatar}}'>
+      <img src='{{avatarSrc}}' alt='user avatar' />
+    </div>
+  {{else}}
+    <div class='{{styles.avatar}}'>
+      <img src='' id="userAvatarImg" alt='user avatar' />
+    </div>
+  {{/if}}
+
+  <input type='file' name='{{name}}' id='{{id}}' {{#if disabled}}{{disabled}}{{/if}}/>
+</div>

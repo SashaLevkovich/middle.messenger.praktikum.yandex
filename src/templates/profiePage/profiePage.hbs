@@ -1,0 +1,28 @@
+<main class='{{styles.profile}}'>
+  <aside class='{{styles.backButton}}'>
+    <a href='/chats'></a>
+  </aside>
+
+  <section class="{{styles.ptofileInfo}}">
+    {{#>ContainerTemplate}}
+        {{>FileInputTemplate name='avatar' id='avatarInput' disabled='disabled'}} 
+        {{>TitleTemplate title=displayNameValue}}
+
+        <div class="{{styles.infoBlock}}">
+          {{>InputTemplate hasLabel=true label='Email:' type='text' name='email' id='emailInputProfile' value=emailValue disabled='disabled'}}
+          {{>InputTemplate hasLabel=true label='Login:' type='text' name='login' id='loginInputProfile' value=loginValue disabled='disabled'}}
+          {{>InputTemplate hasLabel=true label='Name:' type='text' name='first_name' id='nameInputProfile' value=nameValue disabled='disabled'}}
+          {{>InputTemplate hasLabel=true label='Lastname:' type='text' name='second_name' id='lastnameInputProfile' value=lastnameValue disabled='disabled'}}
+          {{>InputTemplate hasLabel=true label='Name in chat:' type='text' name='display_name' id='displayNameInputProfile' value=displayNameValue disabled='disabled'}}
+          {{>InputTemplate hasLabel=true label='Phone:' type='phone' name='phone' id='phoneInputProfile' value=phoneValue disabled='disabled'}}
+        </div>
+
+        <div class="{{styles.linksBlock}}">
+           {{>ButtonTemplate text='Change profile' id='changeProfileButton' className=styles.changeButton}}
+           {{>ButtonTemplate text='Change password' id='changePasswordButton' className=styles.changeButton}}
+
+            <a href="/login" class='{{styles.logoutLink}}'>Log out</a>
+        </div>
+    {{/ContainerTemplate}}
+  </section>
+</main>

@@ -1,4 +1,4 @@
-import { ITemplateData } from '../../helpers/renderTemplate'
+import { ITemplateData } from '@/helpers/renderTemplate'
 
 export const loginContext: ITemplateData = {
   hasLabel: false,
@@ -21,6 +21,7 @@ export const titleContext: ITemplateData = {
 }
 
 export const buttonContext: ITemplateData = {
+  id: 'loginButton',
   type: 'button',
   text: 'Sign in',
 }
@@ -30,6 +31,6 @@ export const dividerContext: ITemplateData = {
 }
 
 export const linkContext: ITemplateData = {
-  url: '/singUp',
+  url: '/signUp',
   text: 'Create account',
 }

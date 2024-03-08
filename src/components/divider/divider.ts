@@ -1,5 +1,5 @@
-import { ITemplateData, renderTemplate } from '../../helpers/renderTemplate'
-import { DividerTemplate } from '../../templates/divider'
+import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
+import { DividerTemplate } from '@/templates/divider'
 import DividerStyles from './divider.module.css'
 
 export function renderDivider(

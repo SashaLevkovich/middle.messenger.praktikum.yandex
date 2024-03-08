@@ -1,5 +1,5 @@
-import { ITemplateData, renderTemplate } from '../../helpers/renderTemplate'
-import { MessageTemplate } from '../../templates'
+import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
+import { MessageTemplate } from '@/templates'
 import MessageStyle from './message.module.css'
 
 export function renderMessage(

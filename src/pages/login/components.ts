@@ -1,10 +1,11 @@
+import { ITemplateData } from '@/helpers/renderTemplate'
 import {
   renderButton,
   renderDivider,
   renderInput,
   renderLink,
   renderTitle,
-} from '../../components'
+} from '@/components'
 import {
   buttonContext,
   dividerContext,
@@ -20,3 +21,7 @@ export const PasswordInput = renderInput(passwordContext)
 export const LogInButton = renderButton(buttonContext)
 export const Divider = renderDivider(dividerContext)
 export const Link = renderLink(linkContext)
+
+export const loginPageContext: ITemplateData = {
+  children: [Title, LoginInput, PasswordInput, LogInButton, Divider, Link],
+}

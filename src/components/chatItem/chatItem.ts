@@ -1,5 +1,5 @@
-import { ChatItemTemplate } from '../../templates'
-import { ITemplateData, renderTemplate } from '../../helpers/renderTemplate'
+import { ChatItemTemplate } from '@/templates'
+import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
 
 import ChatItemStyles from './chatItem.module.css'
 

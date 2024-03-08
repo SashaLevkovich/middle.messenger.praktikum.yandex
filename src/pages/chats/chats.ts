@@ -1,5 +1,5 @@
-import { ITemplateData, renderTemplate } from '../../helpers/renderTemplate'
-import { ChatsPageTemplate } from '../../templates'
+import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
+import { ChatsPageTemplate } from '@/templates'
 import ChatsPageStyles from './chatsPage.module.css'
 
 export const renderChats = (

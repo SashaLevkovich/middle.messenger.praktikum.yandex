@@ -1,5 +1,5 @@
-import { ITemplateData, renderTemplate } from '../../helpers/renderTemplate'
-import { ButtonTemplate } from '../../templates'
+import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
+import { ButtonTemplate } from '@/templates'
 
 import ButtonStyles from './button.module.css'
 

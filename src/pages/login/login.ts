@@ -1,5 +1,5 @@
-import { renderTemplate, ITemplateData } from '../../helpers/renderTemplate.ts'
-import { FormTemplate } from '../../templates/index.ts'
+import { renderTemplate, ITemplateData } from '@/helpers/renderTemplate.ts'
+import { FormTemplate } from '@/templates/index.ts'
 import LoginFormStyles from './login.module.css'
 
 export const renderLogin = (
@@ -14,3 +14,12 @@ export const renderLogin = (
 
   return Login
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const loginButton = document.getElementById('loginButton')
+  if (loginButton) {
+    loginButton.addEventListener('click', () => {
+      window.location.href = '/chats'
+    })
+  }
+})

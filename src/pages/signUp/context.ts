@@ -1,4 +1,4 @@
-import { ITemplateData } from '../../helpers/renderTemplate'
+import { ITemplateData } from '@/helpers/renderTemplate'
 
 export const emailContext: ITemplateData = {
   hasLabel: true,
@@ -61,6 +61,7 @@ export const titleContext: ITemplateData = {
 export const buttonContext: ITemplateData = {
   type: 'button',
   text: 'Sign up',
+  id: 'signUpButton',
 }
 
 export const linkContext: ITemplateData = {

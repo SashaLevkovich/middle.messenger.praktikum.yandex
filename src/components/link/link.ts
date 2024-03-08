@@ -1,5 +1,5 @@
-import { ITemplateData, renderTemplate } from '../../helpers/renderTemplate'
-import { LinkTemplate } from '../../templates'
+import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
+import { LinkTemplate } from '@/templates'
 
 import LinkStyles from './link.module.css'
 
