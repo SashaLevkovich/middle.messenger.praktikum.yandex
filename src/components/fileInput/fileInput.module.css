@@ -1,0 +1,27 @@
+.loadAvatar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .avatar {
+    background-color: #6c6c6c;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & input {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+}

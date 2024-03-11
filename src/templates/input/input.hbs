@@ -1,0 +1,14 @@
+<div data-hasLabel='{{hasLabel}}' class='{{styles.input}}{{#if className}}{{ className }}{{/if}}'>
+  {{#if hasLabel}}
+    <label>{{label}}</label>
+  {{/if}}
+
+  <input
+    type='{{type}}'
+    name='{{name}}'
+    id='{{id}}'
+    placeholder='{{placeholder}}'
+    value="{{value}}"
+    {{#if disabled}}{{disabled}}{{/if}}
+  />
+</div>

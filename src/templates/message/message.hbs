@@ -1,0 +1,20 @@
+<div class='{{#if imgSrc}}{{styles.messageContainerWithImg}}{{else}}{{styles.messageContainer}}{{/if}}'>
+  {{#if imgSrc}}
+    <div class='{{styles.messageWithImg}}'>
+      <img src='' id='{{id}}' alt='{{imgSrc}}' />
+        {{#if message}}
+            <p class='{{styles.messageTextWithImg}}'>{{message}}</p>
+        {{/if}} 
+    </div>
+  {{else}}
+    <div class='{{styles.message}}'>
+      <p class='{{styles.messageText}}'>{{message}}</p>
+    </div>
+  {{/if}}
+
+  <div class="{{styles.dispatchTimeContainer}}">
+    <span class='{{styles.dispatchTime}}'>
+      {{dispatchTime}}
+    </span>
+  </div>
+</div>
