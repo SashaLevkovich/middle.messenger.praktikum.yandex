@@ -16,6 +16,8 @@ export default class Block {
 
   protected children: Record<string, Block>
   private eventBus: () => EventBus<string, Record<string, any[]>>
+  private _element: HTMLElement | undefined
+  private _props: Props
   private lists: Record<string, Block[]>
 
   constructor(propsWithChildren: Props) {
@@ -33,20 +35,16 @@ export default class Block {
     eventBus.emit(Block.EVENTS.INIT)
   }
 
-  private _element: HTMLElement | undefined
-
-  get element() {
+  protected get getElement() {
     return this._element
   }
 
-  private _props: Props
-
-  get props() {
-    return this._props
+  protected set setElement(value: HTMLElement) {
+    this._element = value
   }
 
-  set props(value) {
-    this._props = value
+  protected get getProps(): Props {
+    return this._props
   }
 
   init() {
@@ -65,6 +63,7 @@ export default class Block {
 
   addAttributes() {
     const attr = this._props.attr
+
     if (attr) {
       Object.entries(attr).forEach(([key, value]) => {
         this._element!.setAttribute(key, value)
@@ -76,7 +75,9 @@ export default class Block {
     if (!nextProps) {
       return
     }
+
     Object.assign(this._props, nextProps)
+    console.log(this._props)
   }
 
   render() {
@@ -95,31 +96,69 @@ export default class Block {
     this.showHideContent('none', 'Failed to hide content: No content element.')
   }
 
-  private _componentDidUpdate(_oldProps?: unknown, _newProps?: unknown) {
-    console.log('_componentDidUpdate')
+  protected _addEvents() {
+    const events: EventMap | undefined = this._props.events
 
-    const response = this.componentDidUpdate(_oldProps, _newProps)
-    if (!response) {
-      return
+    if (typeof events === 'object' && events !== null) {
+      Object.entries(events).forEach(([eventName, listener]) => {
+        if (typeof listener === 'function') {
+          this._element!.addEventListener(eventName, listener as EventListener)
+        }
+      })
     }
-    this._render()
   }
 
-  private _extractPropsAndChildren(propsAndChildren: Props) {
-    const children: Record<string, Block> = {}
-    const props: Record<string, unknown> = {}
+  protected _makePropsProxy(props: Props) {
+    const self = this
+
+    return new Proxy(props, {
+      get(target, prop) {
+        const value = target[String(prop)]
+        return typeof value === 'function' ? value.bind(target) : value
+      },
+      set(target, prop, value) {
+        const oldTarget = { ...target }
+        target[String(prop)] = value
+        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target)
+        return true
+      },
+      deleteProperty() {
+        throw new Error('No access')
+      },
+    })
+  }
+
+  protected _extractPropsAndChildren(propsAndChildren: Props) {
     const lists: Record<string, Block[]> = {}
+    const props: Record<string, unknown> = {}
+    const children: Record<string, Block> = {}
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
         children[key] = value
-      } else if (Array.isArray(value)) {
+      } else if (
+        Array.isArray(value) &&
+        value.every((item) => item instanceof Block)
+      ) {
         lists[key] = value
       } else {
         props[key] = value
       }
     })
-    return { children, props, lists }
+
+    return { lists, props, children }
+  }
+
+  private _componentDidUpdate(_oldProps?: unknown, _newProps?: unknown) {
+    console.log('_componentDidUpdate')
+
+    const response = this.componentDidUpdate(_oldProps, _newProps)
+
+    if (!response) {
+      return
+    }
+
+    this._render()
   }
 
   private _render() {
@@ -190,26 +229,7 @@ export default class Block {
 
     this._element = newElement
     this._addEvents()
-  }
-
-  private _makePropsProxy(props: Props) {
-    const self = this
-
-    return new Proxy(props, {
-      get(target, prop) {
-        const value = target[String(prop)]
-        return typeof value === 'function' ? value.bind(target) : value
-      },
-      set(target, prop, value) {
-        const oldTarget = { ...target }
-        target[String(prop)] = value
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target)
-        return true
-      },
-      deleteProperty() {
-        throw new Error('No access')
-      },
-    })
+    this.addAttributes()
   }
 
   private _createDocumentElement(tagName: string): HTMLElement {
@@ -222,20 +242,6 @@ export default class Block {
     Object.values(this.children).forEach((child) => {
       child.dispatchComponentDidMount()
     })
-  }
-
-  private _addEvents() {
-    const events: EventMap | undefined = this._props!.events
-
-    if (typeof events === 'object' && events !== null) {
-      Object.keys(events).forEach((eventName) => {
-        const listener = events[eventName]
-
-        if (typeof listener === 'function') {
-          this._element!.addEventListener(eventName, listener)
-        }
-      })
-    }
   }
 
   private _registerEvents(eventBus: EventBus) {

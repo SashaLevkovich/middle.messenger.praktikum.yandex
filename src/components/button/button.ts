@@ -1,17 +1,28 @@
-import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
 import { ButtonTemplate } from '@/templates'
 
-import ButtonStyles from './button.module.css'
+import Block from '@/lib/Block'
 
-export function renderButton(
-  buttonContext: ITemplateData,
-  styles?: Record<string, string>,
-) {
-  const Button = renderTemplate({
-    template: ButtonTemplate,
-    context: buttonContext,
-    styles: { ...ButtonStyles, ...styles },
-  })
+import { Props } from '@/lib/types'
 
-  return Button
+interface ButtonProps extends Props {
+  onClick?: (e: Event) => void
+}
+
+export class Button extends Block {
+  constructor(props: ButtonProps) {
+    super({
+      ...props,
+      events: {
+        click: (e) => {
+          if (props.onClick) {
+            props.onClick(e)
+          }
+        },
+      },
+    })
+  }
+
+  render() {
+    return ButtonTemplate
+  }
 }

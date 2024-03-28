@@ -1,0 +1,63 @@
+.dialog {
+    padding: 10px 20px;
+    width: 100%;
+    flex: 1;
+    overflow-y: auto;
+
+    .chat {
+        height: calc(100% - 95px);
+        overflow-y: auto;
+
+        .chatContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: flex-end;
+            padding: 14px 0;
+        }
+    }
+
+    .panel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 10px;
+
+        .input {
+            width: 100%;
+
+            & input {
+                width: 100%;
+                transition: border-color 0.3s ease;
+                padding: 8px 12px;
+                border: none;
+                border-radius: 6px;
+                font-family: 'Inter', sans-serif;
+                background-color: #272729;
+                color: #fff;
+
+                &:focus-visible {
+                    outline: none;
+                }
+            }
+        }
+
+        .pin {
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+        }
+
+        .sendButton {
+            width: 28px;
+            height: 28px;
+            border: none;
+            background-color: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            background-image: url('@/assets/icons/arrow.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
+}

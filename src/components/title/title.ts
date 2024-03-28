@@ -1,16 +1,19 @@
-import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
 import { TitleTemplate } from '@/templates/title'
 import TitleStyles from './title.module.css'
+import Block from '@/lib/Block.ts'
+import { Props } from '@/lib/types.ts'
 
-export function renderTitle(
-  titleContext: ITemplateData,
-  styles?: Record<string, string>,
-) {
-  const Title = renderTemplate({
-    template: TitleTemplate,
-    context: titleContext,
-    styles: { ...TitleStyles, ...styles },
-  })
+export class Title extends Block {
+  constructor(props: Props) {
+    super({
+      ...props,
+      styles: {
+        ...TitleStyles,
+      },
+    })
+  }
 
-  return Title
+  render() {
+    return TitleTemplate
+  }
 }

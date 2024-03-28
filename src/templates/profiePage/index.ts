@@ -1,1 +1,1 @@
-export { default as ProfiePageTempale } from './profiePage.hbs?raw'
+export { default as ProfilePageTemplate } from './profiePage.hbs?raw'

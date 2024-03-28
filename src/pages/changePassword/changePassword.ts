@@ -1,32 +1,47 @@
-import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
-
-import { ChangePasswordPageTemplate } from '@/templates'
-
-import ButtonStyles from '@/components/button/button.module.css'
 import ProfileStyles from '@/pages/profile/profile.module.css'
+import Block from '@/lib/Block.ts'
+import { Props } from '@/lib/types.ts'
+import { Button, ProfileInput } from '@/components'
+import {
+  buttonContext,
+  linkContext,
+  newPasswordContext,
+  newPasswordRepeatContext,
+  oldPasswordContext,
+} from '@/pages/changePassword/context'
+import { ChangePasswordPageTemplate } from '@/templates'
+import { SideBackButton } from '@/components/sideBackButton/sideBackButton.ts'
 
-export const renderChangePassword = (
-  changePasswordContext: ITemplateData,
-  styles?: Record<string, string>,
-) => {
-  const ChangePassword = renderTemplate({
-    template: ChangePasswordPageTemplate,
-    styles: {
-      ...ProfileStyles,
-      ...ButtonStyles,
-      ...styles,
-    },
-    context: changePasswordContext,
-  })
-
-  return ChangePassword
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  const loginButton = document.getElementById('saveChangePasswordButton')
-  if (loginButton) {
-    loginButton.addEventListener('click', () => {
-      window.location.href = '/profile'
+export class ChangePasswordPage extends Block {
+  constructor(props: Props) {
+    super({
+      ...props,
+      oldPassword: new ProfileInput({
+        ...oldPasswordContext,
+        ProfileStyles,
+      }),
+      newPassword: new ProfileInput({
+        ...newPasswordContext,
+        ProfileStyles,
+      }),
+      newPasswordRepeat: new ProfileInput({
+        ...newPasswordRepeatContext,
+        ProfileStyles,
+      }),
+      button: new Button({
+        ...buttonContext,
+      }),
+      backButton: new SideBackButton({
+        ...linkContext,
+      }),
+      styles: {
+        ...ProfileStyles,
+      },
     })
   }
-})
+
+  override render() {
+    console.log(ProfileStyles)
+    return ChangePasswordPageTemplate
+  }
+}

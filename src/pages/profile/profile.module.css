@@ -1,82 +1,15 @@
 .profile {
   display: flex;
 
-  .backButton {
-    width: 64px;
-    height: 100vh;
-    padding: 0 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-right: 1px solid #7f7f7f;
-    cursor: pointer;
-    transition: 0.3s all;
-
-    &:hover {
-      background-color: #0e0e0e;
-    }
-
-    & a {
-      width: 28px;
-      height: 28px;
-      border: none;
-      background-color: #fff;
-      border-radius: 50%;
-      cursor: pointer;
-      background-image: url('@/assets/icons/arrow.svg');
-      background-repeat: no-repeat;
-      background-position: center;
-      transform: rotate(180deg);
-    }
-  }
-
-  .ptofileInfo {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .container {
     max-width: 510px;
-    width: 100%;
 
-    .profileForm {
-    }
+    width: 100%;
 
     .infoBlock {
       margin-bottom: 60px;
-    }
-
-    .input {
-      height: 40px;
       display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      column-gap: 20px;
-      border-bottom: 1px solid #eaeaea;
-      padding: 10px 0;
-
-      &:last-child {
-        border: none;
-      }
-
-      & label {
-        font-size: 13px;
-        color: #fff;
-        line-height: 13px;
-      }
-
-      & input {
-        max-width: 200px;
-        background-color: transparent;
-        border: none;
-        color: #999999;
-
-        &:focus-visible {
-          outline: solid 2px #94a3b8;
-        }
-      }
+      flex-direction: column;
     }
   }
 
@@ -111,4 +44,12 @@
 
 .active {
   color: #fff;
+}
+
+.ptofileInfoBlock {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

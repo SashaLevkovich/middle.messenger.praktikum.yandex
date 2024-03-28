@@ -1,16 +1,21 @@
-import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
 import { ChatsPageTemplate } from '@/templates'
 import ChatsPageStyles from './chatsPage.module.css'
+import Block from '@/lib/Block'
+import { Props } from '@/lib/types'
+import { Chats } from '@/components/chats/chats'
+import { Dialog } from '@/components/dialog/dialog'
 
-export const renderChats = (
-  chatsContext: ITemplateData,
-  styles?: Record<string, string>,
-) => {
-  const Chats = renderTemplate({
-    template: ChatsPageTemplate,
-    styles: { ...ChatsPageStyles, ...styles },
-    context: chatsContext,
-  })
+export class ChatsPage extends Block {
+  constructor(props: Props) {
+    super({
+      ...props,
+      chatList: new Chats({}),
+      dialog: new Dialog({}),
+      styles: { ...ChatsPageStyles },
+    })
+  }
 
-  return Chats
+  override render(): string {
+    return ChatsPageTemplate
+  }
 }

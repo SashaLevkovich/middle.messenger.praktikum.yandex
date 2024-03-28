@@ -1,4 +1,4 @@
-import { renderError } from '../pages/error/error'
+import { renderError } from '@/pages'
 
 function getCurrentRoute(): string {
   return window.location.pathname
@@ -8,15 +8,13 @@ function handleRouteChange(route: string, routeMap: any): void {
   if (routeMap.hasOwnProperty(route)) {
     const page = routeMap[route]
 
-    if (page) {
-      document.body.innerHTML = page
-    }
+    const container = document.getElementById('root')!
+    container.append(page().getContent()!)
   } else {
-    const page = renderError({
+    document.body.innerHTML = renderError({
       error: '404',
       text: 'not found',
     })
-    if (page) document.body.innerHTML = page
   }
 }
 

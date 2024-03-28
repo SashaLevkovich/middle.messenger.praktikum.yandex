@@ -1,7 +1,7 @@
 import { compile } from 'handlebars'
 
 export interface ITemplateData {
-  [key: string]: any
+  [key: string]: unknown
 }
 
 type TParams = {
@@ -16,7 +16,7 @@ export const renderTemplate = ({
   context,
   styles,
   containerId,
-}: TParams): string | void => {
+}: TParams): string => {
   const render = compile(template)
 
   const html = render({ ...context, styles })
@@ -25,7 +25,7 @@ export const renderTemplate = ({
     const container = document.getElementById(containerId)
 
     if (container) container.innerHTML = html
-    return
+    return html
   }
 
   return html

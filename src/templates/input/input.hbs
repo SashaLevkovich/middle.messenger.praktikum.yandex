@@ -1,14 +1,12 @@
-<div data-hasLabel='{{hasLabel}}' class='{{styles.input}}{{#if className}}{{ className }}{{/if}}'>
-  {{#if hasLabel}}
-    <label>{{label}}</label>
-  {{/if}}
+{{#if label}}
+  <label for="{{id}}">{{label}}</label>
+{{/if}}
 
-  <input
-    type='{{type}}'
-    name='{{name}}'
-    id='{{id}}'
-    placeholder='{{placeholder}}'
-    value="{{value}}"
-    {{#if disabled}}{{disabled}}{{/if}}
-  />
-</div>
+<input class='{{styles.input}}{{#if className}}{{ className }}{{/if}}'
+       type='{{type}}'
+       name='{{name}}'
+       id='{{id}}'
+       placeholder='{{placeholder}}'
+       {{#if clvalueassName}}value="{{value}}"{{/if}}
+  {{#if disabled}}{{disabled}}{{/if}}
+/>

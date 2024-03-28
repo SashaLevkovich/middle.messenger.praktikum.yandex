@@ -10,11 +10,9 @@ export const renderError = (
   errorContext: ITemplateData,
   styles?: Record<string, string>,
 ) => {
-  const Error = renderTemplate({
+  return renderTemplate({
     template: ErrorPageTemplate,
     styles: { ...DividerStyles, ...TitleStyles, ...ErrorStyles, ...styles },
     context: errorContext,
   })
-
-  return Error
 }

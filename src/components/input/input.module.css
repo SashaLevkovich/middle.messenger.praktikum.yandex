@@ -1,8 +1,6 @@
 .input {
-  width: 100%;
-
-  & input {
     width: 100%;
+
     transition: border-color 0.3s ease;
     padding: 15px 10px;
     border: 1px solid #868686;
@@ -12,18 +10,24 @@
     color: #fff;
 
     &:focus-visible {
-      outline: solid 2px #94a3b8;
+        outline: solid 2px #94a3b8;
     }
-  }
+}
 
-  &[data-hasLabel='false'] label {
-    display: none;
-  }
-
-  &[data-hasLabel='true'] label {
-    display: block;
+label {
     color: #b8b8b8;
     line-height: 24px;
     margin-bottom: 5px;
-  }
+
+    &[data-hasLabel='false'] label {
+        display: none;
+    }
+
+    &[data-hasLabel='true'] label {
+        display: block;
+    }
+
 }
+
+
+

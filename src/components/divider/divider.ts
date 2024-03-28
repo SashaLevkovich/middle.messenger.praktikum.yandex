@@ -6,11 +6,9 @@ export function renderDivider(
   dividerContext: ITemplateData,
   styles?: Record<string, string>,
 ) {
-  const Divider = renderTemplate({
+  return renderTemplate({
     template: DividerTemplate,
     context: dividerContext,
     styles: { ...DividerStyles, ...styles },
   })
-
-  return Divider
 }

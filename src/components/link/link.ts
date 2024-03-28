@@ -1,17 +1,16 @@
-import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
 import { LinkTemplate } from '@/templates'
 
-import LinkStyles from './link.module.css'
+import Block from '@/lib/Block.ts'
+import { Props } from '@/lib/types.ts'
 
-export function renderLink(
-  linkContext: ITemplateData,
-  styles?: Record<string, string>,
-) {
-  const Link = renderTemplate({
-    template: LinkTemplate,
-    context: linkContext,
-    styles: { ...LinkStyles, ...styles },
-  })
+export class Link extends Block {
+  constructor(props: Props) {
+    super({
+      ...props,
+    })
+  }
 
-  return Link
+  render() {
+    return LinkTemplate
+  }
 }

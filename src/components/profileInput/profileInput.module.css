@@ -1,0 +1,30 @@
+.input {
+    height: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 20px;
+    border-bottom: 1px solid #eaeaea;
+    padding: 10px 0;
+
+    &:last-child {
+      border: none;
+    }
+
+    & label {
+      font-size: 13px;
+      color: #fff;
+      line-height: 13px;
+    }
+
+    & input {
+      max-width: 200px;
+      background-color: transparent;
+      border: none;
+      color: #999999;
+
+      &:focus-visible {
+        outline: solid 2px #94a3b8;
+      }
+    }
+  }

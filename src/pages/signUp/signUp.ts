@@ -1,26 +1,108 @@
-import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
-
+import Block from '@/lib/Block'
+import { Props } from '@/lib/types'
+import { buttonContext } from '@/pages/login/context.ts'
+import { SignUpPageTemplate } from '@/templates'
 import SingUpStyles from './signUp.module.css'
-import { FormTemplate } from '@/templates'
+import {
+  emailContext,
+  lastNameContext,
+  linkContext,
+  loginContext,
+  nameContext,
+  passwordContext,
+  phoneContext,
+  titleContext,
+} from '@/pages/signUp/context.ts'
 
-export const renderSignUp = (
-  signUpContext: ITemplateData,
-  styles?: Record<string, string>,
-) => {
-  const SignUp = renderTemplate({
-    template: FormTemplate,
-    styles: { ...SingUpStyles, ...styles },
-    context: signUpContext,
-  })
+import { Button, Input, Link, Title } from '@/components'
+import LinkStyles from '@/components/link/link.module.css'
 
-  return SignUp
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  const signUpButton = document.getElementById('signUpButton')
-  if (signUpButton) {
-    signUpButton.addEventListener('click', () => {
-      window.location.href = '/chats'
+import ButtonStyles from '@/components/button/button.module.css'
+export class SignUpPage extends Block {
+  constructor(props: Props) {
+    super({
+      ...props,
+      title: new Title({
+        ...titleContext,
+      }),
+      email: new Input({
+        ...emailContext,
+        onChange: (value: string) => {
+          this.setProps({ buttonText: value })
+        },
+      }),
+      login: new Input({
+        ...loginContext,
+        onChange: (value: string) => {
+          this.setProps({ buttonText: value })
+        },
+      }),
+      name: new Input({
+        ...nameContext,
+        onChange: (value: string) => {
+          this.setProps({ buttonText: value })
+        },
+      }),
+      lastname: new Input({
+        ...lastNameContext,
+        onChange: (value: string) => {
+          this.setProps({ buttonText: value })
+        },
+      }),
+      phone: new Input({
+        ...phoneContext,
+        onChange: (value: string) => {
+          this.setProps({ buttonText: value })
+        },
+      }),
+      password: new Input({
+        ...passwordContext,
+        onChange: (value: string) => {
+          this.setProps({ buttonText: value })
+        },
+      }),
+      button: new Button({
+        ...buttonContext,
+        events: {
+          click: (e) => {
+            e.preventDefault()
+            window.location.href = '/chats'
+          },
+        },
+        styles: {
+          ...ButtonStyles,
+        },
+      }),
+      link: new Link({
+        ...linkContext,
+        events: {
+          click: (e) => {
+            e.preventDefault()
+            window.location.href = '/login'
+          },
+        },
+        styles: {
+          ...LinkStyles,
+        },
+      }),
+      styles: {
+        ...SingUpStyles,
+      },
     })
   }
-})
+
+  componentDidUpdate(
+    _oldProps: { buttonText: string },
+    _newProps: { buttonText: string },
+  ) {
+    if (_oldProps?.buttonText !== _newProps?.buttonText) {
+      this.children.button.setProps({ text: _newProps?.buttonText })
+    }
+
+    return true
+  }
+
+  override render() {
+    return SignUpPageTemplate
+  }
+}

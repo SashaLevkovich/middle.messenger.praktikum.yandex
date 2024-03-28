@@ -2,7 +2,7 @@ import { Listener } from '@/lib/types.ts'
 
 export class EventBus<
   E extends string = string,
-  M extends { [K in E]: unknown[] } = Record<E, any[]>,
+  M extends { [K in E]: unknown[] } = Record<E, unknown[]>,
 > {
   private listeners: { [K in E]?: Listener<M[E]>[] } = {}
 

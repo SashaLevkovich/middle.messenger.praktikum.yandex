@@ -1,11 +1,10 @@
 {{#>ContainerTemplate }}
   <header class='{{styles.header}}'>
-    <a href="/profile" class='{{styles.link}}{{#if className}}{{ className }}{{/if}}'>Profile</a>
+    {{{link}}}
     {{> InputTemplate hasLabel='false' type='text' name='search' id='search' placeholder='Search' }}
   </header>
+
   <ul class='{{styles.list}}{{#if className}}{{ className }}{{/if}}'>
-    {{#each children}}
-      {{{this}}}
-    {{/each}}
+    {{{list}}}
   </ul>
 {{/ContainerTemplate}}

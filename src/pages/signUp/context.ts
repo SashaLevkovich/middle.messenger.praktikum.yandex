@@ -1,7 +1,6 @@
 import { ITemplateData } from '@/helpers/renderTemplate'
 
 export const emailContext: ITemplateData = {
-  hasLabel: true,
   label: 'Email',
   type: 'text',
   name: 'email',
@@ -10,7 +9,6 @@ export const emailContext: ITemplateData = {
 }
 
 export const loginContext: ITemplateData = {
-  hasLabel: true,
   label: 'Login',
   type: 'text',
   name: 'login',
@@ -19,7 +17,6 @@ export const loginContext: ITemplateData = {
 }
 
 export const nameContext: ITemplateData = {
-  hasLabel: true,
   label: 'Name',
   type: 'text',
   name: 'first_name',
@@ -28,7 +25,6 @@ export const nameContext: ITemplateData = {
 }
 
 export const lastNameContext: ITemplateData = {
-  hasLabel: true,
   label: 'Lastname',
   type: 'text',
   name: 'second_name',
@@ -37,7 +33,6 @@ export const lastNameContext: ITemplateData = {
 }
 
 export const phoneContext: ITemplateData = {
-  hasLabel: true,
   label: 'Phone number',
   type: 'phone',
   name: 'phone',
@@ -46,7 +41,6 @@ export const phoneContext: ITemplateData = {
 }
 
 export const passwordContext: ITemplateData = {
-  hasLabel: true,
   label: 'Password',
   type: 'password',
   name: 'password',

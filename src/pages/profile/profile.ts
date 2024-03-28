@@ -1,10 +1,23 @@
-import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
-
-import { ProfiePageTempale } from '@/templates'
-
-import ProfileStyles from './profile.module.css'
-import FileInputStyles from '@/components/fileInput/fileInput.module.css'
-import TitleStyles from '@/components/title/title.module.css'
+import Block from '@/lib/Block'
+import { Props } from '@/lib/types'
+import { SideBackButton } from '@/components/sideBackButton/sideBackButton'
+import {
+  changePassword,
+  changeProfile,
+  emailContext,
+  fileInputContext,
+  lastNameContext,
+  linkContext,
+  loginContext,
+  logoutLink,
+  nameContext,
+  nameInChatContext,
+  phoneContext,
+  title,
+} from './context'
+import { ProfilePageTemplate } from '@/templates'
+import { Button, FileInput, Link, ProfileInput, Title } from '@/components'
+import ProfilePageStyles from './profile.module.css'
 
 document.addEventListener('DOMContentLoaded', () => {
   const changeButton = document.getElementById('changeProfileButton')
@@ -35,15 +48,53 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 })
 
-export const renderProfile = (
-  profileContext: ITemplateData,
-  styles?: Record<string, string>,
-) => {
-  const Profile = renderTemplate({
-    template: ProfiePageTempale,
-    styles: { ...FileInputStyles, ...TitleStyles, ...ProfileStyles, ...styles },
-    context: profileContext,
-  })
+export class ProfilePage extends Block {
+  constructor(props: Props) {
+    super({
+      ...props,
+      backButton: new SideBackButton({
+        ...linkContext,
+      }),
+      fileInput: new FileInput({
+        ...fileInputContext,
+      }),
+      email: new ProfileInput({
+        ...emailContext,
+      }),
+      login: new ProfileInput({
+        ...loginContext,
+      }),
+      name: new ProfileInput({
+        ...nameContext,
+      }),
+      lastname: new ProfileInput({
+        ...lastNameContext,
+      }),
+      nameInChat: new ProfileInput({
+        ...nameInChatContext,
+      }),
+      phone: new ProfileInput({
+        ...phoneContext,
+      }),
+      title: new Title({
+        ...title,
+      }),
+      changeProfile: new Button({
+        ...changeProfile,
+      }),
+      changePassword: new Button({
+        ...changePassword,
+      }),
+      logoutLink: new Link({
+        ...logoutLink,
+      }),
+      styles: {
+        ...ProfilePageStyles,
+      },
+    })
+  }
 
-  return Profile
+  render(): string {
+    return ProfilePageTemplate
+  }
 }

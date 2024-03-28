@@ -1,17 +1,14 @@
 import { ChatItemTemplate } from '@/templates'
-import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
+import Block from '@/lib/Block'
 
-import ChatItemStyles from './chatItem.module.css'
+export class ChatItem extends Block {
+  constructor({ ...props }) {
+    super({
+      ...props,
+    })
+  }
 
-export function renderChatItem(
-  chatItemContext: ITemplateData | ITemplateData[],
-  styles?: Record<string, string>,
-) {
-  const ChatItem = renderTemplate({
-    template: ChatItemTemplate,
-    context: chatItemContext,
-    styles: { ...ChatItemStyles, ...styles },
-  })
-
-  return ChatItem
+  render() {
+    return ChatItemTemplate
+  }
 }

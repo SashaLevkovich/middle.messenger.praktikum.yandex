@@ -1,7 +1,6 @@
 import { ITemplateData } from '@/helpers/renderTemplate'
 
 export const loginContext: ITemplateData = {
-  hasLabel: false,
   type: 'text',
   name: 'login',
   placeholder: 'name@example.com',
@@ -9,7 +8,6 @@ export const loginContext: ITemplateData = {
 }
 
 export const passwordContext: ITemplateData = {
-  hasLabel: false,
   type: 'password',
   name: 'password',
   placeholder: 'Enter your password',
@@ -21,7 +19,7 @@ export const titleContext: ITemplateData = {
 }
 
 export const buttonContext: ITemplateData = {
-  id: 'loginButton',
+  id: 'signInButton',
   type: 'button',
   text: 'Sign in',
 }
