@@ -1,14 +1,13 @@
-import { registerPartials } from './helpers/registerPartials.ts'
+import avatarUrl from './assets/icons/photo.svg'
+import pinUrl from './assets/icons/pin.svg'
+import cameraUrl from './assets/images/camera.png'
+import { registerPartials } from './helpers/registerPartials'
 
 import * as Templates from './templates/index'
 
-import pinUrl from './assets/icons/pin.svg'
-import cameraUrl from './assets/images/camera.png'
-import avatarUrl from './assets/icons/photo.svg'
-
 import './style.module.css'
-import { trackRouteChanges } from '@/helpers/renderPage.ts'
-import { ROUTE_MAP } from '@/helpers/routes.ts'
+import { trackRouteChanges } from '@/helpers/renderPage'
+import { ROUTE_MAP } from '@/helpers/routes'
 
 registerPartials(Templates)
 

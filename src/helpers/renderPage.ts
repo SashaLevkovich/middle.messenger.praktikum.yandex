@@ -1,11 +1,12 @@
+import { ROUTE } from './routes'
 import { renderError } from '@/pages'
 
 function getCurrentRoute(): string {
   return window.location.pathname
 }
 
-function handleRouteChange(route: string, routeMap: any): void {
-  if (routeMap.hasOwnProperty(route)) {
+function handleRouteChange(route: string, routeMap: ROUTE): void {
+  if (Object.prototype.hasOwnProperty.call(routeMap, route)) {
     const page = routeMap[route]
 
     const container = document.getElementById('root')!
@@ -18,7 +19,7 @@ function handleRouteChange(route: string, routeMap: any): void {
   }
 }
 
-export function trackRouteChanges(routeMap: any): void {
+export function trackRouteChanges(routeMap: ROUTE): void {
   let currentRoute = getCurrentRoute()
 
   function routeChangeListener(): void {

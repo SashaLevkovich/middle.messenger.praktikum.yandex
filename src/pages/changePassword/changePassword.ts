@@ -1,7 +1,7 @@
-import ProfileStyles from '@/pages/profile/profile.module.css'
-import Block from '@/lib/Block.ts'
-import { Props } from '@/lib/types.ts'
 import { Button, ProfileInput } from '@/components'
+import { SideBackButton } from '@/components/sideBackButton/sideBackButton'
+import Block from '@/lib/Block'
+import { Props } from '@/lib/types'
 import {
   buttonContext,
   linkContext,
@@ -9,8 +9,8 @@ import {
   newPasswordRepeatContext,
   oldPasswordContext,
 } from '@/pages/changePassword/context'
+import ProfileStyles from '@/pages/profile/profile.module.css'
 import { ChangePasswordPageTemplate } from '@/templates'
-import { SideBackButton } from '@/components/sideBackButton/sideBackButton.ts'
 
 export class ChangePasswordPage extends Block {
   constructor(props: Props) {

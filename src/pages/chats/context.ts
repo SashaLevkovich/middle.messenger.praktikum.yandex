@@ -1,6 +1,5 @@
-import { ITemplateData } from '@/helpers/renderTemplate'
-
 import cameraUrl from '@/assets/images/camera.png'
+import { ITemplateData } from '@/helpers/renderTemplate'
 
 export interface IChatItem extends ITemplateData {
   avatar?: string

@@ -1,11 +1,11 @@
+import ChatsStyles from './chats.module.css'
+import { ChatItem, Link } from '@/components'
+import ChatItemStyles from '@/components/chatItem/chatItem.module.css'
+import { linkContext } from '@/components/chats/context'
 import Block from '@/lib/Block'
 import { Props } from '@/lib/types'
-import { ChatItem, Link } from '@/components'
-import { ChatListTemplate } from '@/templates'
-import { linkContext } from '@/components/chats/context'
-import ChatsStyles from './chats.module.css'
-import ChatItemStyles from '@/components/chatItem/chatItem.module.css'
 import { chatListContext } from '@/pages/chats/context'
+import { ChatListTemplate } from '@/templates'
 
 export class Chats extends Block {
   constructor(props: Props) {

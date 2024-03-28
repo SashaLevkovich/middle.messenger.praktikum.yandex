@@ -1,5 +1,5 @@
-import { ITemplateData } from '@/helpers/renderTemplate'
 import ProfilePageStyles from './profile.module.css'
+import { ITemplateData } from '@/helpers/renderTemplate'
 
 export const linkContext: ITemplateData = {
   url: '/chats',

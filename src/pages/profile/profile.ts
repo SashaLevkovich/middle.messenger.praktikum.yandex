@@ -1,6 +1,3 @@
-import Block from '@/lib/Block'
-import { Props } from '@/lib/types'
-import { SideBackButton } from '@/components/sideBackButton/sideBackButton'
 import {
   changePassword,
   changeProfile,
@@ -15,9 +12,12 @@ import {
   phoneContext,
   title,
 } from './context'
-import { ProfilePageTemplate } from '@/templates'
-import { Button, FileInput, Link, ProfileInput, Title } from '@/components'
 import ProfilePageStyles from './profile.module.css'
+import { Button, FileInput, Link, ProfileInput, Title } from '@/components'
+import { SideBackButton } from '@/components/sideBackButton/sideBackButton'
+import Block from '@/lib/Block'
+import { Props } from '@/lib/types'
+import { ProfilePageTemplate } from '@/templates'
 
 document.addEventListener('DOMContentLoaded', () => {
   const changeButton = document.getElementById('changeProfileButton')

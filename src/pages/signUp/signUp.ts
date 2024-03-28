@@ -1,8 +1,10 @@
+import SingUpStyles from './signUp.module.css'
+import { Button, Input, Link, Title } from '@/components'
+import ButtonStyles from '@/components/button/button.module.css'
+import LinkStyles from '@/components/link/link.module.css'
 import Block from '@/lib/Block'
 import { Props } from '@/lib/types'
-import { buttonContext } from '@/pages/login/context.ts'
-import { SignUpPageTemplate } from '@/templates'
-import SingUpStyles from './signUp.module.css'
+import { buttonContext } from '@/pages/login/context'
 import {
   emailContext,
   lastNameContext,
@@ -12,12 +14,9 @@ import {
   passwordContext,
   phoneContext,
   titleContext,
-} from '@/pages/signUp/context.ts'
+} from '@/pages/signUp/context'
+import { SignUpPageTemplate } from '@/templates'
 
-import { Button, Input, Link, Title } from '@/components'
-import LinkStyles from '@/components/link/link.module.css'
-
-import ButtonStyles from '@/components/button/button.module.css'
 export class SignUpPage extends Block {
   constructor(props: Props) {
     super({

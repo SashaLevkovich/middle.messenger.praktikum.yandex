@@ -1,18 +1,18 @@
-import { LoginPageTemplate } from '@/templates'
 import LoginFormStyles from './login.module.css'
-import Block from '@/lib/Block.ts'
-import { Props } from '@/lib/types.ts'
 import { Button, Input, Link, Title } from '@/components'
 import ButtonStyles from '@/components/button/button.module.css'
 import LinkStyles from '@/components/link/link.module.css'
+import { Validator } from '@/helpers/Validator'
+import Block from '@/lib/Block'
+import { Props } from '@/lib/types'
 import {
   buttonContext,
   linkContext,
   loginContext,
   passwordContext,
   titleContext,
-} from '@/pages/login/context.ts'
-import { Validator } from '@/helpers/Validator.ts'
+} from '@/pages/login/context'
+import { LoginPageTemplate } from '@/templates'
 
 interface LoginPageProps extends Props {
   loginFormData: Record<string, string>
@@ -86,7 +86,7 @@ export class LoginPage extends Block {
     this._hasError = value
   }
 
-  componentDidUpdate(oldProps: any, newProps: any) {
+  componentDidUpdate(oldProps: Props, newProps: Props) {
     if (oldProps.text !== newProps.text) {
       this.children.button.setProps({ text: newProps.text })
     }

@@ -1,6 +1,6 @@
-import { EventBus } from '@/lib/EventBus.ts'
-import { EventMap, Props } from '@/lib/types.ts'
-import { renderTemplate } from '@/helpers/renderTemplate.ts'
+import { renderTemplate } from '@/helpers/renderTemplate'
+import { EventBus } from '@/lib/EventBus'
+import { EventMap, Props } from '@/lib/types'
 
 export default class Block {
   static EVENTS = {
@@ -163,7 +163,7 @@ export default class Block {
 
   private _render() {
     const propsAndStubs = { ...this._props }
-    const styles: Record<string, string> | undefined = this._props.styles
+    const styles: Record<string, string> | undefined = this._props!.styles
     const _tmpId = Math.floor(100000 + Math.random() * 900000)
 
     Object.entries(this.children).forEach(([key, child]) => {

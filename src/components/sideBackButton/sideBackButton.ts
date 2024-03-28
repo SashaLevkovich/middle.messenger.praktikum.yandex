@@ -1,9 +1,9 @@
-import Block from '@/lib/Block.ts'
-import { Props } from '@/lib/types.ts'
-import { SideBackButtonTemplate } from '@/templates'
-import SideBackButtonStyles from '@/components/sideBackButton/sideBackButton.module.css'
 import { Link } from '@/components'
-import { linkContext } from '@/pages/changePassword/context.ts'
+import SideBackButtonStyles from '@/components/sideBackButton/sideBackButton.module.css'
+import Block from '@/lib/Block'
+import { Props } from '@/lib/types'
+import { linkContext } from '@/pages/changePassword/context'
+import { SideBackButtonTemplate } from '@/templates'
 
 export class SideBackButton extends Block {
   constructor(props: Props) {

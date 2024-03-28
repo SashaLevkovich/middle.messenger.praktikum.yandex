@@ -1,4 +1,4 @@
-export type Listener<T extends unknown[] = any[]> = (...args: T) => void
+export type Listener<T extends unknown[] = unknown[]> = (...args: T) => void
 
 export type EventMap = {
   [event: string]: EventListener

@@ -1,6 +1,6 @@
 interface ValidationRule {
   ruleName: string
-  ruleValue: any
+  ruleValue: unknown
 }
 
 type ValidationRegexType = {
@@ -9,7 +9,7 @@ type ValidationRegexType = {
 
 export class Validator {
   private static validationRegex: ValidationRegexType = {
-    Name: /^[A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё\-]*$/,
+    Name: /^[A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё-]*$/,
     Login: /^[a-zA-Z][a-zA-Z0-9_-]{2,19}$/,
     Email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     Password: /(?=.*[A-Z])(?=.*[0-9]).{8,40}/,
@@ -26,6 +26,8 @@ export class Validator {
     this.errors = []
 
     for (const rule of validation_rules) {
+      let regex
+
       switch (rule.ruleName) {
         case 'required':
           if (!value) {
@@ -34,13 +36,13 @@ export class Validator {
           }
           break
         case 'min_length':
-          if (value.length < rule.ruleValue) {
+          if (value.length < (rule.ruleValue as number)) {
             this.errors.push(`Length should be at least ${rule.ruleValue}.`)
             return false
           }
           break
         default:
-          const regex = Validator.validationRegex[rule.ruleName]
+          regex = Validator.validationRegex[rule.ruleName]
           if (regex && !regex.test(value)) {
             this.errors.push(`Invalid ${rule.ruleName} format.`)
             return false

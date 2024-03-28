@@ -1,11 +1,11 @@
-import Block from '@/lib/Block.ts'
-import { Props } from '@/lib/types.ts'
-import { DialogTemplate } from '@/templates'
-import { DialogHeader } from '@/components/dialogHeader/dialogHeader.ts'
 import DialogStyles from './dialog.module.css'
-import { Message } from '@/components/message/message.ts'
+import { DialogHeader } from '@/components/dialogHeader/dialogHeader'
+import { Message } from '@/components/message/message'
 import MessageStyles from '@/components/message/message.module.css'
-import { messageContext } from '@/pages/chats/context.ts'
+import Block from '@/lib/Block'
+import { Props } from '@/lib/types'
+import { messageContext } from '@/pages/chats/context'
+import { DialogTemplate } from '@/templates'
 
 export class Dialog extends Block {
   constructor(props: Props) {

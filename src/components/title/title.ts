@@ -1,7 +1,7 @@
-import { TitleTemplate } from '@/templates/title'
 import TitleStyles from './title.module.css'
-import Block from '@/lib/Block.ts'
-import { Props } from '@/lib/types.ts'
+import Block from '@/lib/Block'
+import { Props } from '@/lib/types'
+import { TitleTemplate } from '@/templates/title'
 
 export class Title extends Block {
   constructor(props: Props) {

@@ -1,8 +1,8 @@
-import { ButtonTemplate } from '@/templates'
 
 import Block from '@/lib/Block'
 
 import { Props } from '@/lib/types'
+import { ButtonTemplate } from '@/templates'
 
 interface ButtonProps extends Props {
   onClick?: (e: Event) => void

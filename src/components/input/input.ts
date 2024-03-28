@@ -1,11 +1,11 @@
-import Block from '@/lib/Block.ts'
-import { Props } from '@/lib/types.ts'
-import { InputTemplate } from '@/templates'
 import InputStyles from './input.module.css'
+import Block from '@/lib/Block'
+import { Props } from '@/lib/types'
+import { InputTemplate } from '@/templates'
 
 interface ValidationRule {
   ruleName: string
-  ruleValue: any
+  ruleValue: unknown
 }
 
 interface InputProps extends Props {
