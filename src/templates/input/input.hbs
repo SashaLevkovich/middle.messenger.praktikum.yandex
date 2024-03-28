@@ -1,12 +1,8 @@
-{{#if label}}
-  <label for="{{id}}">{{label}}</label>
-{{/if}}
-
-<input class='{{styles.input}}{{#if className}}{{ className }}{{/if}}'
-       type='{{type}}'
-       name='{{name}}'
-       id='{{id}}'
-       placeholder='{{placeholder}}'
-       {{#if clvalueassName}}value="{{value}}"{{/if}}
+<input
+  class='{{styles.input}}'
+  type='{{type}}'
+  name='{{name}}'
+  id='{{id}}'
+  placeholder='{{placeholder}}'
   {{#if disabled}}{{disabled}}{{/if}}
 />

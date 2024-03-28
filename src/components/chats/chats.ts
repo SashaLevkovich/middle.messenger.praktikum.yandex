@@ -1,11 +1,11 @@
 import Block from '@/lib/Block'
 import { Props } from '@/lib/types'
-import { Link } from '@/components'
+import { ChatItem, Link } from '@/components'
 import { ChatListTemplate } from '@/templates'
 import { linkContext } from '@/components/chats/context'
 import ChatsStyles from './chats.module.css'
 import ChatItemStyles from '@/components/chatItem/chatItem.module.css'
-import { ChatList } from '@/components/chatList/chatList.ts'
+import { chatListContext } from '@/pages/chats/context'
 
 export class Chats extends Block {
   constructor(props: Props) {
@@ -17,7 +17,9 @@ export class Chats extends Block {
           ...ChatsStyles,
         },
       }),
-      list: new ChatList({ styles: { ...ChatItemStyles } }),
+      list: chatListContext.map(
+        (chat) => new ChatItem({ ...chat, styles: { ...ChatItemStyles } }),
+      ),
       styles: {
         ...ChatsStyles,
       },

@@ -15,7 +15,7 @@ export default class Block {
   _id = Math.floor(100000 + Math.random() * 900000)
 
   protected children: Record<string, Block>
-  private eventBus: () => EventBus<string, Record<string, any[]>>
+  private eventBus: () => EventBus<string, Record<string, unknown[]>>
   private _element: HTMLElement | undefined
   private _props: Props
   private lists: Record<string, Block[]>
@@ -163,7 +163,7 @@ export default class Block {
 
   private _render() {
     const propsAndStubs = { ...this._props }
-    const styles: Record<string, string> | undefined = this._props!.styles
+    const styles: Record<string, string> | undefined = this._props.styles
     const _tmpId = Math.floor(100000 + Math.random() * 900000)
 
     Object.entries(this.children).forEach(([key, child]) => {
