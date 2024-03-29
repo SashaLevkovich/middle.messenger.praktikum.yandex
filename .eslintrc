@@ -11,7 +11,6 @@
     "sourceType": "module",
     "project": ["tsconfig.json"],
   },
-  "exclude": ["vite.config.ts"],
   "plugins": ["@typescript-eslint", "import"],
   "rules": {
     "import/extensions": [
