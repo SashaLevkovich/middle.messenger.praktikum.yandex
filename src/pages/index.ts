@@ -1,5 +1,5 @@
-export { Login } from './login/Login'
-export { SignUp } from './signUp/SignUp'
+export { Login } from './login/LoginPage'
+export { SignUp } from './signUp/SignUpPage'
 export { Chats } from './chats/Chats'
 export { UserProfile } from './userProfile/UserProfile'
 export { ChangePassword } from './changePassword/ChangePassword'
