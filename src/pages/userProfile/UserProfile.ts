@@ -9,7 +9,7 @@ export interface ProfileProps extends Props {
   profileFormData: Record<string, string>
 }
 
-export class Profile extends Block {
+export class UserProfile extends Block {
   constructor(props: ProfileProps) {
     super({
       ...props,

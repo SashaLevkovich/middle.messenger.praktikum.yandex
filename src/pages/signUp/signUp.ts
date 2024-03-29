@@ -1,4 +1,4 @@
-import { linkContext, titleContext } from './models/context'
+import { titleContext, linkContext } from './models/context'
 import SignUpStyles from './signUp.module.css'
 import { SignUpPageTemplate } from './template'
 import { Block, Props } from '@/app/lib'

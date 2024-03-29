@@ -1,5 +1,5 @@
 import { Block } from '@/app/lib'
-import { Login, SignUp, Chats, Profile, ChangePassword } from '@/pages'
+import { Login, SignUp, Chats, UserProfile, ChangePassword } from '@/pages'
 
 const loginFormData = {
   login: '',
@@ -39,6 +39,6 @@ export const ROUTE_MAP: ROUTE = {
   '/login': () => new Login({ loginFormData }),
   '/signUp': () => new SignUp({ signUpFormData }),
   '/chats': () => new Chats({}),
-  '/profile': () => new Profile({ profileFormData }),
+  '/profile': () => new UserProfile({ profileFormData }),
   '/changePassword': () => new ChangePassword({ changePasswordFormData }),
 }
