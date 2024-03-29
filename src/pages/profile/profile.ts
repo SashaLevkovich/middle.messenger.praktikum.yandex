@@ -5,12 +5,12 @@ import { Block, Props } from '@/app/lib'
 import { ProfileForm, ProfileLinks } from '@/features'
 import { BackButton, Title } from '@/shared/components'
 
-export interface ProfilePageProps extends Props {
+export interface ProfileProps extends Props {
   profileFormData: Record<string, string>
 }
 
-export class ProfilePage extends Block {
-  constructor(props: ProfilePageProps) {
+export class Profile extends Block {
+  constructor(props: ProfileProps) {
     super({
       ...props,
       backButton: new BackButton({

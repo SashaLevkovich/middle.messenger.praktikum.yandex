@@ -4,7 +4,7 @@ import { ErrorPageTemplate } from './template'
 import { Block, Props } from '@/app/lib'
 import { Divider, Link, Title } from '@/shared/components'
 
-export class ErrorPage extends Block {
+export class Error extends Block {
   constructor(props: Props) {
     super({
       ...props,

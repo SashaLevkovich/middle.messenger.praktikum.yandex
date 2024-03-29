@@ -5,12 +5,12 @@ import { Block, Props } from '@/app/lib'
 import { LoginForm } from '@/features'
 import { Divider, Link, Title } from '@/shared/components'
 
-interface LoginPageProps extends Props {
+interface LoginProps extends Props {
   loginFormData: Record<string, string>
 }
 
-export class LoginPage extends Block {
-  constructor(props: LoginPageProps) {
+export class Login extends Block {
+  constructor(props: LoginProps) {
     super({
       ...props,
       title: new Title({

@@ -5,12 +5,12 @@ import { Block, Props } from '@/app/lib'
 import { ChangePasswordForm } from '@/features'
 import { BackButton } from '@/shared/components'
 
-interface ChangePasswordPageProps extends Props {
+interface ChangePasswordProps extends Props {
   changePasswordFormData: Record<string, string>
 }
 
-export class ChangePasswordPage extends Block {
-  constructor(props: ChangePasswordPageProps) {
+export class ChangePassword extends Block {
+  constructor(props: ChangePasswordProps) {
     super({
       ...props,
       form: new ChangePasswordForm({

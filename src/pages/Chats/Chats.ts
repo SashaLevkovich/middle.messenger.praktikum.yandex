@@ -4,7 +4,7 @@ import { Block, Props } from '@/app/lib'
 import { Dialog } from '@/widgets'
 import { ChatList } from '@/widgets/chatList/ChatList'
 
-export class ChatsPage extends Block {
+export class Chats extends Block {
   constructor(props: Props) {
     super({
       ...props,

@@ -5,12 +5,12 @@ import { Block, Props } from '@/app/lib'
 import { SignUpForm } from '@/features'
 import { Link, Title } from '@/shared/components'
 
-interface SignUpPageProps extends Props {
+interface SignUpProps extends Props {
   signUpFormData: Record<string, string>
 }
 
-export class SignUpPage extends Block {
-  constructor(props: SignUpPageProps) {
+export class SignUp extends Block {
+  constructor(props: SignUpProps) {
     super({
       ...props,
       title: new Title({

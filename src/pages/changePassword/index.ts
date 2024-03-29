@@ -1,1 +1,1 @@
-export { ChangePasswordPage } from './ChangePasswordPage'
+export { ChangePassword } from './ChangePassword'

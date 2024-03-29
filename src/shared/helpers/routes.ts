@@ -1,11 +1,5 @@
 import { Block } from '@/app/lib'
-import {
-  ChangePasswordPage,
-  ChatsPage,
-  ProfilePage,
-  SignUpPage,
-  LoginPage,
-} from '@/pages'
+import { Login, SignUp, Chats, Profile, ChangePassword } from '@/pages'
 
 const loginFormData = {
   login: '',
@@ -41,10 +35,10 @@ export type ROUTE = {
 }
 
 export const ROUTE_MAP: ROUTE = {
-  '/': () => new LoginPage({ loginFormData }),
-  '/login': () => new LoginPage({ loginFormData }),
-  '/signUp': () => new SignUpPage({ signUpFormData }),
-  '/chats': () => new ChatsPage({}),
-  '/profile': () => new ProfilePage({ profileFormData }),
-  '/changePassword': () => new ChangePasswordPage({ changePasswordFormData }),
+  '/': () => new Login({ loginFormData }),
+  '/login': () => new Login({ loginFormData }),
+  '/signUp': () => new SignUp({ signUpFormData }),
+  '/chats': () => new Chats({}),
+  '/profile': () => new Profile({ profileFormData }),
+  '/changePassword': () => new ChangePassword({ changePasswordFormData }),
 }
