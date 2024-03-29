@@ -5,13 +5,17 @@ export const loginContext: ITemplateData = {
   name: 'login',
   placeholder: 'name@example.com',
   id: 'loginInput',
+  autocomplete: 'username',
+  ariaLabel: 'Username',
 }
 
 export const passwordContext: ITemplateData = {
-  type: 'password',
+  type: 'text',
   name: 'password',
   placeholder: 'Enter your password',
   id: 'passwordInput',
+  autocomplete: 'new-password',
+  ariaLabel: 'Password',
 }
 
 export const titleContext: ITemplateData = {

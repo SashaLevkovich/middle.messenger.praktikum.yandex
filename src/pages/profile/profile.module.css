@@ -3,7 +3,6 @@
 
   .container {
     max-width: 510px;
-
     width: 100%;
 
     .infoBlock {
@@ -20,18 +19,6 @@
     justify-content: center;
     row-gap: 10px;
 
-    .changeButton {
-      width: 100%;
-      border: none;
-      font-size: 13px;
-      background-color: transparent;
-      color: #cacaca;
-      border-bottom: 1px solid #eaeaea;
-      padding: 10px 0;
-      text-align: left;
-      cursor: pointer;
-    }
-
     .logoutLink {
       padding: 10px 0;
       font-size: 13px;
@@ -40,6 +27,18 @@
       text-decoration: none;
     }
   }
+}
+
+.changeButton {
+  width: 100%;
+  border: none;
+  font-size: 13px;
+  background-color: transparent;
+  color: #cacaca;
+  border-bottom: 1px solid #eaeaea;
+  padding: 10px 0;
+  text-align: left;
+  cursor: pointer;
 }
 
 .active {

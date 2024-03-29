@@ -9,14 +9,38 @@ const loginFormData = {
   password: '',
 }
 
+const signUpFormData = {
+  email: '',
+  login: '',
+  name: '',
+  lastname: '',
+  phone: '',
+  password: '',
+}
+
+const profileFormData = {
+  email: '',
+  login: '',
+  name: '',
+  lastname: '',
+  phone: '',
+  nameInChat: '',
+}
+
+const changePasswordFormData = {
+  oldPassword: '',
+  newPassword: '',
+  repeatNewPassword: '',
+}
+
 export type ROUTE = {
   [key: string]: () => Block
 }
 
 export const ROUTE_MAP: ROUTE = {
   '/login': () => new LoginPage({ loginFormData }),
-  '/signUp': () => new SignUpPage({}),
+  '/signUp': () => new SignUpPage({ signUpFormData }),
   '/chats': () => new ChatsPage({}),
-  '/profile': () => new ProfilePage({}),
-  '/changePassword': () => new ChangePasswordPage({}),
+  '/profile': () => new ProfilePage({ profileFormData }),
+  '/changePassword': () => new ChangePasswordPage({ changePasswordFormData }),
 }

@@ -1,22 +1,22 @@
+import ProfilePageStyles from '@/pages/profile/profile.module.css'
+
 export const oldPasswordContext = {
   label: 'Old password:',
   type: 'password',
   name: 'oldPassword',
   id: 'oldPassword',
   value: '12313123123123',
-  disabled: 'disabled',
 }
 
 export const newPasswordContext = {
-  label: 'New password:',
+  placeholder: 'Enter new password',
   type: 'password',
   name: 'newPassword',
   id: 'newPassword',
-  disabled: 'disabled',
 }
 
 export const newPasswordRepeatContext = {
-  label: 'Repeat new password:',
+  placeholder: 'Repeat new password',
   type: 'password',
   name: 'newPasswordRepeat',
   id: 'oldPasswordRepeat',
@@ -26,6 +26,7 @@ export const buttonContext = {
   type: 'button',
   text: 'Change password',
   id: 'saveChangePasswordButton',
+  className: ` ${ProfilePageStyles.changeButton}`,
 }
 
 export const linkContext = {

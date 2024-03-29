@@ -35,18 +35,6 @@ export default class Block {
     eventBus.emit(Block.EVENTS.INIT)
   }
 
-  protected get getElement() {
-    return this._element
-  }
-
-  protected set setElement(value: HTMLElement) {
-    this._element = value
-  }
-
-  protected get getProps(): Props {
-    return this._props
-  }
-
   init() {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
   }
@@ -77,7 +65,6 @@ export default class Block {
     }
 
     Object.assign(this._props, nextProps)
-    console.log(this._props)
   }
 
   render() {
@@ -86,14 +73,6 @@ export default class Block {
 
   getContent(): HTMLElement | undefined {
     return this._element
-  }
-
-  show() {
-    this.showHideContent('block', 'Failed to show content: No content element.')
-  }
-
-  hide() {
-    this.showHideContent('none', 'Failed to hide content: No content element.')
   }
 
   protected _addEvents() {
@@ -150,8 +129,6 @@ export default class Block {
   }
 
   private _componentDidUpdate(_oldProps?: unknown, _newProps?: unknown) {
-    console.log('_componentDidUpdate')
-
     const response = this.componentDidUpdate(_oldProps, _newProps)
 
     if (!response) {
@@ -212,8 +189,6 @@ export default class Block {
 
       const stub = fragment.content.querySelector(`[data-id="__l_${_tmpId}"]`)
 
-      console.log(stub)
-
       if (stub && listElement.content) {
         stub.replaceWith(listElement.content)
       } else {
@@ -249,17 +224,5 @@ export default class Block {
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this))
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this))
-  }
-
-  private showHideContent(
-    displayStyle: 'none' | 'block',
-    failureMessage: string,
-  ) {
-    const content = this.getContent()
-    if (content) {
-      content.style.display = displayStyle
-    } else {
-      console.warn(failureMessage)
-    }
   }
 }

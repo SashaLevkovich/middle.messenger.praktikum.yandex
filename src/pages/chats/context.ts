@@ -1,6 +1,6 @@
 import cameraUrl from '@/assets/images/camera.png'
+import DialogStyles from '@/components/dialog/dialog.module.css'
 import { ITemplateData } from '@/helpers/renderTemplate'
-
 export interface IChatItem extends ITemplateData {
   avatar?: string
   userName: string
@@ -92,3 +92,11 @@ export const messageContext = [
     dispatchTime: '12:22',
   },
 ]
+
+export const messageInputContext = {
+  type: 'text',
+  name: 'message',
+  id: 'message',
+  placeholder: 'Message',
+  className: DialogStyles.messageInput,
+}

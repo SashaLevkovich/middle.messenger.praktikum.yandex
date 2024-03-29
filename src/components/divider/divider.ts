@@ -1,14 +1,19 @@
 import DividerStyles from './divider.module.css'
-import { ITemplateData, renderTemplate } from '@/helpers/renderTemplate'
+import Block from '@/lib/Block'
+import { Props } from '@/lib/types'
 import { DividerTemplate } from '@/templates/divider'
 
-export function renderDivider(
-  dividerContext: ITemplateData,
-  styles?: Record<string, string>,
-) {
-  return renderTemplate({
-    template: DividerTemplate,
-    context: dividerContext,
-    styles: { ...DividerStyles, ...styles },
-  })
+export class Divider extends Block {
+  constructor(props: Props) {
+    super({
+      ...props,
+      styles: {
+        ...DividerStyles,
+      },
+    })
+  }
+
+  render() {
+    return DividerTemplate
+  }
 }

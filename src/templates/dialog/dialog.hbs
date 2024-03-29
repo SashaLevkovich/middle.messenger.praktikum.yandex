@@ -1,11 +1,22 @@
-<main class="{{styles.dialog}}">
+<main class='{{styles.dialog}}'>
   {{{dialogHeader}}}
 
-  <section class="{{styles.chat}}">
-    <div class="{{styles.chatContainer}}">
+  <section class='{{styles.chat}}'>
+    <div class='{{styles.chatContainer}}'>
       {{{messages}}}
     </div>
   </section>
 
-  {{>MessageSubmissionPanelTemplate}}
+  <div class='{{styles.panel}}'>
+    <img
+      src='../assets/icons/pin.svg'
+      id='pin'
+      alt='pin'
+      class='{{styles.pin}}'
+    />
+
+    {{{input}}}
+
+    <button class='{{styles.sendButton}}'></button>
+  </div>
 </main>

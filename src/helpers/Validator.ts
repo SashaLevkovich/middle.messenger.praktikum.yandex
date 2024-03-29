@@ -1,4 +1,4 @@
-interface ValidationRule {
+export interface ValidationRule {
   ruleName: string
   ruleValue: unknown
 }
@@ -9,7 +9,7 @@ type ValidationRegexType = {
 
 export class Validator {
   private static validationRegex: ValidationRegexType = {
-    Name: /^[A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё-]*$/,
+    Name: /^[A-ZА-ЯЁ][a-zа-яё-]*$/,
     Login: /^[a-zA-Z][a-zA-Z0-9_-]{2,19}$/,
     Email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     Password: /(?=.*[A-Z])(?=.*[0-9]).{8,40}/,

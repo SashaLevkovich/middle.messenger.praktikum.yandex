@@ -5,8 +5,12 @@ import { Props } from '@/lib/types'
 import { linkContext } from '@/pages/changePassword/context'
 import { SideBackButtonTemplate } from '@/templates'
 
+interface SideBackButtonProps extends Props {
+  onClick?: () => void
+}
+
 export class SideBackButton extends Block {
-  constructor(props: Props) {
+  constructor(props: SideBackButtonProps) {
     super({
       ...props,
       link: new Link({
@@ -14,7 +18,10 @@ export class SideBackButton extends Block {
         events: {
           click: (e) => {
             e.preventDefault()
-            window.location.href = '/signUp'
+
+            if (props.onClick) {
+              props.onClick()
+            }
           },
         },
       }),

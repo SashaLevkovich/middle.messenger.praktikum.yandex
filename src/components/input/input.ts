@@ -1,17 +1,12 @@
-import InputStyles from './input.module.css'
+import { ValidationRule } from '@/helpers/Validator'
 import Block from '@/lib/Block'
 import { Props } from '@/lib/types'
 import { InputTemplate } from '@/templates'
 
-interface ValidationRule {
-  ruleName: string
-  ruleValue: unknown
-}
-
 interface InputProps extends Props {
   onChange?: (value: string) => void
-  onBlur?: (value: string, rules: ValidationRule[]) => boolean
-  loginRules?: ValidationRule[]
+  onBlur?: (value: string, rules: ValidationRule[]) => [boolean, string[]]
+  rules?: ValidationRule[]
 }
 
 export class Input extends Block {
@@ -25,18 +20,19 @@ export class Input extends Block {
         },
         blur: (e) => {
           const target = e.target as HTMLInputElement
-          if (props.onBlur && props.loginRules) {
-            const isValid = props.onBlur(target.value, props.loginRules)
-            if (!isValid) {
-              this.setProps({
-                attr: { 'data-error': 'error' },
-              })
+          if (props.onBlur && props.rules) {
+            const [isValid, errors] = props.onBlur(target.value, props.rules)
+            if (isValid) {
+              this.setProps({ value: target.value })
+              this.setProps({ attr: { 'data-error': '' } })
+            } else {
+              this.setProps({ value: target.value })
+              this.setProps({ attr: { 'data-error': 'error' } })
+
+              alert(errors)
             }
           }
         },
-      },
-      styles: {
-        ...InputStyles,
       },
     })
   }

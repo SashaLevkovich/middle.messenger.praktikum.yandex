@@ -10,7 +10,6 @@ export const title: ITemplateData = { title: 'Ivan' }
 export const fileInputContext: ITemplateData = {
   name: 'avatar',
   id: 'avatarInput',
-  disabled: 'disabled',
 }
 
 export const emailContext: ITemplateData = {
@@ -19,7 +18,6 @@ export const emailContext: ITemplateData = {
   name: 'email',
   id: 'emailInputProfile',
   value: 'pochta@yandex.ru',
-  disabled: 'disabled',
 }
 
 export const loginContext: ITemplateData = {
@@ -28,7 +26,6 @@ export const loginContext: ITemplateData = {
   name: 'login',
   id: 'loginInputProfile',
   value: 'Ivan',
-  disabled: 'disabled',
 }
 
 export const nameContext: ITemplateData = {
@@ -37,7 +34,6 @@ export const nameContext: ITemplateData = {
   name: 'first_name',
   id: 'nameInputProfile',
   value: 'Ivan',
-  disabled: 'disabled',
 }
 
 export const lastNameContext: ITemplateData = {
@@ -46,7 +42,6 @@ export const lastNameContext: ITemplateData = {
   name: 'second_name',
   id: 'lastnameInputProfile',
   value: 'Ivanivanov',
-  disabled: 'disabled',
 }
 
 export const phoneContext: ITemplateData = {
@@ -55,7 +50,6 @@ export const phoneContext: ITemplateData = {
   name: 'phone',
   id: 'phoneInputProfile',
   value: '+7 (909) 967 30 30',
-  disabled: 'disabled',
 }
 
 export const nameInChatContext: ITemplateData = {
@@ -64,7 +58,6 @@ export const nameInChatContext: ITemplateData = {
   name: 'display_name',
   id: 'displayNameInputProfile',
   value: 'Ivan',
-  disabled: 'disabled',
 }
 
 export const changePassword = {
@@ -74,7 +67,7 @@ export const changePassword = {
 }
 
 export const changeProfile = {
-  text: 'Change profile',
+  text: 'Save profile',
   id: 'changeProfileButton',
   className: ` ${ProfilePageStyles.changeButton}`,
 }

@@ -1,6 +1,7 @@
 import LoginFormStyles from './login.module.css'
 import { Button, Input, Link, Title } from '@/components'
 import ButtonStyles from '@/components/button/button.module.css'
+import InputStyles from '@/components/input/input.module.css'
 import LinkStyles from '@/components/link/link.module.css'
 import { Validator } from '@/helpers/Validator'
 import Block from '@/lib/Block'
@@ -34,25 +35,42 @@ export class LoginPage extends Block {
         },
         onBlur: (value, rules) => {
           const validator = new Validator()
-          return validator.validate(value, rules)
+          const isValid = validator.validate(value, rules)
+          return [isValid, validator.getErrors()]
         },
-        loginRules: [
-          { ruleName: 'required', ruleValue: null },
+        rules: [
+          { ruleName: 'required', ruleValue: true },
           { ruleName: 'min_length', ruleValue: 5 },
           { ruleName: 'Login', ruleValue: null },
         ],
+        styles: {
+          ...InputStyles,
+        },
       }),
       password: new Input({
         ...passwordContext,
         onChange: (value: string) => {
-          this.setProps({ buttonText: value })
+          this.setProps((props.loginFormData['password'] = value))
+        },
+        onBlur: (value, rules) => {
+          const validator = new Validator()
+          const isValid = validator.validate(value, rules)
+          return [isValid, validator.getErrors()]
+        },
+        rules: [
+          { ruleName: 'required', ruleValue: true },
+          { ruleName: 'min_length', ruleValue: 8 },
+          { ruleName: 'Login', ruleValue: null },
+        ],
+        styles: {
+          ...InputStyles,
         },
       }),
       button: new Button({
         ...buttonContext,
-        onClick: (e) => {
+        onClick: () => {
           window.location.href = '/chats'
-          e.preventDefault()
+          console.log(props.loginFormData)
         },
         styles: {
           ...ButtonStyles,

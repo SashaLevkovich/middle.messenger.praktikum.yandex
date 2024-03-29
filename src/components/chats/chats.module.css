@@ -35,4 +35,9 @@
   border-right: 1px solid #eaeaea;
   flex: 1;
   overflow-y: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 }
