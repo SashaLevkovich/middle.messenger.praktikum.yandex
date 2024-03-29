@@ -1,5 +1,5 @@
 import { ROUTE } from './routes'
-import { ErrorPage } from '@/pages'
+import { Error } from '@/pages'
 
 function getCurrentRoute(): string {
   return window.location.pathname
@@ -13,7 +13,7 @@ function handleRouteChange(route: string, routeMap: ROUTE): void {
 
     container.append(page().getContent()!)
   } else {
-    const page = new ErrorPage({
+    const page = new Error({
       title: '404',
       text: 'not found',
     })
