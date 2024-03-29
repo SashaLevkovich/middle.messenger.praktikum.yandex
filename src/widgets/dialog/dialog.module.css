@@ -1,0 +1,19 @@
+.dialog {
+  padding: 10px 20px;
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+
+  .chat {
+    height: calc(100% - 95px);
+    overflow-y: auto;
+
+    .chatContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: flex-end;
+      padding: 14px 0;
+    }
+  }
+}

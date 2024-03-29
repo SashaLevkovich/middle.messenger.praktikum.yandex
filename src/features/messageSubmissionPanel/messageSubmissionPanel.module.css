@@ -1,0 +1,24 @@
+.panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+
+  .pin {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+  }
+
+  .sendButton {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    background-image: url('@/app/assets/icons/arrow.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
