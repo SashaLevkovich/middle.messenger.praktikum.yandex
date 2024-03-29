@@ -1,9 +1,9 @@
-import LoginFormStyles from './login.module.css'
-import { linkContext, titleContext } from './models/context'
-import { LoginPageTemplate } from './template'
 import { Block, Props } from '@/app/lib'
 import { LoginForm } from '@/features'
 import { Divider, Link, Title } from '@/shared/components'
+import LoginFormStyles from './login.module.css'
+import { linkContext, titleContext } from './models/context'
+import { LoginPageTemplate } from './template'
 
 interface LoginProps extends Props {
   loginFormData: Record<string, string>

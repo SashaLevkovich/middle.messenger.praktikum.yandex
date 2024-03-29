@@ -1,7 +1,7 @@
-import InputStyles from './input.module.css'
 import { Block, Props } from '@/app/lib'
 import { ValidationRule } from '@/shared/helpers'
 import { InputTemplate } from '@/shared/templates'
+import InputStyles from './input.module.css'
 
 interface InputProps extends Props {
   onChange?: (value: string) => void

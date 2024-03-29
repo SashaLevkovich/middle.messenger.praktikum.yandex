@@ -1,5 +1,5 @@
-import { ROUTE } from './routes'
 import { Error } from '@/pages'
+import { ROUTE } from './routes'
 
 function getCurrentRoute(): string {
   return window.location.pathname

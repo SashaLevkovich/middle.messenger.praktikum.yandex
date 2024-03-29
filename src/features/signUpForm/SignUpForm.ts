@@ -1,3 +1,5 @@
+import { Block, Props } from '@/app/lib'
+import { Validator } from '@/shared/helpers'
 import {
   buttonContext,
   emailContext,
@@ -10,8 +12,6 @@ import {
 import SingUpFormStyles from './signUpForm.module.css'
 import { SignUpFormTemplate } from './templates'
 import { Button, Input } from './ui'
-import { Block, Props } from '@/app/lib'
-import { Validator } from '@/shared/helpers'
 
 interface SignUpFormProps extends Props {
   signUpFormData: Record<string, string>

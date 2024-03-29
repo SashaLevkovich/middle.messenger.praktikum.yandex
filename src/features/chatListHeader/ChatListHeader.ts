@@ -1,9 +1,9 @@
+import { Block, Props } from '@/app/lib'
+import { Input, Link } from '@/shared/components'
 import ChatListHeaderStyles from './chatListHeader.module.css'
 import { linkContext, searchContext } from './models/context'
 
 import { ChatListHeaderTemplate } from './template'
-import { Block, Props } from '@/app/lib'
-import { Input, Link } from '@/shared/components'
 
 export class ChatListHeader extends Block {
   constructor(props: Props) {

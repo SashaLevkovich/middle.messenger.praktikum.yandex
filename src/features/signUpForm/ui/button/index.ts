@@ -1,7 +1,7 @@
-import ButtonStyles from './button.module.css'
 import { Block } from '@/app/lib'
 import { Props } from '@/app/lib/types'
 import { ButtonTemplate } from '@/shared/templates'
+import ButtonStyles from './button.module.css'
 
 interface ButtonProps extends Props {
   onClick?: (e: Event) => void

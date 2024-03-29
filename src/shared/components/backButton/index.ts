@@ -1,7 +1,7 @@
-import BackButtonStyles from './sideBackButton.module.css'
-import { Link } from '../link'
 import { Block, Props } from '@/app/lib'
 import { BackButtonTemplate } from '@/shared/templates'
+import BackButtonStyles from './sideBackButton.module.css'
+import { Link } from '../link'
 
 interface BackButtonProps extends Props {
   onClick?: () => void

@@ -1,14 +1,13 @@
 import avatarUrl from './app/assets/icons/photo.svg'
 import pinUrl from './app/assets/icons/pin.svg'
 import cameraUrl from './app/assets/images/camera.png'
-import { ROUTE_MAP } from './shared/helpers'
+import { ROUTE_MAP, trackRouteChanges } from './shared/helpers'
 
 import { registerPartials } from './shared/helpers/registerPartials'
 
 import * as Templates from './shared/templates/index'
 
 import './style.module.css'
-import { trackRouteChanges } from '@/shared/helpers/renderPage'
 
 registerPartials(Templates)
 

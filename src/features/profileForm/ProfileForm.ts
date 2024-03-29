@@ -1,3 +1,5 @@
+import { Block, Props } from '@/app/lib'
+import { Validator } from '@/shared/helpers'
 import {
   emailContext,
   fileInputContext,
@@ -11,8 +13,6 @@ import ProfileFormStyles from './profileForm.module.css'
 import { ProfileFormTemplate } from './template'
 import { Input } from './ui'
 import { FileInput } from './ui/fileInput'
-import { Block, Props } from '@/app/lib'
-import { Validator } from '@/shared/helpers'
 
 interface ProfileProps extends Props {
   profileFormData: Record<string, string>
