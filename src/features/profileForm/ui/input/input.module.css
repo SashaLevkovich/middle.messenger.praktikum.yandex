@@ -8,9 +8,8 @@
   border: none;
   border-bottom: 1px solid #eaeaea;
   padding: 10px 0;
-
   background-color: transparent;
-  color: #999999;
+  color: #999;
 
   &:focus-visible {
     color: #fff;

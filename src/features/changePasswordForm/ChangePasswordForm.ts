@@ -1,4 +1,3 @@
-import ChasngePasswordFormStyles from './changePasswordForm.module.css'
 import {
   buttonContext,
   newPasswordContext,
@@ -76,9 +75,6 @@ export class ChangePasswordForm extends Block {
           e.preventDefault()
         },
       }),
-      styles: {
-        ...ChasngePasswordFormStyles,
-      },
     })
   }
 

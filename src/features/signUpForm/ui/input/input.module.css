@@ -1,11 +1,10 @@
 .input {
   width: 100%;
-
   transition: border-color 0.3s ease;
   padding: 15px 10px;
   border: 1px solid #868686;
   border-radius: 6px;
-  font-family: 'Inter', sans-serif;
+  font-family: Inter, sans-serif;
   background-color: transparent;
   color: #fff;
 
