@@ -2,12 +2,16 @@ import { changePassword, changeProfile, logoutLink } from './models/context'
 import ProfileLinksStyles from './profileLinks.module.css'
 import { ProfileLinksTemplate } from './template'
 import { Button } from './ui'
-import { Block } from '@/app/lib'
-import { ProfilePageProps } from '@/pages/Profile/Profile'
+import { Block, Props } from '@/app/lib'
+
 import { Link } from '@/shared/components'
 
+export interface ProfileLinksProps extends Props {
+  profileFormData: Record<string, string>
+}
+
 export class ProfileLinks extends Block {
-  constructor(props: ProfilePageProps) {
+  constructor(props: ProfileLinksProps) {
     super({
       ...props,
 
