@@ -1,0 +1,10 @@
+.container {
+  max-width: 510px;
+  width: 100%;
+
+  .infoBlock {
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+  }
+}

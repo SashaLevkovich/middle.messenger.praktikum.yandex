@@ -1,93 +1,30 @@
-import {
-  changePassword,
-  changeProfile,
-  emailContext,
-  fileInputContext,
-  lastNameContext,
-  linkContext,
-  loginContext,
-  logoutLink,
-  nameContext,
-  nameInChatContext,
-  phoneContext,
-  title,
-} from './context'
+import { linkContext, title } from './models/context'
 import ProfilePageStyles from './profile.module.css'
-import { Button, FileInput, Link, ProfileInput, Title } from '@/components'
-import { SideBackButton } from '@/components/sideBackButton/sideBackButton'
-import Block from '@/lib/Block'
-import { Props } from '@/lib/types'
-import { ProfilePageTemplate } from '@/templates'
+import { ProfilePageTemplate } from './template'
+import { Block, Props } from '@/app/lib'
+import { ProfileForm, ProfileLinks } from '@/features'
+import { BackButton, Title } from '@/shared/components'
 
-document.addEventListener('DOMContentLoaded', () => {
-  const changeButton = document.getElementById('changeProfileButton')
-  const changePasswordButton = document.getElementById('changePasswordButton')
-  const inputs = document.querySelectorAll('input')
-
-  if (changePasswordButton) {
-    changePasswordButton.addEventListener('click', () => {
-      window.location.href = '/changePassword'
-    })
-  }
-
-  changeButton?.addEventListener('click', () => {
-    inputs.forEach((input) => {
-      if (input.disabled) {
-        input.removeAttribute('disabled')
-        input.style.color = '#fff'
-        input.style.fontSize = '16px'
-
-        changeButton.textContent = 'Save change'
-      } else {
-        input.disabled = true
-        input.removeAttribute('style')
-
-        changeButton.textContent = 'Change profile'
-      }
-    })
-  })
-})
+export interface ProfilePageProps extends Props {
+  profileFormData: Record<string, string>
+}
 
 export class ProfilePage extends Block {
-  constructor(props: Props) {
+  constructor(props: ProfilePageProps) {
     super({
       ...props,
-      backButton: new SideBackButton({
+      backButton: new BackButton({
         ...linkContext,
+        onClick: () => {
+          window.location.href = linkContext.url
+          console.log(props.profileFormData)
+        },
       }),
-      fileInput: new FileInput({
-        ...fileInputContext,
-      }),
-      email: new ProfileInput({
-        ...emailContext,
-      }),
-      login: new ProfileInput({
-        ...loginContext,
-      }),
-      name: new ProfileInput({
-        ...nameContext,
-      }),
-      lastname: new ProfileInput({
-        ...lastNameContext,
-      }),
-      nameInChat: new ProfileInput({
-        ...nameInChatContext,
-      }),
-      phone: new ProfileInput({
-        ...phoneContext,
-      }),
+      form: new ProfileForm({ profileFormData: props.profileFormData }),
       title: new Title({
         ...title,
       }),
-      changeProfile: new Button({
-        ...changeProfile,
-      }),
-      changePassword: new Button({
-        ...changePassword,
-      }),
-      logoutLink: new Link({
-        ...logoutLink,
-      }),
+      links: new ProfileLinks({ profileFormData: props.profileFormData }),
       styles: {
         ...ProfilePageStyles,
       },

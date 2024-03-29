@@ -1,13 +1,14 @@
-import avatarUrl from './assets/icons/photo.svg'
-import pinUrl from './assets/icons/pin.svg'
-import cameraUrl from './assets/images/camera.png'
-import { registerPartials } from './helpers/registerPartials'
+import avatarUrl from './app/assets/icons/photo.svg'
+import pinUrl from './app/assets/icons/pin.svg'
+import cameraUrl from './app/assets/images/camera.png'
+import { ROUTE_MAP } from './shared/helpers'
 
-import * as Templates from './templates/index'
+import { registerPartials } from './shared/helpers/registerPartials'
+
+import * as Templates from './shared/templates/index'
 
 import './style.module.css'
-import { trackRouteChanges } from '@/helpers/renderPage'
-import { ROUTE_MAP } from '@/helpers/routes'
+import { trackRouteChanges } from '@/shared/helpers/renderPage'
 
 registerPartials(Templates)
 
@@ -90,6 +91,11 @@ if (avatarImg) avatarImg.src = avatarUrl
 //   }
 // }
 //
-// const block = new Page({ buttonText: 'eqw' })
+// const loginFormData = {
+//   login: '',
+//   password: '',
+// }
+
+// const block = new LoginPage({ loginFormData })
 // const container = document.getElementById('root')!
 // container.append(block.getContent()!)
