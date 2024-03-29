@@ -1,9 +1,9 @@
-import { Block, Props } from '@/app/lib'
-import { Link } from '@/shared/components'
 import { changePassword, changeProfile, logoutLink } from './models/context'
 import ProfileLinksStyles from './profileLinks.module.css'
 import { ProfileLinksTemplate } from './template'
 import { Button } from './ui'
+import { Block, Props } from '@/app/lib'
+import { Link } from '@/shared/components'
 
 
 export interface ProfileLinksProps extends Props {

@@ -1,9 +1,9 @@
-import { Block, Props } from '@/app/lib'
-import { Validator } from '@/shared/helpers'
 import MessageSubmissionPanelStyles from './messageSubmissionPanel.module.css'
 import { messageInputContext } from './model/context'
 import { MessageSubmissionPanelTemplate } from './template'
 import { Input } from './ui'
+import { Block, Props } from '@/app/lib'
+import { Validator } from '@/shared/helpers'
 
 export class MessageSubmissionPanel extends Block {
   constructor(props: Props) {

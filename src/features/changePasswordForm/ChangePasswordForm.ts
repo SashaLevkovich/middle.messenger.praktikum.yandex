@@ -1,5 +1,3 @@
-import { Block, Props } from '@/app/lib'
-import { Validator } from '@/shared/helpers'
 import {
   buttonContext,
   newPasswordContext,
@@ -9,6 +7,8 @@ import {
 import { ChasngePasswordFormTemplate } from './template'
 
 import { Input, Button } from './ui'
+import { Block, Props } from '@/app/lib'
+import { Validator } from '@/shared/helpers'
 
 interface ChangePasswordFormProps extends Props {
   changePasswordFormData: Record<string, string>

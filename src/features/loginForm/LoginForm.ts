@@ -1,9 +1,9 @@
-import { Block, Props } from '@/app/lib'
-import { Validator } from '@/shared/helpers'
 import LoginFormStyles from './loginForm.module.css'
 import { buttonContext, loginContext, passwordContext } from './models/context'
 import { LoginFormTemplate } from './templates'
 import { Input, Button } from './ui'
+import { Block, Props } from '@/app/lib'
+import { Validator } from '@/shared/helpers'
 
 interface LoginFormProps extends Props {
   loginFormData: Record<string, string>
