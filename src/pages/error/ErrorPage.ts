@@ -1,7 +1,7 @@
-import ErrorSrtles from './error.module.css'
-import { linkContext } from './models/context'
-import { ErrorPageTemplate } from './template'
+import ErrorStyles from './error.module.css'
+import { linkContext } from './models/context.ts'
 import { Block, Props } from '@/app/lib'
+import { ErrorPageTemplate } from '@/pages/error/template'
 import { Divider, Link, Title } from '@/shared/components'
 
 export class Error extends Block {
@@ -24,7 +24,7 @@ export class Error extends Block {
         },
       }),
       styles: {
-        ...ErrorSrtles,
+        ...ErrorStyles,
       },
     })
   }
