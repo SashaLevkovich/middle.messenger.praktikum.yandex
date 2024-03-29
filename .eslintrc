@@ -2,15 +2,16 @@
   "root": true,
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
   },
   "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 12,
     "sourceType": "module",
-    "project": "./tsconfig.json"
+    "project": ["tsconfig.json"],
   },
+  "exclude": ["vite.config.ts"],
   "plugins": ["@typescript-eslint", "import"],
   "rules": {
     "import/extensions": [
@@ -20,8 +21,8 @@
         "json": "always",
         "css": "always",
         "png": "always",
-        "ts": "never"
-      }
+        "ts": "never",
+      },
     ],
     "@typescript-eslint/no-this-alias": "off",
     "@typescript-eslint/no-unused-vars": "off",
@@ -33,13 +34,13 @@
           "builtin",
           "external",
           "internal",
-          ["parent", "sibling", "index"]
+          ["parent", "sibling", "index"],
         ],
         "alphabetize": {
           "order": "asc",
-          "caseInsensitive": true
-        }
-      }
-    ]
-  }
+          "caseInsensitive": true,
+        },
+      },
+    ],
+  },
 }
