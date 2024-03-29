@@ -1,6 +1,11 @@
 import { Block } from '@/app/lib'
-import { ChangePasswordPage, ChatsPage, ProfilePage, SignUpPage } from '@/pages'
-import { LoginPage } from '@/pages/Login/LoginPage'
+import {
+  ChangePasswordPage,
+  ChatsPage,
+  ProfilePage,
+  SignUpPage,
+  LoginPage,
+} from '@/pages'
 
 const loginFormData = {
   login: '',
