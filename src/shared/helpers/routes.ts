@@ -36,6 +36,7 @@ export type ROUTE = {
 }
 
 export const ROUTE_MAP: ROUTE = {
+  '/': () => new LoginPage({ loginFormData }),
   '/login': () => new LoginPage({ loginFormData }),
   '/signUp': () => new SignUpPage({ signUpFormData }),
   '/chats': () => new ChatsPage({}),
