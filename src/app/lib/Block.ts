@@ -163,6 +163,8 @@ export class Block {
     const styles: Record<string, string> | undefined = this._props!.styles
     const _tmpId = Math.floor(100000 + Math.random() * 900000)
 
+    this._removeEvents()
+
     Object.entries(this.children).forEach(([key, child]) => {
       propsAndStubs[key] = `<div ${Block.DATA_ID_ATTR}="${child._id}"></div>`
     })
@@ -244,6 +246,19 @@ export class Block {
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this))
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this))
+  }
+
+  private _removeEvents() {
+    const events: EventMap | undefined = this._props.events
+
+    if (typeof events === 'object' && events !== null) {
+      Object.keys(events).forEach((eventName) => {
+        this._element?.removeEventListener(
+          eventName,
+          events[eventName] as EventListenerOrEventListenerObject,
+        )
+      })
+    }
   }
 
   private showHideContent(
