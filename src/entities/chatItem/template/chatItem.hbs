@@ -2,7 +2,11 @@
   <div class='{{styles.chatItemContainer}}'>
     <div class='{{styles.chatItemBody}}'>
       {{#if avatar}}
-        <img class='{{styles.chatUserAvatar}}' src={{avatar}} />
+        <img
+          class='{{styles.chatUserAvatar}}'
+          src={{avatar}}
+          alt='{{userName}}'
+        />
       {{else}}
         <div class='{{styles.chatAvatar}}'></div>
       {{/if}}

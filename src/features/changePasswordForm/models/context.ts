@@ -24,7 +24,6 @@ export const buttonContext = {
   type: 'button',
   text: 'Change password',
   id: 'saveChangePasswordButton',
-  //   className: ` ${ProfilePageStyles.changeButton}`,
 }
 
 export const linkContext = {

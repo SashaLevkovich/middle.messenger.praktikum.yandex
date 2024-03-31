@@ -30,7 +30,7 @@
     .logoutLink {
       padding: 10px 0;
       font-size: 13px;
-      color: #f00;
+      color: var(--red);
       border: none;
       text-decoration: none;
     }

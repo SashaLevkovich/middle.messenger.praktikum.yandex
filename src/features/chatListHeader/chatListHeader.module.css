@@ -6,7 +6,7 @@
   margin-bottom: 14px;
 
   .link {
-    color: #999;
+    color: var(--text-light-gray);
     font-size: 12px;
     line-height: 12px;
     text-decoration: none;
@@ -19,8 +19,8 @@
     border: none;
     border-radius: 6px;
     font-family: Inter, sans-serif;
-    background-color: #272729;
-    color: #fff;
+    background-color: var(--bg-dark-gray);
+    color: var(--white);
 
     &:focus-visible {
       outline: none;

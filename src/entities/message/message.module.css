@@ -1,6 +1,6 @@
 .messageContainer {
   position: relative;
-  background-color: #272729;
+  background-color: var(--bg-dark-gray);
   padding: 11px;
   border-radius: 0 6px 6px;
   max-width: 400px;
@@ -22,13 +22,13 @@
   padding: 11px;
   font-size: 12px;
   line-height: 17px;
-  color: #fff;
+  color: var(--white);
 }
 
 .message {
   font-size: 12px;
   line-height: 17px;
-  color: #fff;
+  color: var(--white);
 }
 
 .dispatchTimeContainer {
@@ -40,5 +40,5 @@
 .dispatchTime {
   font-size: 9px;
   line-height: 9px;
-  color: #999;
+  color: var(--text-light-gray);
 }

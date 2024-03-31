@@ -1,6 +1,6 @@
 .chatItem {
   list-style: none;
-  border-top: 1px solid #7f7f7f;
+  border-top: 1px solid var(--border-light-gray);
   padding: 12px 0;
 
   .chatItemContainer {
@@ -16,16 +16,16 @@
     .chatAvatar {
       width: 47px;
       height: 47px;
-      background-color: #6c6c6c;
+      background-color: var(--dark-gray);
       border-radius: 50%;
     }
 
     .userName {
-      color: #fff;
+      color: var(--white);
     }
 
     .message {
-      color: #999;
+      color: var(--text-light-gray);
     }
 
     .info {
@@ -36,7 +36,7 @@
       row-gap: 14px;
 
       .time {
-        color: #999;
+        color: var(--text-light-gray);
         font-size: 9px;
         line-height: 13px;
       }
@@ -47,7 +47,7 @@
         align-items: center;
         width: 20px;
         height: 20px;
-        background-color: #fff;
+        background-color: var(--white);
         border-radius: 50%;
         font-size: 11px;
       }

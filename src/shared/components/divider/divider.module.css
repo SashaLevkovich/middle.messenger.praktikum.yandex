@@ -4,6 +4,6 @@
   font-size: 14px;
   line-height: 36px;
   text-transform: uppercase;
-  color: #868686;
+  color: var(--text-light-gray);
   padding: 0 10px;
 }

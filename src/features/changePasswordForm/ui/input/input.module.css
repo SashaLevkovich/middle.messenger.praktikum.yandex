@@ -6,14 +6,14 @@
   align-items: center;
   column-gap: 20px;
   border: none;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--border-white);
   padding: 10px 0;
   background-color: transparent;
-  color: #999;
+  color: var(--text-light-gray);
 
   &:focus-visible {
-    color: #fff;
+    color: var(--white);
     outline: none;
-    border-bottom: 3px solid #1d4ed8;
+    border-bottom: 3px solid var(--border-focus);
   }
 }
