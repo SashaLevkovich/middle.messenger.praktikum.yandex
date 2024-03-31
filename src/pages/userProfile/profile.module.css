@@ -1,0 +1,38 @@
+.profile {
+  display: flex;
+
+  .ptofileInfoBlock {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .container {
+      max-width: 510px;
+      width: 100%;
+
+      .infoBlock {
+        margin-bottom: 60px;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  .linksBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    row-gap: 10px;
+
+    .logoutLink {
+      padding: 10px 0;
+      font-size: 13px;
+      color: #f00;
+      border: none;
+      text-decoration: none;
+    }
+  }
+}

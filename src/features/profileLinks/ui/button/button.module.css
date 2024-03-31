@@ -1,0 +1,23 @@
+.changeButton {
+  width: 100%;
+  border: none;
+  font-size: 13px;
+  background-color: transparent;
+  color: #cacaca;
+  border-bottom: 1px solid #eaeaea;
+  padding: 10px 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.logoutLink {
+  padding: 10px 0;
+  font-size: 13px;
+  color: #f00;
+  border: none;
+  text-decoration: none;
+}
+
+.active {
+  color: #fff;
+}

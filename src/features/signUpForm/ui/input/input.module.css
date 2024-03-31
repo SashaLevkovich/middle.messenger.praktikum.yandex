@@ -1,0 +1,28 @@
+.input {
+  width: 100%;
+  transition: border-color 0.3s ease;
+  padding: 15px 10px;
+  border: 1px solid #868686;
+  border-radius: 6px;
+  font-family: Inter, sans-serif;
+  background-color: transparent;
+  color: #fff;
+
+  &:focus-visible {
+    outline: solid 2px #94a3b8;
+  }
+}
+
+label {
+  color: #b8b8b8;
+  line-height: 24px;
+  margin-bottom: 5px;
+
+  &[data-hasLabel='false'] label {
+    display: none;
+  }
+
+  &[data-hasLabel='true'] label {
+    display: block;
+  }
+}
