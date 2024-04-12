@@ -1,9 +1,19 @@
 import MessageSubmissionPanelStyles from './messageSubmissionPanel.module.css'
 import { messageInputContext } from './model/context'
 import { MessageSubmissionPanelTemplate } from './template'
-import { Input } from './ui'
+
 import { Block, Props } from '@/app/lib'
-import { Validator } from '@/shared/helpers'
+import { Input } from '@/shared/components'
+
+let message = ''
+
+const RULES = [
+  {
+    ruleName: 'required',
+    ruleValue: { isRequired: true },
+    errorMessage: 'Field is required',
+  },
+]
 
 export class MessageSubmissionPanel extends Block {
   constructor(props: Props) {
@@ -11,12 +21,13 @@ export class MessageSubmissionPanel extends Block {
       ...props,
       input: new Input({
         ...messageInputContext,
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        onChange: (value: string) => {
+          this.setProps((message = value))
         },
-        rules: [{ ruleName: 'required', ruleValue: true }],
+        rules: RULES,
+        styles: {
+          ...MessageSubmissionPanelStyles,
+        },
       }),
       styles: {
         ...MessageSubmissionPanelStyles,

@@ -4,6 +4,7 @@ import { linkContext, searchContext } from './models/context'
 import { ChatListHeaderTemplate } from './template'
 import { Block, Props } from '@/app/lib'
 import { Input, Link } from '@/shared/components'
+import { router } from '@/shared/helpers/routes'
 
 export class ChatListHeader extends Block {
   constructor(props: Props) {
@@ -20,7 +21,7 @@ export class ChatListHeader extends Block {
         events: {
           click: (e) => {
             e.preventDefault()
-            window.location.href = linkContext.url
+            router.go('/settings')
           },
         },
         styles: {

@@ -1,14 +1,16 @@
+import ChangePasswordFormStyles from './changePasswordForm.module.css'
 import {
   buttonContext,
   newPasswordContext,
   newPasswordRepeatContext,
   oldPasswordContext,
 } from './models/context'
-import { ChasngePasswordFormTemplate } from './template'
+import { RULES } from './models/rules'
+import { ChangePasswordFormTemplate } from './template'
 
-import { Input, Button } from './ui'
 import { Block, Props } from '@/app/lib'
-import { Validator } from '@/shared/helpers'
+import { Button, Input } from '@/shared/components'
+import { router } from '@/shared/helpers/routes'
 
 interface ChangePasswordFormProps extends Props {
   changePasswordFormData: Record<string, string>
@@ -23,32 +25,20 @@ export class ChangePasswordForm extends Block {
         onChange: (value: string) => {
           this.setProps((props.changePasswordFormData['oldPassword'] = value))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.oldPassword,
+        styles: {
+          ...ChangePasswordFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'min_length', ruleValue: 8 },
-          { ruleName: 'Login', ruleValue: null },
-        ],
       }),
       newPassword: new Input({
         ...newPasswordContext,
         onChange: (value: string) => {
           this.setProps((props.changePasswordFormData['newPassword'] = value))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.newPassword,
+        styles: {
+          ...ChangePasswordFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'min_length', ruleValue: 8 },
-          { ruleName: 'Login', ruleValue: null },
-        ],
       }),
       newPasswordRepeat: new Input({
         ...newPasswordRepeatContext,
@@ -57,28 +47,25 @@ export class ChangePasswordForm extends Block {
             (props.changePasswordFormData['repeatNewPassword'] = value),
           )
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.repeatNewPassword,
+        styles: {
+          ...ChangePasswordFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'min_length', ruleValue: 8 },
-          { ruleName: 'Login', ruleValue: null },
-        ],
       }),
       button: new Button({
         ...buttonContext,
         onClick: (e) => {
-          window.location.href = '/chats'
           e.preventDefault()
+          router.go('/settings')
+        },
+        styles: {
+          ...ChangePasswordFormStyles,
         },
       }),
     })
   }
 
   override render() {
-    return ChasngePasswordFormTemplate
+    return ChangePasswordFormTemplate
   }
 }

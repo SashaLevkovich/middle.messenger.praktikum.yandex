@@ -7,12 +7,12 @@ import {
   nameInChatContext,
   phoneContext,
 } from './model/context'
+import { RULES } from './model/rules'
 import ProfileFormStyles from './profileForm.module.css'
 import { ProfileFormTemplate } from './template'
-import { Input } from './ui'
-import { FileInput } from './ui/fileInput'
+
 import { Block, Props } from '@/app/lib'
-import { Validator } from '@/shared/helpers'
+import { Input, FileInput } from '@/shared/components'
 
 interface ProfileProps extends Props {
   profileFormData: Record<string, string>
@@ -24,21 +24,19 @@ export class ProfileForm extends Block {
       ...props,
       fileInput: new FileInput({
         ...fileInputContext,
+        styles: {
+          ...ProfileFormStyles,
+        },
       }),
       email: new Input({
         ...emailContext,
         onChange: (value: string) => {
           this.setProps((props.profileFormData['email'] = value))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.email,
+        styles: {
+          ...ProfileFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'Email', ruleValue: null },
-        ],
       }),
       login: new Input({
         ...loginContext,
@@ -48,76 +46,50 @@ export class ProfileForm extends Block {
             value,
           })
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.login,
+        styles: {
+          ...ProfileFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'min_length', ruleValue: 5 },
-          { ruleName: 'Login', ruleValue: null },
-        ],
       }),
       name: new Input({
         ...nameContext,
         onChange: (value: string) => {
           this.setProps((props.profileFormData['name'] = value))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.name,
+        styles: {
+          ...ProfileFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'Name', ruleValue: true },
-        ],
       }),
       lastname: new Input({
         ...lastNameContext,
         onChange: (value: string) => {
           this.setProps((props.profileFormData['lastname'] = value))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.lastname,
+        styles: {
+          ...ProfileFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'Name', ruleValue: true },
-        ],
       }),
       nameInChat: new Input({
         ...nameInChatContext,
         onChange: (value: string) => {
           this.setProps((props.profileFormData['nameInChat'] = value))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.nameInChat,
+        styles: {
+          ...ProfileFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'Name', ruleValue: true },
-        ],
       }),
       phone: new Input({
         ...phoneContext,
         onChange: (value: string) => {
           this.setProps((props.profileFormData['phone'] = value))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.phone,
+        styles: {
+          ...ProfileFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'Phone', ruleValue: null },
-        ],
       }),
       styles: {
         ...ProfileFormStyles,

@@ -1,44 +1,57 @@
-import { Block } from '@/app/lib'
+import { connect } from '@/app/lib/Hoc'
+import { Router } from '@/app/lib/Router'
+import { State } from '@/app/lib/types'
 import { Login, SignUp, Chats, UserProfile, ChangePassword } from '@/pages'
 
-const loginFormData = {
-  login: '',
-  password: '',
+function mapLoginToProps(state: State) {
+  return {
+    login: state.userConfig.login,
+    password: state.userConfig.password,
+  }
 }
 
-const signUpFormData = {
-  email: '',
-  login: '',
-  name: '',
-  lastname: '',
-  phone: '',
-  password: '',
+function mapSignUpToProps(state: State) {
+  return {
+    email: state.userConfig.email,
+    name: state.userConfig.name,
+    lastname: state.userConfig.lastname,
+    phone: state.userConfig.phone,
+    login: state.userConfig.login,
+    password: state.userConfig.password,
+  }
 }
 
-const profileFormData = {
-  email: 'pochta@yandex.ru',
-  login: 'Ivan',
-  name: 'Ivan',
-  lastname: 'Ivanivanov',
-  phone: '+7 (909) 967 30 30',
-  nameInChat: 'Ivan',
+function mapUserProfileToProps(state: State) {
+  return {
+    email: state.userConfig.email,
+    name: state.userConfig.name,
+    lastname: state.userConfig.lastname,
+    phone: state.userConfig.phone,
+    login: state.userConfig.login,
+    nameInChat: state.userConfig.nameInChat,
+  }
 }
 
-const changePasswordFormData = {
-  oldPassword: 'someOldPassword',
-  newPassword: '',
-  repeatNewPassword: '',
+function mapChatsToProps(state: State) {
+  return {
+    message: state.chatsFormData.message,
+  }
+}
+function mapChangePasswordToProps(state: State) {
+  return {
+    oldPassword: state.changePasswordFormData.oldPassword,
+    newPassword: state.changePasswordFormData.newPassword,
+    repeatNewPassword: state.changePasswordFormData.repeatNewPassword,
+  }
 }
 
-export type ROUTE = {
-  [key: string]: () => Block
-}
+export const router = new Router('root')
 
-export const ROUTE_MAP: ROUTE = {
-  '/': () => new Login({ loginFormData }),
-  '/login': () => new Login({ loginFormData }),
-  '/signUp': () => new SignUp({ signUpFormData }),
-  '/chats': () => new Chats({}),
-  '/profile': () => new UserProfile({ profileFormData }),
-  '/changePassword': () => new ChangePassword({ changePasswordFormData }),
-}
+export const loginPage = connect(Login, mapLoginToProps)
+export const signPagePage = connect(SignUp, mapSignUpToProps)
+export const profilePage = connect(UserProfile, mapUserProfileToProps)
+export const chatsPage = connect(Chats, mapChatsToProps)
+export const changePasswordPage = connect(
+  ChangePassword,
+  mapChangePasswordToProps,
+)

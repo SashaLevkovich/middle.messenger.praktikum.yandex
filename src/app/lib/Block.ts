@@ -1,24 +1,18 @@
 import { EventBus } from '@/app/lib/EventBus'
-import { EventMap, Props } from '@/app/lib/types'
+import { EventMap, EVENTS, Props } from '@/app/lib/types'
 import { renderTemplate } from '@/shared/helpers/renderTemplate'
 
 export class Block {
-  static EVENTS = {
-    INIT: 'init',
-    FLOW_CDM: 'flow:component-did-mount',
-    FLOW_CDU: 'flow:component-did-update',
-    FLOW_RENDER: 'flow:render',
-  }
-
   static DATA_ID_ATTR = 'data-id'
 
   _id = Math.floor(100000 + Math.random() * 900000)
 
   protected children: Record<string, Block>
-  private eventBus: () => EventBus<string, Record<string, unknown[]>>
+
+  private _eventBus: () => EventBus<string, Record<string, unknown[]>>
   private _element: HTMLElement | undefined
+  private _lists: Record<string, Block[]>
   private _props: Props
-  private lists: Record<string, Block[]>
 
   constructor(propsWithChildren: Props) {
     const eventBus = new EventBus()
@@ -26,13 +20,13 @@ export class Block {
     const { props, children, lists } =
       this._extractPropsAndChildren(propsWithChildren)
 
-    this.lists = lists
+    this._lists = lists
     this._props = this._makePropsProxy({ ...props })
     this.children = children
-    this.eventBus = () => eventBus
+    this._eventBus = () => eventBus
     this._registerEvents(eventBus)
 
-    eventBus.emit(Block.EVENTS.INIT)
+    eventBus.emit(EVENTS.INIT)
   }
 
   protected get getElement() {
@@ -47,14 +41,22 @@ export class Block {
     return this._props
   }
 
+  setProps = (nextProps: unknown | unknown[]) => {
+    if (!nextProps) {
+      return
+    }
+
+    Object.assign(this._props, nextProps)
+  }
+
   init() {
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
+    this._eventBus().emit(EVENTS.FLOW_RENDER)
   }
 
   componentDidMount(_oldProps?: unknown) {}
 
   dispatchComponentDidMount() {
-    this.eventBus().emit(Block.EVENTS.FLOW_CDM)
+    this._eventBus().emit(EVENTS.FLOW_CDM)
   }
 
   componentDidUpdate(_oldProps?: unknown, _newProps?: unknown): boolean {
@@ -71,14 +73,6 @@ export class Block {
     }
   }
 
-  setProps = (nextProps: unknown | unknown[]) => {
-    if (!nextProps) {
-      return
-    }
-
-    Object.assign(this._props, nextProps)
-  }
-
   render() {
     return ''
   }
@@ -88,11 +82,21 @@ export class Block {
   }
 
   show() {
-    this.showHideContent('block', 'Failed to show content: No content element.')
+    const newElement = this._createDocumentElement('div')
+    this.setElement = newElement
+    this._render()
+    this.addAttributes()
+    this._addEvents()
   }
 
   hide() {
-    this.showHideContent('none', 'Failed to hide content: No content element.')
+    const content = this.getContent()
+
+    if (content) {
+      content.remove()
+    } else {
+      console.warn('Failed to hide content: No content element.')
+    }
   }
 
   protected _addEvents() {
@@ -118,7 +122,7 @@ export class Block {
       set(target, prop, value) {
         const oldTarget = { ...target }
         target[String(prop)] = value
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target)
+        self._eventBus().emit(EVENTS.FLOW_CDU, oldTarget, target)
         return true
       },
       deleteProperty() {
@@ -169,7 +173,7 @@ export class Block {
       propsAndStubs[key] = `<div ${Block.DATA_ID_ATTR}="${child._id}"></div>`
     })
 
-    Object.entries(this.lists).forEach(([key]) => {
+    Object.entries(this._lists).forEach(([key]) => {
       propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`
     })
 
@@ -200,7 +204,7 @@ export class Block {
       }
     })
 
-    Object.entries(this.lists).forEach(([_, child]) => {
+    Object.entries(this._lists).forEach(([_, child]) => {
       const listElement = this._createDocumentElement(
         'template',
       ) as HTMLTemplateElement
@@ -242,10 +246,10 @@ export class Block {
   }
 
   private _registerEvents(eventBus: EventBus) {
-    eventBus.on(Block.EVENTS.INIT, this.init.bind(this))
-    eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this))
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
-    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this))
+    eventBus.on(EVENTS.INIT, this.init.bind(this))
+    eventBus.on(EVENTS.FLOW_CDM, this._componentDidMount.bind(this))
+    eventBus.on(EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
+    eventBus.on(EVENTS.FLOW_RENDER, this._render.bind(this))
   }
 
   private _removeEvents() {
@@ -258,18 +262,6 @@ export class Block {
           events[eventName] as EventListenerOrEventListenerObject,
         )
       })
-    }
-  }
-
-  private showHideContent(
-    displayStyle: 'none' | 'block',
-    failureMessage: string,
-  ) {
-    const content = this.getContent()
-    if (content) {
-      content.style.display = displayStyle
-    } else {
-      console.warn(failureMessage)
     }
   }
 }

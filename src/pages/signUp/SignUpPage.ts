@@ -4,6 +4,7 @@ import { SignUpPageTemplate } from './template'
 import { Block, Props } from '@/app/lib'
 import { SignUpForm } from '@/features'
 import { Link, Title } from '@/shared/components'
+import { router } from '@/shared/helpers/routes'
 
 interface SignUpProps extends Props {
   signUpFormData: Record<string, string>
@@ -22,7 +23,7 @@ export class SignUp extends Block {
         events: {
           click: (e) => {
             e.preventDefault()
-            window.location.href = linkContext.url
+            router.go('/')
           },
         },
       }),

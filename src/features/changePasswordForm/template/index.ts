@@ -1,1 +1,1 @@
-export { default as ChasngePasswordFormTemplate } from './changePasswordForm.hbs?raw'
+export { default as ChangePasswordFormTemplate } from './changePasswordForm.hbs?raw'

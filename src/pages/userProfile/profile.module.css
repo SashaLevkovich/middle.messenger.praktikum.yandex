@@ -19,20 +19,4 @@
       }
     }
   }
-
-  .linksBlock {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    row-gap: 10px;
-
-    .logoutLink {
-      padding: 10px 0;
-      font-size: 13px;
-      color: var(--red);
-      border: none;
-      text-decoration: none;
-    }
-  }
 }
