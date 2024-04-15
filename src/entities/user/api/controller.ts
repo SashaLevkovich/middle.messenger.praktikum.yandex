@@ -143,8 +143,6 @@ export class UserController {
       return
     }
 
-    console.log(avatarFile)
-
     try {
       const response = await this.userAPI.changeAvatar({ avatar: avatarFile })
       if (response.status === 200) {
