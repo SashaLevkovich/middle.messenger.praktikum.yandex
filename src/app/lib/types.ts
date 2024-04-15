@@ -52,6 +52,7 @@ export interface UserData {
   phone: string
   nameInChat: string
   avatar?: string
+  password: string
 }
 
 export interface ChangePasswordFormData {

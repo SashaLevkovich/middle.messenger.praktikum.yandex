@@ -42,8 +42,6 @@ export class Login extends Block {
         ...LoginFormStyles,
       },
     })
-
-    console.log(1)
   }
 
   override init() {

@@ -25,7 +25,10 @@ export class UserProfile extends Block {
         },
       }),
       avatar: new Avatar({}),
-      form: new ProfileForm({}),
+      form: new ProfileForm({
+        profileFormData: props.profileFormData,
+        userData: store.getState().userConfig,
+      }),
       title: new Title({
         ...title,
       }),
@@ -44,8 +47,6 @@ export class UserProfile extends Block {
   override async componentDidMount() {
     const userController = new UserController()
     const user = await userController.getUser()
-
-    console.log(user)
 
     if (!isEmpty(user)) {
       router.go('/settings')

@@ -11,6 +11,7 @@ const state: State = {
     phone: '',
     nameInChat: '',
     avatar: '',
+    password: '',
   },
   changePasswordFormData: {
     oldPassword: '',
