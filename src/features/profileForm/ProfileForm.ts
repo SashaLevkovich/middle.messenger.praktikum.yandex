@@ -46,7 +46,7 @@ export class ProfileForm extends Block {
           ...ProfileFormStyles,
         },
         attr: {
-          value: store.getState().userConfig.email,
+          value: props.email,
         },
       }),
       login: new Input({
@@ -59,7 +59,7 @@ export class ProfileForm extends Block {
           ...ProfileFormStyles,
         },
         attr: {
-          value: store.getState().userConfig.login,
+          value: props.login,
         },
       }),
       name: new Input({
@@ -72,7 +72,7 @@ export class ProfileForm extends Block {
           ...ProfileFormStyles,
         },
         attr: {
-          value: store.getState().userConfig.first_name,
+          value: props.first_name,
         },
       }),
       lastname: new Input({
@@ -85,7 +85,7 @@ export class ProfileForm extends Block {
           ...ProfileFormStyles,
         },
         attr: {
-          value: store.getState().userConfig.second_name,
+          value: props.second_name,
         },
       }),
       nameInChat: new Input({
@@ -98,9 +98,7 @@ export class ProfileForm extends Block {
           ...ProfileFormStyles,
         },
         attr: {
-          value:
-            store.getState().userConfig.nameInChat ||
-            store.getState().userConfig.login,
+          value: props.nameInChat || props.login,
         },
       }),
       phone: new Input({
@@ -113,7 +111,7 @@ export class ProfileForm extends Block {
           ...ProfileFormStyles,
         },
         attr: {
-          value: store.getState().userConfig.phone,
+          value: props.phone,
         },
       }),
       links: new ProfileLinks({}),
@@ -121,6 +119,8 @@ export class ProfileForm extends Block {
         ...ProfileFormStyles,
       },
     })
+
+    console.log(props)
 
     this.userController = new UserController()
   }

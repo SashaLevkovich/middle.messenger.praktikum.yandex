@@ -135,8 +135,6 @@ export class UserController {
       newPassword: form?.newPassword,
     }
 
-    console.log(data)
-
     try {
       const response = await this.userAPI.changePassword(data)
       if (response.status === 200) {
@@ -153,7 +151,7 @@ export class UserController {
   }
 
   public async changeAvatar() {
-    const form = document.getElementById('form') as HTMLFormElement
+    const form = document.getElementById('formAvatar') as HTMLFormElement
 
     const formData = new FormData(form)
 

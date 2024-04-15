@@ -8,7 +8,7 @@ export enum HttpMethod {
 export interface RequestOptions {
   headers?: Record<string, string>
   method?: HttpMethod
-  data?: Record<string, unknown> | FormData
+  data?: Record<string, unknown> | FormData | File
   timeout?: number
   [key: string]: unknown | unknown[]
 }

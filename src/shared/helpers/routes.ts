@@ -14,8 +14,8 @@ function mapLoginToProps(state: State) {
 function mapSignUpToProps(state: State) {
   return {
     email: state.userConfig.email,
-    name: state.userConfig.first_name,
-    lastname: state.userConfig.second_name,
+    first_name: state.userConfig.first_name,
+    second_name: state.userConfig.second_name,
     phone: state.userConfig.phone,
     login: state.userConfig.login,
     password: state.userConfig.password,
@@ -25,8 +25,8 @@ function mapSignUpToProps(state: State) {
 function mapUserProfileToProps(state: State) {
   return {
     email: state.userConfig.email,
-    name: state.userConfig.first_name,
-    lastname: state.userConfig.second_name,
+    first_name: state.userConfig.first_name,
+    second_name: state.userConfig.second_name,
     phone: state.userConfig.phone,
     login: state.userConfig.login,
     nameInChat: state.userConfig.nameInChat,
