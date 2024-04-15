@@ -1,4 +1,4 @@
-import { Fetch } from '@/app/lib/Fetch'
+import { Fetch } from '@/app/lib/fetch'
 
 export class AuthAPI {
   private fetch: Fetch

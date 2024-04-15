@@ -59,7 +59,10 @@ export class Block {
     this._eventBus().emit(EVENTS.FLOW_CDM)
   }
 
-  componentDidUpdate(_oldProps?: unknown, _newProps?: unknown): boolean {
+  componentDidUpdate(
+    _oldProps?: unknown,
+    _newProps?: unknown,
+  ): boolean | Promise<boolean> {
     return true
   }
 

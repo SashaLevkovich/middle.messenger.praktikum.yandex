@@ -124,10 +124,10 @@ export class ProfileForm extends Block {
     const userController = new UserController()
     const user = await userController.getUser()
 
-    if (isEmpty(user)) {
-      router.go('/')
-    } else {
+    if (!isEmpty(user)) {
       router.go('/settings')
+    } else {
+      router.go('/')
     }
   }
 

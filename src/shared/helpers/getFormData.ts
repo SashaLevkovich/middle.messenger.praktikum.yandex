@@ -9,8 +9,6 @@ export function getFormData(formId?: string) {
       formDataObject[key] = value
     })
 
-    console.log('formDataObject:', formDataObject)
-
     return formDataObject
   }
 }
