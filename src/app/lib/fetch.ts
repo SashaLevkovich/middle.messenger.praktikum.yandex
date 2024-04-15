@@ -8,7 +8,7 @@ export enum HttpMethod {
 export interface RequestOptions {
   headers?: Record<string, string>
   method?: HttpMethod
-  data?: Record<string, unknown>
+  data?: Record<string, unknown> | FormData
   timeout?: number
   [key: string]: unknown | unknown[]
 }
@@ -49,7 +49,12 @@ export class Fetch {
       const xhr = new XMLHttpRequest()
       const isGet = method === HttpMethod.GET
 
-      xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url)
+      xhr.open(
+        method,
+        isGet && !!data
+          ? `${url}${queryStringify(data as Record<string, unknown>)}`
+          : url,
+      )
 
       Object.keys(headers).forEach((key) => {
         xhr.setRequestHeader(key, headers[key])
@@ -67,6 +72,8 @@ export class Fetch {
 
       if (isGet || !data) {
         xhr.send()
+      } else if (data instanceof FormData) {
+        xhr.send(data)
       } else {
         xhr.setRequestHeader('Content-Type', 'application/json')
         xhr.send(JSON.stringify(data))

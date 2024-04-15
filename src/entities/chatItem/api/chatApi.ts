@@ -10,7 +10,7 @@ export class ChatAPI {
 
   async getChats() {
     try {
-      return await this.fetch.post(`${this.url}`)
+      return await this.fetch.get(`${this.url}`)
     } catch (error) {
       throw new Error(`Failed to sign up, ${error}`)
     }

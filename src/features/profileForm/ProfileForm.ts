@@ -1,5 +1,6 @@
 import {
   emailContext,
+  fileInputContext,
   lastNameContext,
   loginContext,
   nameContext,
@@ -15,21 +16,29 @@ import { Block, Props } from '@/app/lib'
 import { setUser } from '@/app/store/actions'
 import { store } from '@/app/store/store'
 import { UserController } from '@/entities/user'
-import { Input } from '@/shared/components'
+import { FileInput, Input } from '@/shared/components'
 import { isEmpty } from '@/shared/helpers'
 import { router } from '@/shared/helpers/routes'
 
-interface ProfileProps extends Props {
-  profileFormData?: Record<string, string>
-}
-
 export class ProfileForm extends Block {
-  constructor(props: ProfileProps) {
+  private userController: UserController
+
+  constructor(props: Props) {
     super({
       ...props,
+      fileInput: new FileInput({
+        ...fileInputContext,
+        onChange: (value) => {
+          store.dispatch(setUser({ avatar: value }))
+          this.userController.changeAvatar()
+        },
+        styles: {
+          ...ProfileFormStyles,
+        },
+      }),
       email: new Input({
         ...emailContext,
-        onChange: (value: string) => {
+        onChange: (value) => {
           store.dispatch(setUser({ login: value }))
         },
         rules: RULES.email,
@@ -42,7 +51,7 @@ export class ProfileForm extends Block {
       }),
       login: new Input({
         ...loginContext,
-        onChange: (value: string) => {
+        onChange: (value) => {
           store.dispatch(setUser({ login: value }))
         },
         rules: RULES.login,
@@ -55,7 +64,7 @@ export class ProfileForm extends Block {
       }),
       name: new Input({
         ...nameContext,
-        onChange: (value: string) => {
+        onChange: (value) => {
           store.dispatch(setUser({ first_name: value }))
         },
         rules: RULES.name,
@@ -68,7 +77,7 @@ export class ProfileForm extends Block {
       }),
       lastname: new Input({
         ...lastNameContext,
-        onChange: (value: string) => {
+        onChange: (value) => {
           store.dispatch(setUser({ second_name: value }))
         },
         rules: RULES.lastname,
@@ -81,7 +90,7 @@ export class ProfileForm extends Block {
       }),
       nameInChat: new Input({
         ...nameInChatContext,
-        onChange: (value: string) => {
+        onChange: (value) => {
           store.dispatch(setUser({ display_name: value }))
         },
         rules: RULES.nameInChat,
@@ -96,7 +105,7 @@ export class ProfileForm extends Block {
       }),
       phone: new Input({
         ...phoneContext,
-        onChange: (value: string) => {
+        onChange: (value) => {
           store.dispatch(setUser({ phone: value }))
         },
         rules: RULES.phone,
@@ -107,11 +116,13 @@ export class ProfileForm extends Block {
           value: store.getState().userConfig.phone,
         },
       }),
-      links: new ProfileLinks({ profileFormData: props.profileFormData }),
+      links: new ProfileLinks({}),
       styles: {
         ...ProfileFormStyles,
       },
     })
+
+    this.userController = new UserController()
   }
 
   override async init() {
@@ -124,10 +135,10 @@ export class ProfileForm extends Block {
     const userController = new UserController()
     const user = await userController.getUser()
 
-    if (!isEmpty(user)) {
-      router.go('/settings')
-    } else {
+    if (isEmpty(user)) {
       router.go('/')
+    } else {
+      router.go('/settings')
     }
   }
 

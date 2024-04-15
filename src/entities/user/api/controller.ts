@@ -153,23 +153,12 @@ export class UserController {
   }
 
   public async changeAvatar() {
-    const form = document.getElementById('avatarForm') as HTMLFormElement
-
-    if (!form) {
-      console.error('Form not found')
-      return
-    }
+    const form = document.getElementById('form') as HTMLFormElement
 
     const formData = new FormData(form)
-    const avatarFile = formData.get('avatar')
-
-    if (!avatarFile) {
-      console.error('Avatar file not found in form data')
-      return
-    }
 
     try {
-      const response = await this.userAPI.changeAvatar({ avatar: avatarFile })
+      const response = await this.userAPI.changeAvatar(formData)
       if (response.status === 200) {
         this.getUser()
         router.go('/messenger')

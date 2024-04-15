@@ -2,20 +2,13 @@ import { linkContext, title } from './models/context'
 import ProfilePageStyles from './profile.module.css'
 import { ProfilePageTemplate } from './template'
 import { Block, Props } from '@/app/lib'
-import { store } from '@/app/store/store'
 import { UserController } from '@/entities/user'
-import { ProfileForm } from '@/features'
-import { Avatar } from '@/features/avatar'
 import { BackButton, Title } from '@/shared/components'
 import { isEmpty } from '@/shared/helpers'
-import { router } from '@/shared/helpers/routes'
-
-export interface ProfileProps extends Props {
-  profileFormData: Record<string, string>
-}
+import { profileForm, router } from '@/shared/helpers/routes'
 
 export class UserProfile extends Block {
-  constructor(props: ProfileProps) {
+  constructor(props: Props) {
     super({
       ...props,
       backButton: new BackButton({
@@ -24,11 +17,7 @@ export class UserProfile extends Block {
           router.go('/messenger')
         },
       }),
-      avatar: new Avatar({}),
-      form: new ProfileForm({
-        profileFormData: props.profileFormData,
-        userData: store.getState().userConfig,
-      }),
+      form: new profileForm({}),
       title: new Title({
         ...title,
       }),

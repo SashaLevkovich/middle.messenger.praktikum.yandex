@@ -1,7 +1,6 @@
 import { InputTemplate } from './template'
 import { InputProps } from './type'
 import { Block } from '@/app/lib'
-
 import { Validator } from '@/shared/helpers'
 import { ValidateParams } from '@/shared/helpers/Validator'
 

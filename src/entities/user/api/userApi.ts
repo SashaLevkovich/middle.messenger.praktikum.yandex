@@ -18,13 +18,10 @@ export class UserAPI {
     }
   }
 
-  async changeAvatar(data: Record<string, unknown>): Promise<XMLHttpRequest> {
+  async changeAvatar(data: FormData): Promise<XMLHttpRequest> {
     try {
       return await this.fetch.put(`${this.url}/profile/avatar`, {
         data,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
       })
     } catch (error) {
       throw new Error(`Failed to sign up, ${error}`)

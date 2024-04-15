@@ -13,9 +13,8 @@ export function connect<T>(
       super({ ...props, ...mapStateToProps(store.getState()) })
 
       store.subscribe(() => {
-        console.log('We are in store subscription')
-
         const newState = mapStateToProps(store.getState())
+
         if (!isEqualObject(state as PlainObject, newState as PlainObject)) {
           this.setProps({ ...newState })
         }

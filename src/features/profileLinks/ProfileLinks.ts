@@ -6,14 +6,10 @@ import { UserController } from '@/entities/user'
 import { Button, Link } from '@/shared/components'
 import { router } from '@/shared/helpers/routes'
 
-export interface ProfileLinksProps extends Props {
-  profileFormData?: Record<string, string>
-}
-
 export class ProfileLinks extends Block {
   private userController: UserController
 
-  constructor(props: ProfileLinksProps) {
+  constructor(props: Props) {
     super({
       ...props,
       changeProfile: new Button({
