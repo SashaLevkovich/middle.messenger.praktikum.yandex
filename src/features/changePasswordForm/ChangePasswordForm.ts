@@ -9,7 +9,11 @@ import { RULES } from './models/rules'
 import { ChangePasswordFormTemplate } from './template'
 
 import { Block, Props } from '@/app/lib'
+import { setPassword } from '@/app/store/actions'
+import { store } from '@/app/store/store'
+import { UserController } from '@/entities/user'
 import { Button, Input } from '@/shared/components'
+import { isEmpty } from '@/shared/helpers'
 import { router } from '@/shared/helpers/routes'
 
 interface ChangePasswordFormProps extends Props {
@@ -17,13 +21,15 @@ interface ChangePasswordFormProps extends Props {
 }
 
 export class ChangePasswordForm extends Block {
+  private userController: UserController
+
   constructor(props: ChangePasswordFormProps) {
     super({
       ...props,
       oldPassword: new Input({
         ...oldPasswordContext,
         onChange: (value: string) => {
-          this.setProps((props.changePasswordFormData['oldPassword'] = value))
+          store.dispatch(setPassword({ oldPassword: value }))
         },
         rules: RULES.oldPassword,
         styles: {
@@ -33,7 +39,7 @@ export class ChangePasswordForm extends Block {
       newPassword: new Input({
         ...newPasswordContext,
         onChange: (value: string) => {
-          this.setProps((props.changePasswordFormData['newPassword'] = value))
+          store.dispatch(setPassword({ newPassword: value }))
         },
         rules: RULES.newPassword,
         styles: {
@@ -56,13 +62,32 @@ export class ChangePasswordForm extends Block {
         ...buttonContext,
         onClick: (e) => {
           e.preventDefault()
-          router.go('/settings')
+          this.userController.changePassword()
         },
         styles: {
           ...ChangePasswordFormStyles,
         },
       }),
     })
+
+    this.userController = new UserController()
+  }
+
+  override async init() {
+    super.init()
+
+    this.componentDidMount()
+  }
+
+  override async componentDidMount() {
+    const userController = new UserController()
+    const user = await userController.getUser()
+
+    if (isEmpty(user)) {
+      router.go('/')
+    } else {
+      router.go('/change-password')
+    }
   }
 
   override render() {

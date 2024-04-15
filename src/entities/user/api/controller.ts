@@ -127,6 +127,31 @@ export class UserController {
     }
   }
 
+  async changePassword() {
+    const form = getFormData()
+
+    const data = {
+      oldPassword: form?.oldPassword,
+      newPassword: form?.newPassword,
+    }
+
+    console.log(data)
+
+    try {
+      const response = await this.userAPI.changePassword(data)
+      if (response.status === 200) {
+        this.getUser()
+        router.go('/messenger')
+      } else {
+        console.error(
+          `Failed to login user. Server returned status: ${response.status}`,
+        )
+      }
+    } catch (error) {
+      console.error(`Failed to login user, ${error}`)
+    }
+  }
+
   public async changeAvatar() {
     const form = document.getElementById('avatarForm') as HTMLFormElement
 

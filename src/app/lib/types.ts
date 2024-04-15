@@ -51,7 +51,6 @@ export interface UserData {
   second_name: string
   phone: string
   nameInChat: string
-  password: string
   avatar?: string
 }
 

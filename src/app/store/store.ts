@@ -10,7 +10,6 @@ const state: State = {
     second_name: '',
     phone: '',
     nameInChat: '',
-    password: '',
     avatar: '',
   },
   changePasswordFormData: {

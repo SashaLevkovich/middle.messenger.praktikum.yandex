@@ -3,7 +3,6 @@ export const oldPasswordContext = {
   type: 'password',
   name: 'oldPassword',
   id: 'oldPassword',
-  value: '12313123123123',
 }
 
 export const newPasswordContext = {
@@ -24,8 +23,4 @@ export const buttonContext = {
   type: 'button',
   text: 'Change password',
   id: 'saveChangePasswordButton',
-}
-
-export const linkContext = {
-  url: '/profile',
 }

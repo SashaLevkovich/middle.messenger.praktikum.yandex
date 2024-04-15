@@ -30,4 +30,14 @@ export class UserAPI {
       throw new Error(`Failed to sign up, ${error}`)
     }
   }
+
+  async changePassword(data: Record<string, unknown>): Promise<XMLHttpRequest> {
+    try {
+      return await this.fetch.put(`${this.url}/password`, {
+        data,
+      })
+    } catch (error) {
+      throw new Error(`Failed to sign up, ${error}`)
+    }
+  }
 }
