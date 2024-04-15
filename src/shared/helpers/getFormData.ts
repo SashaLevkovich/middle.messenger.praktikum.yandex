@@ -1,5 +1,5 @@
-export function getFormData() {
-  const form = document.getElementById('form') as HTMLFormElement
+export function getFormData(formId?: string) {
+  const form = document.getElementById(formId || 'form') as HTMLFormElement
 
   if (form) {
     const formData = new FormData(form)

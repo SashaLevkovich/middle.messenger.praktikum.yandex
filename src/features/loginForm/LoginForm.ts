@@ -39,7 +39,7 @@ export class LoginForm extends Block {
         ...buttonContext,
         onClick: (e) => {
           e.preventDefault()
-          this.userController.login()
+          this.userController.signin()
         },
         styles: {
           ...LoginFormStyles,

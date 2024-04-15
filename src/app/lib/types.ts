@@ -47,8 +47,8 @@ export interface ProfileFormData {
 export interface UserData {
   email: string
   login: string
-  name: string
-  lastname: string
+  first_name: string
+  second_name: string
   phone: string
   nameInChat: string
   password: string

@@ -82,20 +82,25 @@ export class Block {
   }
 
   show() {
-    const newElement = this._createDocumentElement('div')
-    this.setElement = newElement
-    this._render()
-    this.addAttributes()
-    this._addEvents()
+    const el = this.getContent()
+    if (el) {
+      const parent = el.parentElement
+      if (parent) {
+        return
+      }
+      const container = document.querySelector('#root')
+      if (container) {
+        container.appendChild(el)
+      } else {
+        console.error('Container not found')
+      }
+    }
   }
 
   hide() {
-    const content = this.getContent()
-
-    if (content) {
-      content.remove()
-    } else {
-      console.warn('Failed to hide content: No content element.')
+    const el = this.getContent()
+    if (el) {
+      el.remove()
     }
   }
 

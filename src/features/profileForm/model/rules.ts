@@ -20,7 +20,7 @@ export const RULES: Record<string, ValidationRule[]> = {
       ruleValue: { minValue: 5 },
       errorMessage: 'Too short',
     },
-    { ruleName: 'regex', errorMessage: 'Incorrect login' },
+    { ruleName: 'Login', errorMessage: 'Incorrect login' },
   ],
   name: [
     {

@@ -1,14 +1,5 @@
 import { Fetch } from '@/app/lib/Fetch'
 
-export interface SignUpData {
-  first_name: string
-  second_name: string
-  login: string
-  email: string
-  password: string
-  phone: string
-}
-
 export class AuthAPI {
   private fetch: Fetch
   private url = `${import.meta.env.VITE_API_URL}/auth`

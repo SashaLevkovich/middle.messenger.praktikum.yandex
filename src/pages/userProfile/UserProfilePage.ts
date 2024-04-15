@@ -2,8 +2,8 @@ import { linkContext, title } from './models/context'
 import ProfilePageStyles from './profile.module.css'
 import { ProfilePageTemplate } from './template'
 import { Block, Props } from '@/app/lib'
-
-import { ProfileForm, ProfileLinks } from '@/features'
+import { ProfileForm } from '@/features'
+import { Avatar } from '@/features/avatar'
 import { BackButton, Title } from '@/shared/components'
 import { router } from '@/shared/helpers/routes'
 
@@ -21,11 +21,11 @@ export class UserProfile extends Block {
           router.go('/messenger')
         },
       }),
+      avatar: new Avatar({}),
       form: new ProfileForm({ profileFormData: props.profileFormData }),
       title: new Title({
         ...title,
       }),
-      links: new ProfileLinks({ profileFormData: props.profileFormData }),
       styles: {
         ...ProfilePageStyles,
       },

@@ -6,8 +6,8 @@ const state: State = {
   userConfig: {
     email: '',
     login: '',
-    name: '',
-    lastname: '',
+    first_name: '',
+    second_name: '',
     phone: '',
     nameInChat: '',
     password: '',

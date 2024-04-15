@@ -1,3 +1,4 @@
+import { UserAPI } from './userApi'
 import { setUser } from '@/app/store/actions'
 import { store } from '@/app/store/store'
 import { AuthAPI } from '@/entities/authentication'
@@ -6,9 +7,11 @@ import { router } from '@/shared/helpers/routes'
 
 export class UserController {
   private authAPI: AuthAPI
+  private userAPI: UserAPI
 
   constructor() {
     this.authAPI = new AuthAPI()
+    this.userAPI = new UserAPI()
   }
 
   public async getUser() {
@@ -32,7 +35,34 @@ export class UserController {
     }
   }
 
-  public async login() {
+  public async signup() {
+    const form = getFormData()
+
+    const data = {
+      email: form?.email,
+      login: form?.login,
+      first_name: form?.first_name,
+      second_name: form?.second_name,
+      phone: form?.phone,
+      password: form?.password,
+    }
+
+    try {
+      const response = await this.authAPI.signup(data)
+      if (response.status === 200) {
+        this.getUser()
+        router.go('/messenger')
+      } else {
+        console.error(
+          `Failed to login user. Server returned status: ${response.status}`,
+        )
+      }
+    } catch (error) {
+      console.error(`Failed to login user, ${error}`)
+    }
+  }
+
+  public async signin() {
     const form = getFormData()
     const data = {
       login: form?.login as string,
@@ -43,6 +73,82 @@ export class UserController {
       const response = await this.authAPI.signin(data)
 
       if (response.status === 200) {
+        router.go('/messenger')
+      } else {
+        console.error(
+          `Failed to login user. Server returned status: ${response.status}`,
+        )
+      }
+    } catch (error) {
+      console.error(`Failed to login user, ${error}`)
+    }
+  }
+
+  public async logout() {
+    try {
+      const response = await this.authAPI.logout()
+
+      if (response.status === 200) {
+        router.go('/')
+      } else {
+        console.error(
+          `Failed to login user. Server returned status: ${response.status}`,
+        )
+      }
+    } catch (error) {
+      console.error(`Failed to login user, ${error}`)
+    }
+  }
+
+  async changeUser() {
+    const form = getFormData()
+
+    const data = {
+      email: form?.email,
+      login: form?.login,
+      first_name: form?.first_name,
+      second_name: form?.second_name,
+      phone: form?.phone,
+      display_name: form?.display_name,
+    }
+
+    try {
+      const response = await this.userAPI.changeUser(data)
+      if (response.status === 200) {
+        this.getUser()
+        router.go('/messenger')
+      } else {
+        console.error(
+          `Failed to login user. Server returned status: ${response.status}`,
+        )
+      }
+    } catch (error) {
+      console.error(`Failed to login user, ${error}`)
+    }
+  }
+
+  public async changeAvatar() {
+    const form = document.getElementById('avatarForm') as HTMLFormElement
+
+    if (!form) {
+      console.error('Form not found')
+      return
+    }
+
+    const formData = new FormData(form)
+    const avatarFile = formData.get('avatar')
+
+    if (!avatarFile) {
+      console.error('Avatar file not found in form data')
+      return
+    }
+
+    console.log(avatarFile)
+
+    try {
+      const response = await this.userAPI.changeAvatar({ avatar: avatarFile })
+      if (response.status === 200) {
+        this.getUser()
         router.go('/messenger')
       } else {
         console.error(

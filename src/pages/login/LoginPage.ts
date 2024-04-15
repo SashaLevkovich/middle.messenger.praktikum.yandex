@@ -42,6 +42,8 @@ export class Login extends Block {
         ...LoginFormStyles,
       },
     })
+
+    console.log(1)
   }
 
   override init() {
@@ -53,9 +55,10 @@ export class Login extends Block {
   override async componentDidMount() {
     const userController = new UserController()
     const user = await userController.getUser()
+    console.log(store.getState())
 
     if (isEmpty(user)) {
-      return
+      router.go('/')
     } else {
       router.go('/messenger')
     }

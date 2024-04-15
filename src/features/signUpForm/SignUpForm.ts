@@ -11,21 +11,25 @@ import { RULES } from './models/rules'
 import SingUpFormStyles from './signUpForm.module.css'
 import { SignUpFormTemplate } from './templates'
 import { Block, Props } from '@/app/lib'
+import { setUser } from '@/app/store/actions'
+import { store } from '@/app/store/store'
+import { UserController } from '@/entities/user'
 import { Button, Input } from '@/shared/components'
-import { router } from '@/shared/helpers/routes'
 
 interface SignUpFormProps extends Props {
   signUpFormData: Record<string, string>
 }
 
 export class SignUpForm extends Block {
+  private userController: UserController
+
   constructor(props: SignUpFormProps) {
     super({
       ...props,
       email: new Input({
         ...emailContext,
         onChange: (value: string) => {
-          this.setProps((props.signUpFormData['email'] = value))
+          store.dispatch(setUser({ email: value }))
         },
         rules: RULES.email,
         styles: {
@@ -35,10 +39,7 @@ export class SignUpForm extends Block {
       login: new Input({
         ...loginContext,
         onChange: (value: string) => {
-          this.setProps((props.signUpFormData['login'] = value))
-          this.setProps({
-            value,
-          })
+          store.dispatch(setUser({ login: value }))
         },
         rules: RULES.login,
         styles: {
@@ -48,7 +49,7 @@ export class SignUpForm extends Block {
       name: new Input({
         ...nameContext,
         onChange: (value: string) => {
-          this.setProps((props.signUpFormData['name'] = value))
+          store.dispatch(setUser({ first_name: value }))
         },
         rules: RULES.name,
         styles: {
@@ -58,7 +59,7 @@ export class SignUpForm extends Block {
       lastname: new Input({
         ...lastNameContext,
         onChange: (value: string) => {
-          this.setProps((props.signUpFormData['lastname'] = value))
+          store.dispatch(setUser({ second_name: value }))
         },
         rules: RULES.lastname,
         styles: {
@@ -68,7 +69,7 @@ export class SignUpForm extends Block {
       phone: new Input({
         ...phoneContext,
         onChange: (value: string) => {
-          this.setProps((props.signUpFormData['phone'] = value))
+          store.dispatch(setUser({ phone: value }))
         },
         rules: RULES.phone,
         styles: {
@@ -78,7 +79,7 @@ export class SignUpForm extends Block {
       password: new Input({
         ...passwordContext,
         onChange: (value: string) => {
-          this.setProps((props.signUpFormData['password'] = value))
+          store.dispatch(setUser({ password: value }))
         },
         rules: RULES.password,
         styles: {
@@ -87,8 +88,9 @@ export class SignUpForm extends Block {
       }),
       button: new Button({
         ...buttonContext,
-        onClick: () => {
-          router.go('/messenger')
+        onClick: (e) => {
+          e.preventDefault()
+          this.userController.signup()
         },
         styles: {
           ...SingUpFormStyles,
@@ -98,6 +100,8 @@ export class SignUpForm extends Block {
         ...SingUpFormStyles,
       },
     })
+
+    this.userController = new UserController()
   }
 
   override render() {

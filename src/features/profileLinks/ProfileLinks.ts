@@ -1,22 +1,27 @@
 import { changePassword, changeProfile, logoutLink } from './models/context'
 import ProfileLinksStyles from './profileLinks.module.css'
 import { ProfileLinksTemplate } from './template'
-
 import { Block, Props } from '@/app/lib'
+import { UserController } from '@/entities/user'
 import { Button, Link } from '@/shared/components'
 import { router } from '@/shared/helpers/routes'
 
 export interface ProfileLinksProps extends Props {
-  profileFormData: Record<string, string>
+  profileFormData?: Record<string, string>
 }
 
 export class ProfileLinks extends Block {
+  private userController: UserController
+
   constructor(props: ProfileLinksProps) {
     super({
       ...props,
       changeProfile: new Button({
         ...changeProfile,
-        onClick: () => {},
+        onClick: (e) => {
+          e.preventDefault()
+          this.userController.changeUser()
+        },
         styles: {
           ...ProfileLinksStyles,
         },
@@ -36,7 +41,7 @@ export class ProfileLinks extends Block {
         events: {
           click: (e) => {
             e.preventDefault()
-            router.go('/')
+            this.userController.logout()
           },
         },
         styles: {
@@ -47,6 +52,8 @@ export class ProfileLinks extends Block {
         ...ProfileLinksStyles,
       },
     })
+
+    this.userController = new UserController()
   }
 
   render(): string {

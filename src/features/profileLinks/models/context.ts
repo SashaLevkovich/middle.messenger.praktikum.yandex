@@ -4,7 +4,6 @@ export const changePassword = {
   text: 'Change password',
   id: 'changePasswordButton',
   className: ` ${ProfileLinksStyles.changeButton}`,
-  url: '/changePassword',
 }
 
 export const changeProfile = {
@@ -14,7 +13,6 @@ export const changeProfile = {
 }
 
 export const logoutLink = {
-  url: '/login',
   text: 'Log out',
   className: ` ${ProfileLinksStyles.logoutLink} `,
 }
