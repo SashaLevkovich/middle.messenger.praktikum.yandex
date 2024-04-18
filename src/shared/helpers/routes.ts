@@ -1,7 +1,7 @@
 import { connect } from '@/app/lib/Hoc'
 import { Router } from '@/app/lib/Router'
 import { State } from '@/app/lib/types'
-import { ProfileForm } from '@/features'
+import { ChatItem } from '@/entities/chatItem/ChatItem'
 import { Login, SignUp, Chats, UserProfile, ChangePassword } from '@/pages'
 
 function mapLoginToProps(state: State) {
@@ -38,7 +38,16 @@ function mapChatsToProps(state: State) {
     message: state.chatsFormData.message,
   }
 }
+
 function mapChangePasswordToProps(state: State) {
+  return {
+    oldPassword: state.changePasswordFormData.oldPassword,
+    newPassword: state.changePasswordFormData.newPassword,
+    repeatNewPassword: state.changePasswordFormData.repeatNewPassword,
+  }
+}
+
+function mapChatItemToProps(state: State) {
   return {
     oldPassword: state.changePasswordFormData.oldPassword,
     newPassword: state.changePasswordFormData.newPassword,
@@ -49,9 +58,9 @@ function mapChangePasswordToProps(state: State) {
 export const router = new Router('root')
 
 export const loginPage = connect(Login, mapLoginToProps)
+export const chatItem = connect(ChatItem, mapChatItemToProps)
 export const signPagePage = connect(SignUp, mapSignUpToProps)
 export const profilePage = connect(UserProfile, mapUserProfileToProps)
-export const profileForm = connect(ProfileForm, mapUserProfileToProps)
 export const chatsPage = connect(Chats, mapChatsToProps)
 export const changePasswordPage = connect(
   ChangePassword,

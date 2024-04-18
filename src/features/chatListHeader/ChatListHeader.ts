@@ -5,13 +5,28 @@ import { ChatListHeaderTemplate } from './template'
 import { Block, Props } from '@/app/lib'
 import { Input, Link } from '@/shared/components'
 import { router } from '@/shared/helpers/routes'
+import { ChatController } from '@/widgets/chatList/api/controller'
 
 export class ChatListHeader extends Block {
+  private chatController: ChatController
+
   constructor(props: Props) {
     super({
       ...props,
       search: new Input({
         ...searchContext,
+        styles: {
+          ...ChatListHeaderStyles,
+        },
+      }),
+      addChat: new Link({
+        text: 'Add Chat',
+        events: {
+          click: (e) => {
+            e.preventDefault()
+            this.chatController.addChat()
+          },
+        },
         styles: {
           ...ChatListHeaderStyles,
         },
@@ -32,6 +47,8 @@ export class ChatListHeader extends Block {
         ...ChatListHeaderStyles,
       },
     })
+
+    this.chatController = new ChatController()
   }
 
   render() {

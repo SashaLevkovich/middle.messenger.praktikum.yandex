@@ -1,0 +1,7 @@
+export { default as EmailInput } from './email'
+export { default as LoginInput } from './login'
+export { default as NameInput } from './name'
+export { default as LastnameInput } from './lastname'
+export { default as DisplayNameInput } from './displayName'
+export { default as PhoneInput } from './phone'
+export { default as Avatar } from './avatar'

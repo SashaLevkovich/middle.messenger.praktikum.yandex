@@ -1,4 +1,5 @@
 export const oldPasswordContext = {
+  placeholder: 'Enter old password',
   label: 'Old password:',
   type: 'password',
   name: 'oldPassword',

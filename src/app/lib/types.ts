@@ -1,3 +1,6 @@
+import { ChatItem } from '@/entities/chatItem/ChatItem'
+import { TChatsList } from '@/widgets/chatList/models/context'
+
 export type Listener<T extends unknown[] = unknown[]> = (...args: T) => void
 
 export type EventMap = {
@@ -7,6 +10,7 @@ export type EventMap = {
 export type Props = {
   events?: EventMap
   styles?: Record<string, string>
+  list?: ChatItem[]
   [key: string]: unknown
 }
 
@@ -69,6 +73,7 @@ export interface State {
   changePasswordFormData: ChangePasswordFormData
   chatsFormData: ChatsFormData
   userConfig: UserData
+  chats: TChatsList[]
 }
 
 export interface Action {
@@ -78,6 +83,7 @@ export interface Action {
 
 export type Reducer = (state: State, action: Action) => State
 
-export interface MiddlewareFunction {
-  (next: () => void): void
-}
+export type Middleware = (
+  action: Action,
+  next: (action: Action) => void,
+) => void

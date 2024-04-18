@@ -15,4 +15,12 @@ export class ChatAPI {
       throw new Error(`Failed to sign up, ${error}`)
     }
   }
+
+  async addChat(data: Record<string, unknown>) {
+    try {
+      return await this.fetch.post(`${this.url}`, { data })
+    } catch (error) {
+      throw new Error(`Failed to sign up, ${error}`)
+    }
+  }
 }

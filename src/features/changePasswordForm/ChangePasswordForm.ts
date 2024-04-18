@@ -2,7 +2,6 @@ import ChangePasswordFormStyles from './changePasswordForm.module.css'
 import {
   buttonContext,
   newPasswordContext,
-  newPasswordRepeatContext,
   oldPasswordContext,
 } from './models/context'
 import { RULES } from './models/rules'
@@ -42,18 +41,6 @@ export class ChangePasswordForm extends Block {
           store.dispatch(setPassword({ newPassword: value }))
         },
         rules: RULES.newPassword,
-        styles: {
-          ...ChangePasswordFormStyles,
-        },
-      }),
-      newPasswordRepeat: new Input({
-        ...newPasswordRepeatContext,
-        onChange: (value: string) => {
-          this.setProps(
-            (props.changePasswordFormData['repeatNewPassword'] = value),
-          )
-        },
-        rules: RULES.repeatNewPassword,
         styles: {
           ...ChangePasswordFormStyles,
         },

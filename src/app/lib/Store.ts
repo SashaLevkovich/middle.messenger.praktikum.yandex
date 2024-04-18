@@ -32,6 +32,7 @@ export class Store extends EventBus {
 
   public subscribe(fn: (state: State) => void): void {
     this.subscribers.push(fn)
+
     fn(this.state as State)
   }
 

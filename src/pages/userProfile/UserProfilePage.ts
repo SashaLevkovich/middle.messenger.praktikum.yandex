@@ -3,9 +3,10 @@ import ProfilePageStyles from './profile.module.css'
 import { ProfilePageTemplate } from './template'
 import { Block, Props } from '@/app/lib'
 import { UserController } from '@/entities/user'
+import { ProfileForm } from '@/features'
 import { BackButton, Title } from '@/shared/components'
 import { isEmpty } from '@/shared/helpers'
-import { profileForm, router } from '@/shared/helpers/routes'
+import { router } from '@/shared/helpers/routes'
 
 export class UserProfile extends Block {
   constructor(props: Props) {
@@ -17,7 +18,7 @@ export class UserProfile extends Block {
           router.go('/messenger')
         },
       }),
-      form: new profileForm({}),
+      form: new ProfileForm({}),
       title: new Title({
         ...title,
       }),

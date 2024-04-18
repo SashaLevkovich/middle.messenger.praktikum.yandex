@@ -1,11 +1,10 @@
 export const searchContext = {
   type: 'text',
-  name: 'search',
-  id: 'search',
-  placeholder: 'Search',
+  name: 'addChat',
+  id: 'addChat',
+  placeholder: 'Enter name',
 }
 
 export const linkContext = {
-  url: '/profile',
   text: 'Profile',
 }
