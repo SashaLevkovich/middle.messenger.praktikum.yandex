@@ -30,18 +30,6 @@ export class ChatList extends Block {
     })
   }
 
-  override async init() {
-    super.init()
-    this.componentDidMount()
-  }
-
-  override async componentDidMount() {
-    this.chatController = new ChatController()
-    this.chatController.getChats()
-
-    console.log(store.getState())
-  }
-
   private updateChats(chats: TChatsList[]) {
     this.chatItems.forEach((item) => {
       const content = item.getContent()
