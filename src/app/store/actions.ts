@@ -28,6 +28,6 @@ export function setSocket(payload: WebSocket) {
   return { type: SET_SOCKET, payload: payload }
 }
 
-export function setMessages(payload: string) {
+export function setMessages(payload: string[]) {
   return { type: SET_MESSAGES, payload: payload }
 }

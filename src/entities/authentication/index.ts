@@ -1,1 +1,1 @@
-export { AuthAPI, type SignUpData } from './api/authApi'
+export { AuthAPI } from './api/authApi'

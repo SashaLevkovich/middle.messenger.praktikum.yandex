@@ -6,7 +6,12 @@ import {
   SET_SOCKET,
   SET_MESSAGES,
 } from './actions'
-import { ChangePasswordFormData, Reducer, UserData } from '../lib/types'
+import {
+  ActiveChat,
+  ChangePasswordFormData,
+  Reducer,
+  UserData,
+} from '../lib/types'
 import { deepCopy } from '@/shared/helpers'
 import { TChatsList } from '@/widgets/chatList/models/context'
 
@@ -32,7 +37,10 @@ export const reducer: Reducer = (state, action) => {
       return newState
 
     case SET_ACTIVE_CHAT:
-      newState.activeChat = action.payload as string
+      newState.activeChat = {
+        ...newState.activeChat,
+        ...(action.payload as object),
+      } as ActiveChat
       return newState
 
     case SET_SOCKET:
