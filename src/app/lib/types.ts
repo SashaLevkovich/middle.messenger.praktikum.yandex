@@ -74,6 +74,9 @@ export interface State {
   chatsFormData: ChatsFormData
   userConfig: UserData
   chats: TChatsList[]
+  activeChat: string
+  socket?: WebSocket
+  messages?: string[]
 }
 
 export interface Action {

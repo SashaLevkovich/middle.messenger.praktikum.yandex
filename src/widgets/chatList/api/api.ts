@@ -23,4 +23,8 @@ export class ChatAPI {
       throw new Error(`Failed to sign up, ${error}`)
     }
   }
+
+  async getChatToken(id: number) {
+    return this.fetch.post(`${this.url}/token/${id}`)
+  }
 }

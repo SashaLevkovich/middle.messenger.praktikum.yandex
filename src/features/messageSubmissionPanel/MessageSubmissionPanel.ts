@@ -1,38 +1,39 @@
 import MessageSubmissionPanelStyles from './messageSubmissionPanel.module.css'
-import { messageInputContext } from './model/context'
+import { buttonContext, messageInputContext } from './model/context'
+import { RULES } from './model/rules'
 import { MessageSubmissionPanelTemplate } from './template'
-
 import { Block, Props } from '@/app/lib'
-import { Input } from '@/shared/components'
-
-let message = ''
-
-const RULES = [
-  {
-    ruleName: 'required',
-    ruleValue: { isRequired: true },
-    errorMessage: 'Field is required',
-  },
-]
+import { MessageController } from '@/entities/message/api/controller'
+import { Button, Input } from '@/shared/components'
 
 export class MessageSubmissionPanel extends Block {
+  private messageController: MessageController
+
   constructor(props: Props) {
     super({
       ...props,
       input: new Input({
         ...messageInputContext,
-        onChange: (value: string) => {
-          this.setProps((message = value))
-        },
         rules: RULES,
         styles: {
           ...MessageSubmissionPanelStyles,
+        },
+      }),
+      button: new Button({
+        ...buttonContext,
+        styles: {
+          ...MessageSubmissionPanelStyles,
+        },
+        onClick: () => {
+          this.messageController.sendMessage()
         },
       }),
       styles: {
         ...MessageSubmissionPanelStyles,
       },
     })
+
+    this.messageController = new MessageController()
   }
 
   render() {

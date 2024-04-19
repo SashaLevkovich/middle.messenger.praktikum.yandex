@@ -10,7 +10,7 @@
 
     .chatContainer {
       display: flex;
-      flex-direction: column;
+      flex-direction: column-reverse;
       gap: 10px;
       justify-content: flex-end;
       padding: 14px 0;

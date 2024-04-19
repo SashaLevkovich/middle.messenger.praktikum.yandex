@@ -15,17 +15,19 @@ export const chatList = {
         }
       }
 
-      const title = `${item.title}`
+      const title = item.title
       const message = lastMessage.content
       const time = new Date(lastMessage.time).toLocaleTimeString('ru-RU', {
         hour: '2-digit',
         minute: '2-digit',
       })
+      const avatarSrc = item.avatar
 
       return {
         title,
         message,
         time,
+        avatarSrc,
       }
     })
 

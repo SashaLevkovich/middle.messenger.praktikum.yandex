@@ -23,6 +23,7 @@ export const state: State = {
     message: '',
   },
   chats: [],
+  activeChat: '',
 }
 
 export const store = Store.getInstance(reducer, state)

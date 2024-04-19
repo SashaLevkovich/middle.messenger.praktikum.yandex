@@ -1,4 +1,11 @@
-import { SET_USER, SET_PASSWORD, ADD_CHATS } from './actions'
+import {
+  SET_USER,
+  SET_PASSWORD,
+  ADD_CHATS,
+  SET_ACTIVE_CHAT,
+  SET_SOCKET,
+  SET_MESSAGES,
+} from './actions'
 import { ChangePasswordFormData, Reducer, UserData } from '../lib/types'
 import { deepCopy } from '@/shared/helpers'
 import { TChatsList } from '@/widgets/chatList/models/context'
@@ -19,11 +26,23 @@ export const reducer: Reducer = (state, action) => {
         ...(action.payload as object),
       } as ChangePasswordFormData
       return newState
+
     case ADD_CHATS:
       newState.chats = [...(action.payload as TChatsList[])]
-      console.log(newState.chats)
-
       return newState
+
+    case SET_ACTIVE_CHAT:
+      newState.activeChat = action.payload as string
+      return newState
+
+    case SET_SOCKET:
+      newState.socket = action.payload as WebSocket
+      return newState
+
+    case SET_MESSAGES:
+      newState.messages = action.payload as string[]
+      return newState
+
     default:
       return state
   }

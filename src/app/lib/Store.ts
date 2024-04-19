@@ -39,6 +39,7 @@ export class Store extends EventBus {
   public dispatch(action: Action): void {
     this.state = this.reducer(this.state as State, action)
     this.subscribers.forEach((fn) => fn(this.state as State))
+
     this.emit(StoreEvents.Updated, this.state)
   }
 }
