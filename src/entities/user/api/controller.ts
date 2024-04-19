@@ -154,6 +154,8 @@ export class UserController {
     const form = document.getElementById('formAvatar') as HTMLFormElement
 
     const formData = new FormData(form)
+    console.log(form)
+    console.log(formData)
 
     try {
       const response = await this.userAPI.changeAvatar(formData)

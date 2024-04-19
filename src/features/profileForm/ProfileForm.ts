@@ -35,7 +35,7 @@ export class ProfileForm extends Block {
       ...props,
       fileInput: new Avatar({
         ...fileInputContext,
-        onChange: (value: File) => {
+        onChange: (value: unknown) => {
           store.dispatch(setUser({ avatar: value }))
           this.userController.changeAvatar()
         },

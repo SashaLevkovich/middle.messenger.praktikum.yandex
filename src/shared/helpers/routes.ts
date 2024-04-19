@@ -2,6 +2,7 @@ import { connect } from '@/app/lib/Hoc'
 import { Router } from '@/app/lib/Router'
 import { State } from '@/app/lib/types'
 import { ChatItem } from '@/entities/chatItem/ChatItem'
+
 import { Login, SignUp, Chats, UserProfile, ChangePassword } from '@/pages'
 
 function mapLoginToProps(state: State) {
@@ -29,7 +30,7 @@ function mapUserProfileToProps(state: State) {
     second_name: state.userConfig.second_name,
     phone: state.userConfig.phone,
     login: state.userConfig.login,
-    nameInChat: state.userConfig.nameInChat,
+    display_name: state.userConfig.display_name,
   }
 }
 
