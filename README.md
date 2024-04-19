@@ -4,6 +4,12 @@ This project is aimed at creating a messaging application with various features 
 
 A special class, Block, and EventBus have been developed to implement a component-based approach and client-side rendering. The HTTPTransport class is a wrapper around XMLHttpRequest that enables convenient request handling.
 
+# Features
+
+Authentication: Full authentication functionality including registration, login, and logout.
+User Information Management: Ability to modify user data, change avatar, and update password.
+Chat Functionality: Features for managing user chats including listing user chats, creating new chats, adding users to chats, and removing users from chats.
+
 ## Deploy link
 
 [Dark messenger](https://darkmessenger.netlify.app/login)
