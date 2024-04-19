@@ -7,5 +7,5 @@ export const messageInputContext = {
 
 export const buttonContext = {
   id: 'signInButton',
-  type: 'button',
+  type: 'submit',
 }

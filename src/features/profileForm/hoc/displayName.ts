@@ -4,7 +4,7 @@ import { Input } from '@/shared/components'
 
 function mapToProps(state: State) {
   return {
-    value: state.userConfig.nameInChat,
+    value: state.userConfig.display_name,
   }
 }
 

@@ -24,7 +24,12 @@ export class MessageSubmissionPanel extends Block {
         styles: {
           ...MessageSubmissionPanelStyles,
         },
-        onClick: () => {
+        onClick: (e) => {
+          e.preventDefault()
+          this.messageController.sendMessage()
+        },
+        onSubmit: (e) => {
+          e.preventDefault()
           this.messageController.sendMessage()
         },
       }),

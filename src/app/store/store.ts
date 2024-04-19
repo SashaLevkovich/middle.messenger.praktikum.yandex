@@ -10,7 +10,7 @@ export const state: State = {
     first_name: '',
     second_name: '',
     phone: '',
-    nameInChat: '',
+    display_name: '',
     avatar: '',
     password: '',
   },

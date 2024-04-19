@@ -45,7 +45,7 @@ export interface ProfileFormData {
   name: string
   lastname: string
   phone: string
-  nameInChat: string
+  display_name: string
 }
 
 export interface UserData {
@@ -54,7 +54,7 @@ export interface UserData {
   first_name: string
   second_name: string
   phone: string
-  nameInChat: string
+  display_name: string
   avatar?: string
   password: string
 }

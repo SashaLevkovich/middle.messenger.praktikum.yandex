@@ -12,6 +12,15 @@ export class Button extends Block {
             props.onClick(e)
           }
         },
+        submit: (e) => {
+          e.preventDefault()
+
+          if (props.onSubmit) {
+            console.log(1)
+
+            props.onSubmit(e)
+          }
+        },
       },
     })
   }

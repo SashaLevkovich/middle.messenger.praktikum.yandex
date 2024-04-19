@@ -5,6 +5,7 @@ import { store } from '@/app/store/store'
 import { Message } from '@/entities/message/Message'
 import { DialogHeader } from '@/features/dialogHeader/DialogHeader'
 import { MessageSubmissionPanel } from '@/features/messageSubmissionPanel/MessageSubmissionPanel'
+import { isEmpty } from '@/shared/helpers'
 
 export class Dialog extends Block {
   private messages: Message[] = []
@@ -12,7 +13,6 @@ export class Dialog extends Block {
   constructor(props: Props) {
     super({
       ...props,
-      dialogHeader: new DialogHeader({}),
       panel: new MessageSubmissionPanel({}),
       styles: {
         ...DialogStyles,
@@ -46,6 +46,16 @@ export class Dialog extends Block {
         container.appendChild(content)
       }
     })
+
+    const container = document.getElementById('header')
+
+    if (!isEmpty(this.messages) && !container?.hasChildNodes()) {
+      const header = new DialogHeader({})
+      const content = header.getContent()
+      if (content) {
+        container?.appendChild(content)
+      }
+    }
   }
 
   render() {
