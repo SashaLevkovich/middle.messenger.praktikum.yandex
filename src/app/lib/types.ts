@@ -69,12 +69,17 @@ export interface ChatsFormData {
   message: string
 }
 
+export interface ActiveChat {
+  title: string
+  id: number
+}
+
 export interface State {
   changePasswordFormData: ChangePasswordFormData
   chatsFormData: ChatsFormData
   userConfig: UserData
   chats: TChatsList[]
-  activeChat: string
+  activeChat: ActiveChat
   socket?: WebSocket
   messages?: string[]
 }

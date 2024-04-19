@@ -40,10 +40,42 @@ export class ChatController {
     }
   }
 
+  async addUser() {
+    const form = getFormData('addUser')
+    console.log(form)
+
+    const data = {
+      users: [form?.addUser],
+      chatId: store.getState().activeChat.id,
+    }
+
+    try {
+      await this.chatAPI.addUser(data)
+    } catch (error) {
+      console.error(`Failed to login user, ${error}`)
+    }
+  }
+
+  async deleteUser() {
+    const form = getFormData('addUser')
+    console.log(form)
+
+    const data = {
+      users: [form?.addUser],
+      chatId: store.getState().activeChat.id,
+    }
+
+    try {
+      await this.chatAPI.deleteUser(data)
+    } catch (error) {
+      console.error(`Failed to login user, ${error}`)
+    }
+  }
+
   async getChatMessage(id: number, title: string) {
     const response = await this.authAPI.getUser()
     const data = JSON.parse(response.response)
-    store.dispatch(setActiveChat(title))
+    store.dispatch(setActiveChat({ title, id }))
 
     const token = await this.chatAPI.getChatToken(id)
     const responseToken = JSON.parse(token.response)

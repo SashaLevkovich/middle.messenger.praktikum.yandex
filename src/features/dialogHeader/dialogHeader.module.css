@@ -23,4 +23,19 @@
     line-height: 13px;
     font-weight: 600;
   }
+
+  .input {
+    width: 100%;
+    transition: border-color 0.3s ease;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 6px;
+    font-family: Inter, sans-serif;
+    background-color: var(--bg-dark-gray);
+    color: var(--white);
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
 }

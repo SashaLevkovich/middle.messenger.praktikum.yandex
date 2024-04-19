@@ -24,6 +24,26 @@ export class ChatAPI {
     }
   }
 
+  async addUser(data: Record<string, unknown>) {
+    try {
+      return await this.fetch.put(`${this.url}/users`, {
+        data,
+      })
+    } catch (error) {
+      throw new Error(`Failed to sign up, ${error}`)
+    }
+  }
+
+  async deleteUser(data: Record<string, unknown>) {
+    try {
+      return await this.fetch.delete(`${this.url}/users`, {
+        data,
+      })
+    } catch (error) {
+      throw new Error(`Failed to sign up, ${error}`)
+    }
+  }
+
   async getChatToken(id: number) {
     return this.fetch.post(`${this.url}/token/${id}`)
   }

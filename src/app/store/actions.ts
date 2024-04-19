@@ -1,3 +1,4 @@
+import { ActiveChat } from '../lib/types'
 import { Chat } from '@/widgets/chatList/types'
 
 export const SET_USER = 'SET_USER'
@@ -19,7 +20,7 @@ export function addChats(payload: Chat[]) {
   return { type: ADD_CHATS, payload: payload }
 }
 
-export function setActiveChat(payload: string) {
+export function setActiveChat(payload: ActiveChat) {
   return { type: SET_ACTIVE_CHAT, payload: payload }
 }
 
@@ -27,6 +28,6 @@ export function setSocket(payload: WebSocket) {
   return { type: SET_SOCKET, payload: payload }
 }
 
-export function setMessages(payload: string[]) {
+export function setMessages(payload: string) {
   return { type: SET_MESSAGES, payload: payload }
 }
