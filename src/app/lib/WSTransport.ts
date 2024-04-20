@@ -1,4 +1,4 @@
-import { setMessages, setSocket } from '../store/actions'
+import { setMessages } from '../store/actions'
 import { store } from '../store/store'
 
 export const createSocket = (userId: number, chatId: number, token: string) =>
@@ -40,7 +40,6 @@ export const WSTransport = (socket: WebSocket) => {
           messages.push(el.content)
         })
         store.dispatch(setMessages(messages))
-        store.dispatch(setSocket(socket))
       }
     } catch (e) {
       console.log(e)

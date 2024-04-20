@@ -1,6 +1,6 @@
 import { ChatAPI } from './api'
 import { createSocket, WSTransport } from '@/app/lib/WSTransport'
-import { addChats, setActiveChat } from '@/app/store/actions'
+import { addChats, setActiveChat, setMessages } from '@/app/store/actions'
 import { store } from '@/app/store/store'
 import { AuthAPI } from '@/entities/authentication'
 import { getFormData } from '@/shared/helpers'
@@ -8,6 +8,7 @@ import { getFormData } from '@/shared/helpers'
 export class ChatController {
   private chatAPI: ChatAPI
   private authAPI: AuthAPI
+  private static socket?: WebSocket
 
   constructor() {
     this.chatAPI = new ChatAPI()
@@ -80,8 +81,25 @@ export class ChatController {
     const token = await this.chatAPI.getChatToken(id)
     const responseToken = JSON.parse(token.response)
 
-    const socket = createSocket(data.id, id, responseToken.token)
+    ChatController.socket = createSocket(data.id, id, responseToken.token)
+    console.log(ChatController.socket)
 
-    WSTransport(socket)
+    WSTransport(ChatController.socket)
+  }
+
+  sendMessage() {
+    const data = getFormData('messageForm')
+
+    store.dispatch(
+      setMessages([data?.message as string, ...store.getState().messages]),
+    )
+
+    ChatController.socket &&
+      ChatController.socket.send(
+        JSON.stringify({
+          content: data?.message,
+          type: 'message',
+        }),
+      )
   }
 }

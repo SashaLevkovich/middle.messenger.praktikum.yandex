@@ -3,13 +3,11 @@ import { buttonContext, messageInputContext } from './model/context'
 import { RULES } from './model/rules'
 import { MessageSubmissionPanelTemplate } from './template'
 import { Block, Props } from '@/app/lib'
-import { store } from '@/app/store/store'
-import { MessageController } from '@/entities/message/api/controller'
 import { Button, Input } from '@/shared/components'
+import { ChatController } from '@/widgets/chatList/api/controller'
 
 export class MessageSubmissionPanel extends Block {
-  private messageController: MessageController
-  private socket: WebSocket
+  private chatController: ChatController
 
   constructor(props: Props) {
     super({
@@ -28,11 +26,11 @@ export class MessageSubmissionPanel extends Block {
         },
         onClick: (e) => {
           e.preventDefault()
-          this.messageController.sendMessage(this.socket)
+          this.chatController.sendMessage()
         },
         onSubmit: (e) => {
           e.preventDefault()
-          this.messageController.sendMessage(this.socket)
+          this.chatController.sendMessage()
         },
       }),
       styles: {
@@ -40,9 +38,7 @@ export class MessageSubmissionPanel extends Block {
       },
     })
 
-    this.socket = store.getState().socket as WebSocket
-
-    this.messageController = new MessageController()
+    this.chatController = new ChatController()
   }
 
   render() {
