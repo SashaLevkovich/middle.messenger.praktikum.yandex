@@ -48,7 +48,7 @@ export const reducer: Reducer = (state, action) => {
       return newState
 
     case SET_MESSAGES:
-      newState.messages = action.payload as string[]
+      newState.messages = [...(action.payload as string[])]
       return newState
 
     default:

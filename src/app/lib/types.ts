@@ -81,7 +81,7 @@ export interface State {
   chats: TChatsList[]
   activeChat: ActiveChat
   socket?: WebSocket
-  messages?: string[]
+  messages: string[]
 }
 
 export interface Action {

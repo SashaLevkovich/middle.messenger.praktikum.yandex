@@ -119,7 +119,7 @@ export class UserController {
         router.go('/messenger')
       } else {
         console.error(
-          `Failed to login user. Server returned status: ${response.status}`,
+          `Failed to change user. Server returned status: ${response.status}`,
         )
       }
     } catch (error) {
@@ -142,7 +142,7 @@ export class UserController {
         router.go('/messenger')
       } else {
         console.error(
-          `Failed to login user. Server returned status: ${response.status}`,
+          `Failed to change user password. Server returned status: ${response.status}`,
         )
       }
     } catch (error) {
@@ -154,8 +154,6 @@ export class UserController {
     const form = document.getElementById('formAvatar') as HTMLFormElement
 
     const formData = new FormData(form)
-    console.log(form)
-    console.log(formData)
 
     try {
       const response = await this.userAPI.changeAvatar(formData)
@@ -164,7 +162,7 @@ export class UserController {
         router.go('/messenger')
       } else {
         console.error(
-          `Failed to login user. Server returned status: ${response.status}`,
+          `Failed to change user avatar. Server returned status: ${response.status}`,
         )
       }
     } catch (error) {

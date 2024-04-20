@@ -27,6 +27,7 @@ export const state: State = {
     title: '',
     id: 0,
   },
+  messages: [],
 }
 
 export const store = Store.getInstance(reducer, state)

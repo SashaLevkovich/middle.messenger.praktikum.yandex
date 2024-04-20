@@ -1,5 +1,4 @@
 import {
-  Avatar,
   DisplayNameInput,
   EmailInput,
   LastnameInput,
@@ -24,6 +23,7 @@ import { Block, Props } from '@/app/lib'
 import { setUser } from '@/app/store/actions'
 import { store } from '@/app/store/store'
 import { UserController } from '@/entities/user'
+import { FileInput } from '@/shared/components'
 import { isEmpty } from '@/shared/helpers'
 import { router } from '@/shared/helpers/routes'
 
@@ -33,7 +33,7 @@ export class ProfileForm extends Block {
   constructor(props: Props) {
     super({
       ...props,
-      fileInput: new Avatar({
+      fileInput: new FileInput({
         ...fileInputContext,
         onChange: (value: unknown) => {
           store.dispatch(setUser({ avatar: value }))
@@ -110,10 +110,24 @@ export class ProfileForm extends Block {
     })
 
     this.userController = new UserController()
+
+    store.subscribe((state) => {
+      state.userConfig.avatar &&
+        this.updateProfileAvatar(state.userConfig.avatar)
+    })
+  }
+
+  private updateProfileAvatar(state: string) {
+    console.log(state)
+
+    return this.setProps({
+      avatarSrc: `https://ya-praktikum.tech/api/v2/resources/${state}`,
+    })
   }
 
   override async init() {
     super.init()
+
     this.componentDidMount()
   }
 

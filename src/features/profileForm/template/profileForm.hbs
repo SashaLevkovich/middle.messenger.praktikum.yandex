@@ -1,5 +1,18 @@
 <form class='{{styles.infoBlock}}' id='form'>
-  {{{fileInput}}}
+  <div class='{{styles.avatarContainer}}'>
+    {{{fileInput}}}
+
+    {{#if avatarSrc}}
+      <div class='{{styles.avatar}}'>
+        <img src='{{avatarSrc}}' alt='user avatar' />
+      </div>
+    {{else}}
+      <div class='{{styles.avatar}}'>
+        <img src='' id='userAvatarImg' alt='user avatar' />
+      </div>
+    {{/if}}
+
+  </div>
   {{{title}}}
   {{{email}}}
   {{{login}}}

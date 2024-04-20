@@ -73,6 +73,7 @@ export class Fetch {
       if (isGet || !data) {
         xhr.send()
       } else if (data instanceof FormData) {
+        xhr.setRequestHeader('Access-Control-Allow-Headers', '*')
         xhr.send(data)
       } else {
         xhr.setRequestHeader('Content-Type', 'application/json')

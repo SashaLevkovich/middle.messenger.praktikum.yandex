@@ -1,6 +1,7 @@
 import DialogStyles from './dialog.module.css'
 import { DialogTemplate } from './template'
 import { Block, Props } from '@/app/lib'
+import { StoreEvents } from '@/app/lib/types'
 import { store } from '@/app/store/store'
 import { Message } from '@/entities/message/Message'
 import { DialogHeader } from '@/features/dialogHeader/DialogHeader'
@@ -18,6 +19,8 @@ export class Dialog extends Block {
         ...DialogStyles,
       },
     })
+
+    store.on(StoreEvents.Updated, () => {})
 
     store.subscribe((state) => {
       if (state.messages) {
