@@ -6,7 +6,7 @@ A special class, Block, and EventBus have been developed to implement a componen
 
 ## Deploy link
 
-[Dark messenger](https://darkmessenger.netlify.app/login)
+[Dark messenger](https://darkmessenger.netlify.app)
 
 ## Prototypes
 
