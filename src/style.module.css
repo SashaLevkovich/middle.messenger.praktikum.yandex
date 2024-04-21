@@ -1,3 +1,17 @@
+:root {
+  --white: #fff;
+  --red: #f00;
+  --dark-gray: #6c6c6c;
+  --bg-black: #000;
+  --bg-dark-gray: #272729;
+  --text-light-gray: #999;
+  --border-light-gray: #7f7f7f;
+  --border-white: #eaeaea;
+  --border-focus: #1d4ed8;
+  --outline-light-gray: #94a3b8;
+  --button-bg-dark: #0e0e0e;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,5 +24,5 @@ body {
   font-style: normal;
   font-variation-settings: 'slnt' 0;
   overflow-y: auto;
-  background-color: #000;
+  background-color: var(--bg-black);
 }

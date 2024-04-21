@@ -2,33 +2,47 @@ import { linkContext, title } from './models/context'
 import ProfilePageStyles from './profile.module.css'
 import { ProfilePageTemplate } from './template'
 import { Block, Props } from '@/app/lib'
-import { ProfileForm, ProfileLinks } from '@/features'
+import { UserController } from '@/entities/user'
+import { ProfileForm } from '@/features'
 import { BackButton, Title } from '@/shared/components'
-
-export interface ProfileProps extends Props {
-  profileFormData: Record<string, string>
-}
+import { isEmpty } from '@/shared/helpers'
+import { router } from '@/shared/helpers/routes'
 
 export class UserProfile extends Block {
-  constructor(props: ProfileProps) {
+  constructor(props: Props) {
     super({
       ...props,
       backButton: new BackButton({
         ...linkContext,
         onClick: () => {
-          window.location.href = linkContext.url
-          console.log(props.profileFormData)
+          router.go('/messenger')
         },
       }),
-      form: new ProfileForm({ profileFormData: props.profileFormData }),
+      form: new ProfileForm({}),
       title: new Title({
         ...title,
       }),
-      links: new ProfileLinks({ profileFormData: props.profileFormData }),
       styles: {
         ...ProfilePageStyles,
       },
     })
+  }
+
+  override async init() {
+    super.init()
+
+    this.componentDidMount()
+  }
+
+  override async componentDidMount() {
+    const userController = new UserController()
+    const user = await userController.getUser()
+
+    if (!isEmpty(user)) {
+      router.go('/settings')
+    } else {
+      router.go('/')
+    }
   }
 
   render(): string {

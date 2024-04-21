@@ -13,7 +13,7 @@
 
     .link {
       text-decoration: none;
-      color: #b8b8b8;
+      color: var(--text-light-gray);
       font-size: 14px;
     }
   }

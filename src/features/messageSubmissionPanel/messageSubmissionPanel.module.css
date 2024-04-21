@@ -10,15 +10,30 @@
     cursor: pointer;
   }
 
-  .sendButton {
+  .button {
     width: 28px;
     height: 28px;
     border: none;
-    background-color: #fff;
+    background-color: var(--white);
     border-radius: 50%;
     cursor: pointer;
     background-image: url('@/app/assets/icons/arrow.svg');
     background-repeat: no-repeat;
     background-position: center;
+  }
+}
+
+.input {
+  width: 100%;
+  transition: border-color 0.3s ease;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-family: Inter, sans-serif;
+  background-color: var(--bg-dark-gray);
+  color: var(--white);
+
+  &:focus-visible {
+    outline: none;
   }
 }

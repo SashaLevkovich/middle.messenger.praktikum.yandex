@@ -7,126 +7,101 @@ import {
   passwordContext,
   phoneContext,
 } from './models/context'
+import { RULES } from './models/rules'
 import SingUpFormStyles from './signUpForm.module.css'
 import { SignUpFormTemplate } from './templates'
-import { Button, Input } from './ui'
 import { Block, Props } from '@/app/lib'
-import { Validator } from '@/shared/helpers'
+import { setUser } from '@/app/store/actions'
+import { store } from '@/app/store/store'
+import { UserController } from '@/entities/user'
+import { Button, Input } from '@/shared/components'
 
 interface SignUpFormProps extends Props {
   signUpFormData: Record<string, string>
 }
 
 export class SignUpForm extends Block {
+  private userController: UserController
+
   constructor(props: SignUpFormProps) {
     super({
       ...props,
       email: new Input({
         ...emailContext,
         onChange: (value: string) => {
-          this.setProps((props.signUpFormData['email'] = value))
+          store.dispatch(setUser({ email: value }))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.email,
+        styles: {
+          ...SingUpFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'Email', ruleValue: null },
-        ],
       }),
       login: new Input({
         ...loginContext,
         onChange: (value: string) => {
-          this.setProps((props.signUpFormData['login'] = value))
-          this.setProps({
-            value,
-          })
+          store.dispatch(setUser({ login: value }))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.login,
+        styles: {
+          ...SingUpFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'min_length', ruleValue: 5 },
-          { ruleName: 'Login', ruleValue: null },
-        ],
       }),
       name: new Input({
         ...nameContext,
         onChange: (value: string) => {
-          this.setProps((props.signUpFormData['name'] = value))
+          store.dispatch(setUser({ first_name: value }))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.name,
+        styles: {
+          ...SingUpFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'Name', ruleValue: true },
-        ],
       }),
       lastname: new Input({
         ...lastNameContext,
         onChange: (value: string) => {
-          this.setProps((props.signUpFormData['lastname'] = value))
+          store.dispatch(setUser({ second_name: value }))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.lastname,
+        styles: {
+          ...SingUpFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'Name', ruleValue: true },
-        ],
       }),
       phone: new Input({
         ...phoneContext,
         onChange: (value: string) => {
-          this.setProps((props.signUpFormData['phone'] = value))
+          store.dispatch(setUser({ phone: value }))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.phone,
+        styles: {
+          ...SingUpFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'Phone', ruleValue: true },
-        ],
       }),
       password: new Input({
         ...passwordContext,
         onChange: (value: string) => {
-          this.setProps((props.signUpFormData['password'] = value))
+          store.dispatch(setUser({ password: value }))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.password,
+        styles: {
+          ...SingUpFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'min_length', ruleValue: 8 },
-          { ruleName: 'Login', ruleValue: null },
-        ],
       }),
       button: new Button({
         ...buttonContext,
-        onClick: () => {
-          window.location.href = '/chats'
-          console.log(props.signUpFormData)
+        onClick: (e) => {
+          e.preventDefault()
+          this.userController.signup()
+        },
+        styles: {
+          ...SingUpFormStyles,
         },
       }),
       styles: {
         ...SingUpFormStyles,
       },
     })
+
+    this.userController = new UserController()
   }
 
   override render() {

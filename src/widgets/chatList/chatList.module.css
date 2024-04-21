@@ -2,7 +2,7 @@
   max-width: 400px;
   min-width: 310px;
   padding: 20px 10px 0;
-  border-right: 1px solid #eaeaea;
+  border-right: 1px solid var(--border-white);
   flex: 1;
   overflow-y: auto;
   scrollbar-width: none;

@@ -1,81 +1,128 @@
-const METHODS = {
-  GET: 'GET',
-  PUT: 'PUT',
-  POST: 'POST',
-  DELETE: 'DELETE',
+export enum HttpMethod {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
 }
 
-function queryStringify(data: { [x: string]: { toString: () => string } }) {
-  if (!data || Object.keys(data).length < 1) {
-    return ''
-  }
-  return `?${Object.keys(data)
-    .map((key) => `${key}=${data[key].toString()}`)
-    .join('&')}`
-}
-
-interface Options {
+export interface RequestOptions {
+  headers?: Record<string, string>
+  method?: HttpMethod
+  data?: Record<string, unknown> | FormData | File
   timeout?: number
+  [key: string]: unknown | unknown[]
 }
 
-type MethodType = (url: string, options: Options) => Promise<unknown>
+function queryStringify(data: Record<string, unknown>): string {
+  if (typeof data !== 'object') {
+    throw new Error('Data must be object')
+  }
 
-class HTTPTransport {
-  get: MethodType = (url, options = {}) =>
-    this.request(url, { ...options, method: METHODS.GET }, options.timeout)
+  const keys = Object.keys(data)
+  return keys.reduce((result, key, index) => {
+    const value = data[key]
+    if (
+      typeof value === 'string' ||
+      typeof value === 'number' ||
+      typeof value === 'boolean'
+    ) {
+      return `${result}${key}=${encodeURIComponent(value.toString())}${index < keys.length - 1 ? '&' : ''}`
+    }
+    return result
+  }, '?')
+}
 
-  put: MethodType = (url, options = {}) =>
-    this.request(url, { ...options, method: METHODS.PUT }, options.timeout)
-
-  post: MethodType = (url, options = {}) =>
-    this.request(url, { ...options, method: METHODS.POST }, options.timeout)
-
-  delete: MethodType = (url, options = {}) =>
-    this.request(url, { ...options, method: METHODS.DELETE }, options.timeout)
-
-  request = (
+export class Fetch {
+  private request(
     url: string,
-    options: {
-      method: string
-      timeout?: number | undefined
-      data?: object
-      headers?: object
-    },
+    options: RequestOptions = {},
     timeout = 5000,
-  ) => {
-    const { method, data, headers } = options
+  ): Promise<XMLHttpRequest> {
+    const { headers = {}, method, data } = options
 
-    return new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest()
-
-      const newUrl =
-        method === METHODS.GET
-          ? url +
-            queryStringify(data as { [x: string]: { toString: () => string } })
-          : url
-
-      xhr.open(method, newUrl)
-      xhr.timeout = timeout
-
-      if (headers) {
-        Object.entries(headers).forEach(([key, value]) => {
-          xhr.setRequestHeader(key, value as string)
-        })
+    return new Promise(function (resolve, reject) {
+      if (!method) {
+        reject(new Error('No method'))
+        return
       }
 
-      xhr.onload = () => {
+      const xhr = new XMLHttpRequest()
+      const isGet = method === HttpMethod.GET
+
+      xhr.open(
+        method,
+        isGet && !!data
+          ? `${url}${queryStringify(data as Record<string, unknown>)}`
+          : url,
+      )
+
+      Object.keys(headers).forEach((key) => {
+        xhr.setRequestHeader(key, headers[key])
+      })
+
+      xhr.onload = function () {
         resolve(xhr)
       }
 
       xhr.onabort = reject
       xhr.onerror = reject
+      xhr.withCredentials = true
+      xhr.timeout = timeout
       xhr.ontimeout = reject
 
-      if (method === METHODS.GET || !data) {
+      if (isGet || !data) {
         xhr.send()
+      } else if (data instanceof FormData) {
+        xhr.setRequestHeader('Access-Control-Allow-Headers', '*')
+        xhr.send(data)
       } else {
-        xhr.send(data as Document | XMLHttpRequestBodyInit | null | undefined)
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.send(JSON.stringify(data))
       }
     })
+  }
+
+  public get(
+    url: string,
+    options: RequestOptions = {},
+  ): Promise<XMLHttpRequest> {
+    return this.request(
+      url,
+      { ...options, method: HttpMethod.GET },
+      options.timeout,
+    )
+  }
+
+  public post(
+    url: string,
+    options: RequestOptions = {},
+  ): Promise<XMLHttpRequest> {
+    return this.request(
+      url,
+      { ...options, method: HttpMethod.POST },
+      options.timeout,
+    )
+  }
+
+  public put(
+    url: string,
+    options: RequestOptions = {},
+  ): Promise<XMLHttpRequest> {
+    return this.request(
+      url,
+      { ...options, method: HttpMethod.PUT },
+      options.timeout,
+    )
+  }
+
+  public delete(
+    url: string,
+    options: RequestOptions = {},
+  ): Promise<XMLHttpRequest> {
+    return this.request(
+      url,
+      { ...options, method: HttpMethod.DELETE },
+      options.timeout,
+    )
   }
 }

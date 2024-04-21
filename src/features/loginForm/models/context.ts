@@ -8,7 +8,7 @@ export const loginContext = {
 }
 
 export const passwordContext = {
-  type: 'text',
+  type: 'password',
   name: 'password',
   placeholder: 'Enter your password',
   id: 'passwordInput',

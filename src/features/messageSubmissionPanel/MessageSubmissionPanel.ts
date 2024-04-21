@@ -1,27 +1,44 @@
 import MessageSubmissionPanelStyles from './messageSubmissionPanel.module.css'
-import { messageInputContext } from './model/context'
+import { buttonContext, messageInputContext } from './model/context'
+import { RULES } from './model/rules'
 import { MessageSubmissionPanelTemplate } from './template'
-import { Input } from './ui'
 import { Block, Props } from '@/app/lib'
-import { Validator } from '@/shared/helpers'
+import { Button, Input } from '@/shared/components'
+import { ChatController } from '@/widgets/chatList/api/controller'
 
 export class MessageSubmissionPanel extends Block {
+  private chatController: ChatController
+
   constructor(props: Props) {
     super({
       ...props,
       input: new Input({
         ...messageInputContext,
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES,
+        styles: {
+          ...MessageSubmissionPanelStyles,
         },
-        rules: [{ ruleName: 'required', ruleValue: true }],
+      }),
+      button: new Button({
+        ...buttonContext,
+        styles: {
+          ...MessageSubmissionPanelStyles,
+        },
+        onClick: (e) => {
+          e.preventDefault()
+          this.chatController.sendMessage()
+        },
+        onSubmit: (e) => {
+          e.preventDefault()
+          this.chatController.sendMessage()
+        },
       }),
       styles: {
         ...MessageSubmissionPanelStyles,
       },
     })
+
+    this.chatController = new ChatController()
   }
 
   render() {

@@ -2,7 +2,7 @@
   font-size: 14px;
   line-height: 24px;
   text-align: center;
-  color: #b8b8b8;
+  color: var(--text-light-gray);
   text-decoration: none;
   margin-top: 10px;
 }

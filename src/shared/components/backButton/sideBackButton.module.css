@@ -5,19 +5,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-right: 1px solid #7f7f7f;
+  border-right: 1px solid var(--border-light-gray);
   cursor: pointer;
   transition: 0.3s all;
 
   &:hover {
-    background-color: #0e0e0e;
+    background-color: var(--button-bg-dark);
   }
 
   & a {
     width: 28px;
     height: 28px;
     border: none;
-    background-color: #fff;
+    background-color: var(--white);
     border-radius: 50%;
     cursor: pointer;
     background-image: url('@/app/assets/icons/arrow.svg');

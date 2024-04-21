@@ -4,6 +4,7 @@ import { ChangePasswordPageTemplate } from './template'
 import { Block, Props } from '@/app/lib'
 import { ChangePasswordForm } from '@/features'
 import { BackButton } from '@/shared/components'
+import { router } from '@/shared/helpers/routes'
 
 interface ChangePasswordProps extends Props {
   changePasswordFormData: Record<string, string>
@@ -19,8 +20,7 @@ export class ChangePassword extends Block {
       backButton: new BackButton({
         ...linkContext,
         onClick: () => {
-          window.location.href = '/profile'
-          console.log(props.changePasswordFormData)
+          router.go('/settings')
         },
       }),
       styles: {

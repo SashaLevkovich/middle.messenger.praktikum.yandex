@@ -4,3 +4,8 @@ export const messageInputContext = {
   id: 'message',
   placeholder: 'Message',
 }
+
+export const buttonContext = {
+  id: 'signInButton',
+  type: 'submit',
+}

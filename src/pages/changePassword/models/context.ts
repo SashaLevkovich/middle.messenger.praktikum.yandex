@@ -3,7 +3,7 @@ export const oldPasswordContext = {
   type: 'password',
   name: 'oldPassword',
   id: 'oldPassword',
-  value: '12313123123123',
+  placeholder: 'Enter old password',
 }
 
 export const newPasswordContext = {
@@ -13,18 +13,10 @@ export const newPasswordContext = {
   id: 'newPassword',
 }
 
-export const newPasswordRepeatContext = {
-  placeholder: 'Repeat new password',
-  type: 'password',
-  name: 'newPasswordRepeat',
-  id: 'oldPasswordRepeat',
-}
-
 export const buttonContext = {
   type: 'button',
   text: 'Change password',
   id: 'saveChangePasswordButton',
-  //   className: ` ${ProfilePageStyles.changeButton}`,
 }
 
 export const linkContext = {

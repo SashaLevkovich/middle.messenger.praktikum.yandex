@@ -1,64 +1,56 @@
 import LoginFormStyles from './loginForm.module.css'
 import { buttonContext, loginContext, passwordContext } from './models/context'
+import { RULES } from './models/rules'
 import { LoginFormTemplate } from './templates'
-import { Input, Button } from './ui'
-import { Block, Props } from '@/app/lib'
-import { Validator } from '@/shared/helpers'
 
-interface LoginFormProps extends Props {
-  loginFormData: Record<string, string>
-}
+import { Block, Props } from '@/app/lib'
+import { setUser } from '@/app/store/actions'
+import { store } from '@/app/store/store'
+import { UserController } from '@/entities/user/api/controller'
+import { Button, Input } from '@/shared/components'
 
 export class LoginForm extends Block {
-  constructor(props: LoginFormProps) {
+  private userController: UserController
+
+  constructor(props: Props) {
     super({
       ...props,
       login: new Input({
         ...loginContext,
         onChange: (value: string) => {
-          this.setProps((props.loginFormData['login'] = value))
-          this.setProps({
-            value,
-          })
+          store.dispatch(setUser({ login: value }))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.login,
+        styles: {
+          ...LoginFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: true },
-          { ruleName: 'min_length', ruleValue: 5 },
-          { ruleName: 'Login', ruleValue: null },
-        ],
       }),
       password: new Input({
         ...passwordContext,
         onChange: (value: string) => {
-          this.setProps((props.loginFormData['password'] = value))
+          store.dispatch(setUser({ password: value }))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.password,
+        styles: {
+          ...LoginFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: true },
-          { ruleName: 'min_length', ruleValue: 8 },
-          { ruleName: 'Login', ruleValue: null },
-        ],
       }),
       button: new Button({
         ...buttonContext,
         onClick: (e) => {
-          window.location.href = '/chats'
           e.preventDefault()
+          this.userController.signin()
+        },
+        styles: {
+          ...LoginFormStyles,
         },
       }),
       styles: {
         ...LoginFormStyles,
       },
     })
+
+    this.userController = new UserController()
   }
 
   render() {

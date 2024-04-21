@@ -1,84 +1,83 @@
+import ChangePasswordFormStyles from './changePasswordForm.module.css'
 import {
   buttonContext,
   newPasswordContext,
-  newPasswordRepeatContext,
   oldPasswordContext,
 } from './models/context'
-import { ChasngePasswordFormTemplate } from './template'
+import { RULES } from './models/rules'
+import { ChangePasswordFormTemplate } from './template'
 
-import { Input, Button } from './ui'
 import { Block, Props } from '@/app/lib'
-import { Validator } from '@/shared/helpers'
+import { setPassword } from '@/app/store/actions'
+import { store } from '@/app/store/store'
+import { UserController } from '@/entities/user'
+import { Button, Input } from '@/shared/components'
+import { isEmpty } from '@/shared/helpers'
+import { router } from '@/shared/helpers/routes'
 
 interface ChangePasswordFormProps extends Props {
   changePasswordFormData: Record<string, string>
 }
 
 export class ChangePasswordForm extends Block {
+  private userController: UserController
+
   constructor(props: ChangePasswordFormProps) {
     super({
       ...props,
       oldPassword: new Input({
         ...oldPasswordContext,
         onChange: (value: string) => {
-          this.setProps((props.changePasswordFormData['oldPassword'] = value))
+          store.dispatch(setPassword({ oldPassword: value }))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.oldPassword,
+        styles: {
+          ...ChangePasswordFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'min_length', ruleValue: 8 },
-          { ruleName: 'Login', ruleValue: null },
-        ],
       }),
       newPassword: new Input({
         ...newPasswordContext,
         onChange: (value: string) => {
-          this.setProps((props.changePasswordFormData['newPassword'] = value))
+          store.dispatch(setPassword({ newPassword: value }))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.newPassword,
+        styles: {
+          ...ChangePasswordFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'min_length', ruleValue: 8 },
-          { ruleName: 'Login', ruleValue: null },
-        ],
-      }),
-      newPasswordRepeat: new Input({
-        ...newPasswordRepeatContext,
-        onChange: (value: string) => {
-          this.setProps(
-            (props.changePasswordFormData['repeatNewPassword'] = value),
-          )
-        },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
-        },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'min_length', ruleValue: 8 },
-          { ruleName: 'Login', ruleValue: null },
-        ],
       }),
       button: new Button({
         ...buttonContext,
         onClick: (e) => {
-          window.location.href = '/chats'
           e.preventDefault()
+          this.userController.changePassword()
+        },
+        styles: {
+          ...ChangePasswordFormStyles,
         },
       }),
     })
+
+    this.userController = new UserController()
+  }
+
+  override async init() {
+    super.init()
+
+    this.componentDidMount()
+  }
+
+  override async componentDidMount() {
+    const userController = new UserController()
+    const user = await userController.getUser()
+
+    if (isEmpty(user)) {
+      router.go('/')
+    } else {
+      router.go('/change-password')
+    }
   }
 
   override render() {
-    return ChasngePasswordFormTemplate
+    return ChangePasswordFormTemplate
   }
 }

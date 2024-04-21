@@ -1,4 +1,12 @@
 import {
+  DisplayNameInput,
+  EmailInput,
+  LastnameInput,
+  LoginInput,
+  NameInput,
+  PhoneInput,
+} from './hoc'
+import {
   emailContext,
   fileInputContext,
   lastNameContext,
@@ -7,122 +15,131 @@ import {
   nameInChatContext,
   phoneContext,
 } from './model/context'
+import { RULES } from './model/rules'
 import ProfileFormStyles from './profileForm.module.css'
 import { ProfileFormTemplate } from './template'
-import { Input } from './ui'
-import { FileInput } from './ui/fileInput'
+import { ProfileLinks } from '../profileLinks/ProfileLinks'
 import { Block, Props } from '@/app/lib'
-import { Validator } from '@/shared/helpers'
-
-interface ProfileProps extends Props {
-  profileFormData: Record<string, string>
-}
+import { setUser } from '@/app/store/actions'
+import { store } from '@/app/store/store'
+import { UserController } from '@/entities/user'
+import { FileInput } from '@/shared/components'
+import { isEmpty } from '@/shared/helpers'
+import { router } from '@/shared/helpers/routes'
 
 export class ProfileForm extends Block {
-  constructor(props: ProfileProps) {
+  private userController: UserController
+
+  constructor(props: Props) {
     super({
       ...props,
       fileInput: new FileInput({
         ...fileInputContext,
+        onChange: (value: unknown) => {
+          store.dispatch(setUser({ avatar: value }))
+          this.userController.changeAvatar()
+        },
+        styles: {
+          ...ProfileFormStyles,
+        },
       }),
-      email: new Input({
+      email: new EmailInput({
         ...emailContext,
         onChange: (value: string) => {
-          this.setProps((props.profileFormData['email'] = value))
+          store.dispatch(setUser({ email: value }))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.email,
+        styles: {
+          ...ProfileFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'Email', ruleValue: null },
-        ],
       }),
-      login: new Input({
+      login: new LoginInput({
         ...loginContext,
         onChange: (value: string) => {
-          this.setProps((props.profileFormData['login'] = value))
-          this.setProps({
-            value,
-          })
+          store.dispatch(setUser({ login: value }))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.login,
+        styles: {
+          ...ProfileFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'min_length', ruleValue: 5 },
-          { ruleName: 'Login', ruleValue: null },
-        ],
       }),
-      name: new Input({
+      name: new NameInput({
         ...nameContext,
         onChange: (value: string) => {
-          this.setProps((props.profileFormData['name'] = value))
+          store.dispatch(setUser({ first_name: value }))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.name,
+        styles: {
+          ...ProfileFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'Name', ruleValue: true },
-        ],
       }),
-      lastname: new Input({
+      lastname: new LastnameInput({
         ...lastNameContext,
         onChange: (value: string) => {
-          this.setProps((props.profileFormData['lastname'] = value))
+          store.dispatch(setUser({ second_name: value }))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.lastname,
+        styles: {
+          ...ProfileFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'Name', ruleValue: true },
-        ],
       }),
-      nameInChat: new Input({
+      nameInChat: new DisplayNameInput({
         ...nameInChatContext,
         onChange: (value: string) => {
-          this.setProps((props.profileFormData['nameInChat'] = value))
+          store.dispatch(setUser({ display_name: value }))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.nameInChat,
+        styles: {
+          ...ProfileFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'Name', ruleValue: true },
-        ],
       }),
-      phone: new Input({
+      phone: new PhoneInput({
         ...phoneContext,
         onChange: (value: string) => {
-          this.setProps((props.profileFormData['phone'] = value))
+          store.dispatch(setUser({ phone: value }))
         },
-        onBlur: (value, rules) => {
-          const validator = new Validator()
-          const isValid = validator.validate(value, rules)
-          return [isValid, validator.getErrors()]
+        rules: RULES.phone,
+        styles: {
+          ...ProfileFormStyles,
         },
-        rules: [
-          { ruleName: 'required', ruleValue: null },
-          { ruleName: 'Phone', ruleValue: null },
-        ],
       }),
+      links: new ProfileLinks({}),
       styles: {
         ...ProfileFormStyles,
       },
     })
+
+    this.userController = new UserController()
+
+    store.subscribe((state) => {
+      state.userConfig.avatar &&
+        this.updateProfileAvatar(state.userConfig.avatar)
+    })
+  }
+
+  private updateProfileAvatar(state: string) {
+    console.log(state)
+
+    return this.setProps({
+      avatarSrc: `https://ya-praktikum.tech/api/v2/resources/${state}`,
+    })
+  }
+
+  override async init() {
+    super.init()
+
+    this.componentDidMount()
+  }
+
+  override async componentDidMount() {
+    const userController = new UserController()
+    const user = await userController.getUser()
+
+    if (isEmpty(user)) {
+      router.go('/')
+    } else {
+      router.go('/settings')
+    }
   }
 
   render() {

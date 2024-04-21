@@ -1,7 +1,7 @@
 .profile {
   display: flex;
 
-  .ptofileInfoBlock {
+  .profileInfoBlock {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -17,22 +17,6 @@
         display: flex;
         flex-direction: column;
       }
-    }
-  }
-
-  .linksBlock {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    row-gap: 10px;
-
-    .logoutLink {
-      padding: 10px 0;
-      font-size: 13px;
-      color: #f00;
-      border: none;
-      text-decoration: none;
     }
   }
 }
