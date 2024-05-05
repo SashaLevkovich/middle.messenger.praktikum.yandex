@@ -7,7 +7,7 @@ interface ITemplateData {
 type TParams = {
   template: string
   context: ITemplateData
-  styles?: Record<string, string>
+  styles?: Record<string, string> | object
   containerId?: string
 }
 

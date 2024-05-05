@@ -3,22 +3,17 @@ import { Block } from '../src/app/lib'
 import { router } from '../src/shared/helpers/routes'
 
 class TestComponent extends Block {
-  constructor({ ...props }: Record<string, unknown>) {
-    super({
-      ...props,
-    })
+  constructor() {
+    super({})
   }
-
   render() {
-    return `<div data-testid="1">Test1</div>`
+    return `<div id='page-1'>Page#1</div>`
   }
 }
 
 class TestComponent2 extends Block {
-  constructor({ ...props }: Record<string, unknown>) {
-    super({
-      ...props,
-    })
+  constructor() {
+    super({})
   }
 
   render() {
