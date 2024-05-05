@@ -1,10 +1,9 @@
 import { expect } from 'chai'
-import { JSDOM } from 'jsdom'
-import { Block, Props } from '../src/app/lib'
+import { Block } from '../src/app/lib'
 import { router } from '../src/shared/helpers/routes'
 
 class TestComponent extends Block {
-  constructor({ ...props }: Props) {
+  constructor({ ...props }: Record<string, unknown>) {
     super({
       ...props,
     })
@@ -16,7 +15,7 @@ class TestComponent extends Block {
 }
 
 class TestComponent2 extends Block {
-  constructor({ ...props }: Props) {
+  constructor({ ...props }: Record<string, unknown>) {
     super({
       ...props,
     })
@@ -28,19 +27,6 @@ class TestComponent2 extends Block {
 }
 
 describe('Router', () => {
-  beforeEach(() => {
-    const { window } = new JSDOM(
-      '<!DOCTYPE html><body><main id="app"></main></body>',
-      {
-        url: 'http://localhost:3000',
-      },
-    )
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ;(global as any).window = window
-    global.document = window.document
-  })
-
   afterEach(() => {
     global.window.close()
   })
@@ -52,7 +38,6 @@ describe('Router', () => {
         'Test1',
       )
     })
-
     it('should render the component for the specified route after navigation', () => {
       router.use('/', TestComponent).use('/secondTest', TestComponent2).start()
       router.go('/secondTest')
