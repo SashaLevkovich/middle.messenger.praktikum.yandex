@@ -1,4 +1,4 @@
-import { isArrayLike } from '@/shared/helpers/isArrayLike'
+import { isArrayLike } from './isArrayLike'
 
 export function isEmpty(value: unknown) {
   if (!value) {

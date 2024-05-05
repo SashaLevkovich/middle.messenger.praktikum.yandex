@@ -2,12 +2,11 @@ import LoginFormStyles from './loginForm.module.css'
 import { buttonContext, loginContext, passwordContext } from './models/context'
 import { RULES } from './models/rules'
 import { LoginFormTemplate } from './templates'
-
-import { Block, Props } from '@/app/lib'
-import { setUser } from '@/app/store/actions'
-import { store } from '@/app/store/store'
-import { UserController } from '@/entities/user/api/controller'
-import { Button, Input } from '@/shared/components'
+import { Block, Props } from '../../app/lib'
+import { setUser } from '../../app/store/actions'
+import { store } from '../../app/store/store'
+import { UserController } from '../../entities/user'
+import { Button, Input } from '../../shared/components'
 
 export class LoginForm extends Block {
   private userController: UserController

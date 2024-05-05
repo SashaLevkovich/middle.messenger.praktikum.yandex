@@ -1,5 +1,5 @@
 import { FileInputTemplate } from './template'
-import { Block, Props } from '@/app/lib'
+import { Block, Props } from '../../../app/lib'
 
 interface FileInputProps extends Props {
   onChange?: (value: string | Document) => void

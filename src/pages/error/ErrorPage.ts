@@ -1,8 +1,8 @@
 import ErrorStyles from './error.module.css'
 import { linkContext } from './models/context.ts'
-import { Block, Props } from '@/app/lib'
-import { ErrorPageTemplate } from '@/pages/error/template'
-import { Divider, Link, Title } from '@/shared/components'
+import { ErrorPageTemplate } from './template/index.ts'
+import { Block, Props } from '../../app/lib'
+import { Title, Divider, Link } from '../../shared/components/index.ts'
 
 export class Error extends Block {
   constructor(props: Props) {

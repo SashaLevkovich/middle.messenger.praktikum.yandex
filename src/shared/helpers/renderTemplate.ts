@@ -1,4 +1,4 @@
-import { compile } from 'handlebars'
+import Handlebars from 'handlebars'
 
 interface ITemplateData {
   [key: string]: unknown
@@ -17,7 +17,7 @@ export const renderTemplate = ({
   styles,
   containerId,
 }: TParams): string => {
-  const render = compile(template)
+  const render = Handlebars.compile(template)
 
   const html = render({ ...context, styles })
 

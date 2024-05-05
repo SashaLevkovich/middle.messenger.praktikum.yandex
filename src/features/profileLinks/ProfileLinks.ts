@@ -1,10 +1,10 @@
 import { changePassword, changeProfile, logoutLink } from './models/context'
 import ProfileLinksStyles from './profileLinks.module.css'
 import { ProfileLinksTemplate } from './template'
-import { Block, Props } from '@/app/lib'
-import { UserController } from '@/entities/user'
-import { Button, Link } from '@/shared/components'
-import { router } from '@/shared/helpers/routes'
+import { Block, Props } from '../../app/lib'
+import { UserController } from '../../entities/user'
+import { Button, Link } from '../../shared/components'
+import { router } from '../../shared/helpers/routes'
 
 export class ProfileLinks extends Block {
   private userController: UserController
@@ -35,7 +35,7 @@ export class ProfileLinks extends Block {
       logoutLink: new Link({
         ...logoutLink,
         events: {
-          click: (e) => {
+          click: (e: Event) => {
             e.preventDefault()
             this.userController.logout()
           },

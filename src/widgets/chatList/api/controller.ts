@@ -1,9 +1,13 @@
 import { ChatAPI } from './api'
-import { createSocket, WSTransport } from '@/app/lib/WSTransport'
-import { addChats, setActiveChat, setMessages } from '@/app/store/actions'
-import { store } from '@/app/store/store'
-import { AuthAPI } from '@/entities/authentication'
-import { getFormData } from '@/shared/helpers'
+import { createSocket, WSTransport } from '../../../app/lib/WSTransport'
+import {
+  addChats,
+  setActiveChat,
+  setMessages,
+} from '../../../app/store/actions'
+import { store } from '../../../app/store/store'
+import { AuthAPI } from '../../../entities/authentication'
+import { getFormData } from '../../../shared/helpers'
 
 export class ChatController {
   private chatAPI: ChatAPI

@@ -1,4 +1,4 @@
-import { Fetch } from '@/app/lib/fetch'
+import { Fetch } from '../../../app/lib/fetch'
 
 export class ChatAPI {
   private fetch: Fetch

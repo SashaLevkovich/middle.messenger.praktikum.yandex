@@ -1,12 +1,12 @@
 import { linkContext, title } from './models/context'
 import ProfilePageStyles from './profile.module.css'
 import { ProfilePageTemplate } from './template'
-import { Block, Props } from '@/app/lib'
-import { UserController } from '@/entities/user'
-import { ProfileForm } from '@/features'
-import { BackButton, Title } from '@/shared/components'
-import { isEmpty } from '@/shared/helpers'
-import { router } from '@/shared/helpers/routes'
+import { Block, Props } from '../../app/lib'
+import { UserController } from '../../entities/user'
+import { ProfileForm } from '../../features'
+import { BackButton, Title } from '../../shared/components'
+import { isEmpty } from '../../shared/helpers'
+import { router } from '../../shared/helpers/routes'
 
 export class UserProfile extends Block {
   constructor(props: Props) {

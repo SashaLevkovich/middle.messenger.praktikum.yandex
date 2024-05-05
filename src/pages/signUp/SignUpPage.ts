@@ -1,10 +1,10 @@
 import { titleContext, linkContext } from './models/context'
 import SignUpStyles from './signUp.module.css'
 import { SignUpPageTemplate } from './template'
-import { Block, Props } from '@/app/lib'
-import { SignUpForm } from '@/features'
-import { Link, Title } from '@/shared/components'
-import { router } from '@/shared/helpers/routes'
+import { Props, Block } from '../../app/lib'
+import { SignUpForm } from '../../features'
+import { Title, Link } from '../../shared/components'
+import { router } from '../../shared/helpers/routes'
 
 interface SignUpProps extends Props {
   signUpFormData: Record<string, string>
@@ -21,7 +21,7 @@ export class SignUp extends Block {
       link: new Link({
         ...linkContext,
         events: {
-          click: (e) => {
+          click: (e: Event) => {
             e.preventDefault()
             router.go('/')
           },

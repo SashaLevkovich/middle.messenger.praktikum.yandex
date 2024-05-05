@@ -3,3 +3,4 @@ dist/
 postcss.config.js
 babel.config.js
 vite.config.js
+mocha-setup.js

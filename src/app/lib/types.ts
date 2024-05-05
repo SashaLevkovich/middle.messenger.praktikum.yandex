@@ -1,5 +1,5 @@
-import { ChatItem } from '@/entities/chatItem/ChatItem'
-import { TChatsList } from '@/widgets/chatList/models/context'
+import { ChatItem } from '../../entities/chatItem/ChatItem'
+import { TChatsList } from '../../widgets/chatList/models/context'
 
 export type Listener<T extends unknown[] = unknown[]> = (...args: T) => void
 

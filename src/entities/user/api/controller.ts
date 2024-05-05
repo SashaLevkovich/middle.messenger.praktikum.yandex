@@ -1,9 +1,9 @@
 import { UserAPI } from './userApi'
-import { setUser } from '@/app/store/actions'
-import { store } from '@/app/store/store'
-import { AuthAPI } from '@/entities/authentication'
-import { getFormData } from '@/shared/helpers'
-import { router } from '@/shared/helpers/routes'
+import { setUser } from '../../../app/store/actions'
+import { store } from '../../../app/store/store'
+import { getFormData } from '../../../shared/helpers'
+import { router } from '../../../shared/helpers/routes'
+import { AuthAPI } from '../../authentication'
 
 export class UserController {
   private authAPI: AuthAPI

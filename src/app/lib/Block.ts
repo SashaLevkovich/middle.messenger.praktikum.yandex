@@ -1,6 +1,6 @@
-import { EventBus } from '@/app/lib/EventBus'
-import { EventMap, EVENTS, Props } from '@/app/lib/types'
-import { renderTemplate } from '@/shared/helpers/renderTemplate'
+import { EventBus } from './EventBus'
+import { renderTemplate } from '../../shared/helpers'
+import { EventMap, EVENTS, Props } from '../lib/types'
 
 export class Block {
   static DATA_ID_ATTR = 'data-id'

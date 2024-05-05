@@ -1,7 +1,7 @@
 import { Block } from './Block'
 import { Props, State } from './types'
+import { isEqualObject, PlainObject } from '../../shared/helpers'
 import { store } from '../store/store'
-import { isEqualObject, PlainObject } from '@/shared/helpers'
 
 export function connect<T>(
   Component: typeof Block,

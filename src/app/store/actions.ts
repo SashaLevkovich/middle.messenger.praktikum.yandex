@@ -1,5 +1,5 @@
+import { Chat } from '../../widgets/chatList/types'
 import { ActiveChat } from '../lib/types'
-import { Chat } from '@/widgets/chatList/types'
 
 export const SET_USER = 'SET_USER'
 export const SET_PASSWORD = 'SET_PASSWORD'

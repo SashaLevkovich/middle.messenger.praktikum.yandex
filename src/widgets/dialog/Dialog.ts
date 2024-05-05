@@ -1,11 +1,10 @@
 import DialogStyles from './dialog.module.css'
 import { DialogTemplate } from './template'
-import { Block, Props } from '@/app/lib'
-import { store } from '@/app/store/store'
-import { Message } from '@/entities/message/Message'
-import { DialogHeader } from '@/features/dialogHeader/DialogHeader'
-import { MessageSubmissionPanel } from '@/features/messageSubmissionPanel/MessageSubmissionPanel'
-import { isEmpty } from '@/shared/helpers'
+import { Block, Props } from '../../app/lib'
+import { store } from '../../app/store/store'
+import { Message } from '../../entities/message/Message'
+import { MessageSubmissionPanel, DialogHeader } from '../../features'
+import { isEmpty } from '../../shared/helpers'
 
 export class Dialog extends Block {
   private messages: Message[] = []

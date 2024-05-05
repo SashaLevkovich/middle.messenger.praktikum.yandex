@@ -1,6 +1,6 @@
 import { ButtonTemplate } from './template'
 import { ButtonProps } from './type'
-import { Block } from '@/app/lib'
+import { Block } from '../../../app/lib'
 
 export class Button extends Block {
   constructor(props: ButtonProps) {

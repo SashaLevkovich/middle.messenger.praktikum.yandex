@@ -1,9 +1,8 @@
-import { connect } from '@/app/lib/Hoc'
-import { Router } from '@/app/lib/Router'
-import { State } from '@/app/lib/types'
-import { ChatItem } from '@/entities/chatItem/ChatItem'
-
-import { Login, SignUp, Chats, UserProfile, ChangePassword } from '@/pages'
+import { connect } from '../../app/lib/Hoc'
+import { Router } from '../../app/lib/Router'
+import { State } from '../../app/lib/types'
+import { ChatItem } from '../../entities/chatItem/ChatItem'
+import { Login, SignUp, UserProfile, Chats, ChangePassword } from '../../pages'
 
 function mapLoginToProps(state: State) {
   return {

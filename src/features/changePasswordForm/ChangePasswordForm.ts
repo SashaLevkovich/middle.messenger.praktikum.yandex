@@ -7,13 +7,13 @@ import {
 import { RULES } from './models/rules'
 import { ChangePasswordFormTemplate } from './template'
 
-import { Block, Props } from '@/app/lib'
-import { setPassword } from '@/app/store/actions'
-import { store } from '@/app/store/store'
-import { UserController } from '@/entities/user'
-import { Button, Input } from '@/shared/components'
-import { isEmpty } from '@/shared/helpers'
-import { router } from '@/shared/helpers/routes'
+import { Block, Props } from '../../app/lib'
+import { setPassword } from '../../app/store/actions'
+import { store } from '../../app/store/store'
+import { UserController } from '../../entities/user'
+import { Button, Input } from '../../shared/components'
+import { isEmpty } from '../../shared/helpers'
+import { router } from '../../shared/helpers/routes'
 
 interface ChangePasswordFormProps extends Props {
   changePasswordFormData: Record<string, string>
