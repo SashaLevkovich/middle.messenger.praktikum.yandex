@@ -118,8 +118,6 @@ export class ProfileForm extends Block {
   }
 
   private updateProfileAvatar(state: string) {
-    console.log(state)
-
     return this.setProps({
       avatarSrc: `https://ya-praktikum.tech/api/v2/resources/${state}`,
     })

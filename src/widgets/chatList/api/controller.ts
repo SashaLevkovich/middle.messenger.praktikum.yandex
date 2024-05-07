@@ -47,7 +47,6 @@ export class ChatController {
 
   async addUser() {
     const form = getFormData('addUser')
-    console.log(form)
 
     const data = {
       users: [form?.addUser],
@@ -63,7 +62,6 @@ export class ChatController {
 
   async deleteUser() {
     const form = getFormData('addUser')
-    console.log(form)
 
     const data = {
       users: [form?.addUser],
@@ -86,7 +84,6 @@ export class ChatController {
     const responseToken = JSON.parse(token.response)
 
     ChatController.socket = createSocket(data.id, id, responseToken.token)
-    console.log(ChatController.socket)
 
     WSTransport(ChatController.socket)
   }

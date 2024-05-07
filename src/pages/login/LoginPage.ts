@@ -51,7 +51,6 @@ export class Login extends Block {
   override async componentDidMount() {
     const userController = new UserController()
     const user = await userController.getUser()
-    console.log(store.getState())
 
     if (isEmpty(user)) {
       router.go('/')
