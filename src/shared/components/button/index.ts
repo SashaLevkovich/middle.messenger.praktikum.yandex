@@ -7,12 +7,12 @@ export class Button extends Block {
     super({
       ...props,
       events: {
-        click: (e) => {
+        click: (e: Event) => {
           if (props.onClick) {
             props.onClick(e)
           }
         },
-        submit: (e) => {
+        submit: (e: Event) => {
           e.preventDefault()
 
           if (props.onSubmit) {

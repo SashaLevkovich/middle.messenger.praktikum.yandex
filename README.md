@@ -72,17 +72,23 @@ npm run preview
 To start the eslint:
 
 ```bash
-eslint --ext .js,.ts src
+npm run lint
 ```
 
 To fix the eslint error:
 
 ```bash
-eslint --ext .js,.ts src --fix
+npm run lint:fix
 ```
 
 To start and fix the stylelint error:
 
 ```bash
-stylelint \"src/**/*.css\" --fix
+npm run lint:css
+```
+
+To start tests:
+
+```bash
+npm run test
 ```

@@ -11,7 +11,7 @@ export class FileInput extends Block {
     super({
       ...props,
       events: {
-        change: (e) => {
+        change: (e: Event) => {
           const target = e.target as HTMLInputElement
           if (props.onChange) props.onChange(target.value)
         },
