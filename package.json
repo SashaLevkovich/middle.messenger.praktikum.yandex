@@ -18,6 +18,10 @@
     "pre-commit": "lint-staged",
     "prepare": "husky install"
   },
+  "dependencies": {
+    "express": "^4.18.3",
+    "handlebars": "^4.7.8"
+  },
   "devDependencies": {
     "@babel/core": "^7.24.5",
     "@babel/register": "^7.23.7",
@@ -54,16 +58,10 @@
     "vite": "^5.1.4"
   },
   "lint-staged": {
-    "*.{js,ts}": "eslint . --fix",
+    "*.{js,ts}": [
+      "eslint . --fix",
+      "TS_NODE_FILES=true mocha --es-module-specifier-resolution=node"
+    ],
     "*.css": "stylelint \"src/**/*.{css,.scss}\" --fix"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "dependencies": {
-    "express": "^4.18.3",
-    "handlebars": "^4.7.8"
   }
 }
