@@ -15,7 +15,8 @@
     "lint:fix": "eslint --ext .js,.ts src --fix",
     "lint:css": "stylelint \"src/**/*.css\" --fix",
     "test": "TS_NODE_FILES=true mocha --es-module-specifier-resolution=node",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
@@ -34,6 +35,7 @@
     "cssnano": "^6.0.5",
     "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.29.1",
+    "husky": "^8.0.0",
     "jsdom": "^24.0.0",
     "lint-staged": "^15.2.2",
     "mocha": "^10.4.0",

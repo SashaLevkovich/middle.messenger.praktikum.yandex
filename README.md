@@ -10,6 +10,11 @@ Authentication: Full authentication functionality including registration, login,
 User Information Management: Ability to modify user data, change avatar, and update password.
 Chat Functionality: Features for managing user chats including listing user chats, creating new chats, adding users to chats, and removing users from chats.
 
+# Testing and Pre-commit Setup
+
+Test Framework: Mocha and Chai are used for testing. The Block, Router, and Fetch classes have been thoroughly tested.
+Pre-commit Setup: Husky is used for pre-commit hooks configuration.
+
 ## Deploy link
 
 [Dark messenger](https://darkmessenger.netlify.app)
@@ -34,6 +39,9 @@ Prototype created using Figma.
 - PostCSS
 - Eslint
 - Stylelint
+- Husky
+- Mocha
+- Chai
 
 ## Commands
 
