@@ -2,10 +2,10 @@ import { ChatController } from './api/controller'
 import ChatListStyles from './chatList.module.css'
 import { TChatsList } from './models/context'
 import { ChatListTemplate } from './template'
-import { Block, Props } from '@/app/lib'
-import { store } from '@/app/store/store'
-import { ChatItem } from '@/entities/chatItem/ChatItem'
-import { ChatListHeader } from '@/features/chatListHeader/ChatListHeader'
+import { Block, Props } from '../../app/lib'
+import { store } from '../../app/store/store'
+import { ChatItem } from '../../entities/chatItem/ChatItem'
+import { ChatListHeader } from '../../features'
 
 export class ChatList extends Block {
   private chatController: ChatController

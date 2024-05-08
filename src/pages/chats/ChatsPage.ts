@@ -1,8 +1,7 @@
 import ChatsPageStyles from './chats.module.css'
 import { ChatsPageTemplate } from './template'
-import { Block, Props } from '@/app/lib'
-import { Dialog } from '@/widgets'
-import { ChatList } from '@/widgets/chatList/ChatList'
+import { Block, Props } from '../../app/lib'
+import { ChatList, Dialog } from '../../widgets'
 
 export class Chats extends Block {
   constructor(props: Props) {

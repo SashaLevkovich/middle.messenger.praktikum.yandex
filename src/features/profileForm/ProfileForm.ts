@@ -18,14 +18,14 @@ import {
 import { RULES } from './model/rules'
 import ProfileFormStyles from './profileForm.module.css'
 import { ProfileFormTemplate } from './template'
+import { Block, Props } from '../../app/lib'
+import { setUser } from '../../app/store/actions'
+import { store } from '../../app/store/store'
+import { UserController } from '../../entities/user'
+import { FileInput } from '../../shared/components'
+import { isEmpty } from '../../shared/helpers'
+import { router } from '../../shared/helpers/routes'
 import { ProfileLinks } from '../profileLinks/ProfileLinks'
-import { Block, Props } from '@/app/lib'
-import { setUser } from '@/app/store/actions'
-import { store } from '@/app/store/store'
-import { UserController } from '@/entities/user'
-import { FileInput } from '@/shared/components'
-import { isEmpty } from '@/shared/helpers'
-import { router } from '@/shared/helpers/routes'
 
 export class ProfileForm extends Block {
   private userController: UserController
@@ -118,8 +118,6 @@ export class ProfileForm extends Block {
   }
 
   private updateProfileAvatar(state: string) {
-    console.log(state)
-
     return this.setProps({
       avatarSrc: `https://ya-praktikum.tech/api/v2/resources/${state}`,
     })

@@ -1,4 +1,4 @@
-import { ValidationRule } from '@/shared/helpers'
+import { ValidationRule } from '../../../shared/helpers'
 
 export const RULES: Record<string, ValidationRule[]> = {
   email: [

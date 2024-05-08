@@ -1,6 +1,6 @@
 import TitleStyles from './title.module.css'
-import { Block, Props } from '@/app/lib'
-import { TitleTemplate } from '@/shared/templates'
+import { Block, Props } from '../../../app/lib'
+import { TitleTemplate } from '../../templates'
 
 export class Title extends Block {
   constructor(props: Props) {

@@ -6,14 +6,14 @@ import {
   SET_SOCKET,
   SET_MESSAGES,
 } from './actions'
+import { deepCopy } from '../../shared/helpers'
+import { TChatsList } from '../../widgets/chatList/models/context'
 import {
   ActiveChat,
   ChangePasswordFormData,
   Reducer,
   UserData,
 } from '../lib/types'
-import { deepCopy } from '@/shared/helpers'
-import { TChatsList } from '@/widgets/chatList/models/context'
 
 export const reducer: Reducer = (state, action) => {
   const newState = deepCopy(state)

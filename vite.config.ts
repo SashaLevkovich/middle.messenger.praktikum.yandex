@@ -16,10 +16,6 @@ export default defineConfig({
       localsConvention: 'camelCaseOnly',
     },
   },
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, './src'),
-    },
-  },
+  resolve: {},
   plugins: [],
 })

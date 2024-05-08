@@ -1,6 +1,6 @@
 import MessageStyles from './message.module.css'
 import { MessageTemplate } from './template'
-import { Block, Props } from '@/app/lib'
+import { Block, Props } from '../../app/lib'
 
 export class Message extends Block {
   constructor(props: Props) {

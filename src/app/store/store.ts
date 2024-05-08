@@ -1,7 +1,7 @@
 import { reducer } from './reducer'
+import { ChatItem } from '../../entities/chatItem/ChatItem'
 import { Store } from '../lib/Store'
 import { State } from '../lib/types'
-import { ChatItem } from '@/entities/chatItem/ChatItem'
 
 export const state: State = {
   userConfig: {

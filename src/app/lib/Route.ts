@@ -1,5 +1,4 @@
 import { Block } from './Block'
-import { Props } from './types'
 
 function isEqual(lhs: string, rhs: string) {
   return lhs === rhs
@@ -15,9 +14,13 @@ export class Route {
   private _pathname: string
   private _blockClass: typeof Block
   private _block: Block | null
-  private _props: Props
+  private _props: Record<string, unknown>
 
-  constructor(pathname: string, view: typeof Block, props: Props) {
+  constructor(
+    pathname: string,
+    view: typeof Block,
+    props: Record<string, unknown>,
+  ) {
     this._pathname = pathname
     this._blockClass = view
     this._block = null

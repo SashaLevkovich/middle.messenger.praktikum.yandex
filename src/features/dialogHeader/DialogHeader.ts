@@ -1,10 +1,11 @@
 import DialogHeaderStyles from './dialogHeader.module.css'
 import { inputContext } from './model/context'
 import { DialogHeaderTemplate } from './template'
-import { Block, Props } from '@/app/lib'
-import { store } from '@/app/store/store'
-import { Input, Link } from '@/shared/components'
-import { ChatController } from '@/widgets/chatList/api/controller'
+
+import { Block, Props } from '../../app/lib'
+import { store } from '../../app/store/store'
+import { Input, Link } from '../../shared/components'
+import { ChatController } from '../../widgets/chatList/api/controller'
 
 export class DialogHeader extends Block {
   private chatController: ChatController
@@ -21,7 +22,7 @@ export class DialogHeader extends Block {
       addUser: new Link({
         text: 'Add User',
         events: {
-          click: (e) => {
+          click: (e: Event) => {
             e.preventDefault()
             this.chatController.addUser()
           },
@@ -33,7 +34,7 @@ export class DialogHeader extends Block {
       deleteUser: new Link({
         text: 'Delete User',
         events: {
-          click: (e) => {
+          click: (e: Event) => {
             e.preventDefault()
             this.chatController.deleteUser()
           },

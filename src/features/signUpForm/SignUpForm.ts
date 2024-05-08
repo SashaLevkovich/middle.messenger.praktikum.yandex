@@ -10,11 +10,12 @@ import {
 import { RULES } from './models/rules'
 import SingUpFormStyles from './signUpForm.module.css'
 import { SignUpFormTemplate } from './templates'
-import { Block, Props } from '@/app/lib'
-import { setUser } from '@/app/store/actions'
-import { store } from '@/app/store/store'
-import { UserController } from '@/entities/user'
-import { Button, Input } from '@/shared/components'
+
+import { Props, Block } from '../../app/lib'
+import { setUser } from '../../app/store/actions'
+import { store } from '../../app/store/store'
+import { UserController } from '../../entities/user'
+import { Button, Input } from '../../shared/components'
 
 interface SignUpFormProps extends Props {
   signUpFormData: Record<string, string>

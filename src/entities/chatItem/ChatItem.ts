@@ -1,7 +1,7 @@
 import ChatItemStyles from './chatItem.module.css'
 import { ChatItemTemplate } from './template'
-import { Block } from '@/app/lib'
-import { ChatController } from '@/widgets/chatList/api/controller'
+import { Block } from '../../app/lib'
+import { ChatController } from '../../widgets/chatList/api/controller'
 
 export class ChatItem extends Block {
   private chatController: ChatController

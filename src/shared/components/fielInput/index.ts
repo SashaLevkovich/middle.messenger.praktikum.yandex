@@ -1,5 +1,5 @@
 import { FileInputTemplate } from './template'
-import { Block, Props } from '@/app/lib'
+import { Block, Props } from '../../../app/lib'
 
 interface FileInputProps extends Props {
   onChange?: (value: string | Document) => void
@@ -11,7 +11,7 @@ export class FileInput extends Block {
     super({
       ...props,
       events: {
-        change: (e) => {
+        change: (e: Event) => {
           const target = e.target as HTMLInputElement
           if (props.onChange) props.onChange(target.value)
         },

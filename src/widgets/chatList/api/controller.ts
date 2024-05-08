@@ -1,9 +1,13 @@
 import { ChatAPI } from './api'
-import { createSocket, WSTransport } from '@/app/lib/WSTransport'
-import { addChats, setActiveChat, setMessages } from '@/app/store/actions'
-import { store } from '@/app/store/store'
-import { AuthAPI } from '@/entities/authentication'
-import { getFormData } from '@/shared/helpers'
+import { createSocket, WSTransport } from '../../../app/lib/WSTransport'
+import {
+  addChats,
+  setActiveChat,
+  setMessages,
+} from '../../../app/store/actions'
+import { store } from '../../../app/store/store'
+import { AuthAPI } from '../../../entities/authentication'
+import { getFormData } from '../../../shared/helpers'
 
 export class ChatController {
   private chatAPI: ChatAPI
@@ -43,7 +47,6 @@ export class ChatController {
 
   async addUser() {
     const form = getFormData('addUser')
-    console.log(form)
 
     const data = {
       users: [form?.addUser],
@@ -59,7 +62,6 @@ export class ChatController {
 
   async deleteUser() {
     const form = getFormData('addUser')
-    console.log(form)
 
     const data = {
       users: [form?.addUser],
@@ -82,7 +84,6 @@ export class ChatController {
     const responseToken = JSON.parse(token.response)
 
     ChatController.socket = createSocket(data.id, id, responseToken.token)
-    console.log(ChatController.socket)
 
     WSTransport(ChatController.socket)
   }

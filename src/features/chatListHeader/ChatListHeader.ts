@@ -2,10 +2,11 @@ import ChatListHeaderStyles from './chatListHeader.module.css'
 import { linkContext, searchContext } from './models/context'
 
 import { ChatListHeaderTemplate } from './template'
-import { Block, Props } from '@/app/lib'
-import { Input, Link } from '@/shared/components'
-import { router } from '@/shared/helpers/routes'
-import { ChatController } from '@/widgets/chatList/api/controller'
+
+import { Block, Props } from '../../app/lib'
+import { Input, Link } from '../../shared/components'
+import { router } from '../../shared/helpers/routes'
+import { ChatController } from '../../widgets/chatList/api/controller'
 
 export class ChatListHeader extends Block {
   private chatController: ChatController
@@ -22,7 +23,7 @@ export class ChatListHeader extends Block {
       addChat: new Link({
         text: 'Add Chat',
         events: {
-          click: (e) => {
+          click: (e: Event) => {
             e.preventDefault()
             this.chatController.addChat()
           },
@@ -34,7 +35,7 @@ export class ChatListHeader extends Block {
       link: new Link({
         ...linkContext,
         events: {
-          click: (e) => {
+          click: (e: Event) => {
             e.preventDefault()
             router.go('/settings')
           },

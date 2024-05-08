@@ -1,5 +1,5 @@
-import { Props } from '@/app/lib'
-import { ValidationRule } from '@/shared/helpers'
+import { Props } from '../../../app/lib'
+import { ValidationRule } from '../../helpers'
 
 export interface InputProps extends Props {
   onChange?: (value: string) => void

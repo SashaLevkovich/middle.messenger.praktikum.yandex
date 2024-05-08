@@ -1,4 +1,4 @@
-import { Listener } from '@/app/lib/types'
+import { Listener } from './types'
 
 export class EventBus<
   E extends string = string,

@@ -1,6 +1,6 @@
-import { EventBus } from '@/app/lib/EventBus'
-import { EventMap, EVENTS, Props } from '@/app/lib/types'
-import { renderTemplate } from '@/shared/helpers/renderTemplate'
+import { EventBus } from './EventBus'
+import { renderTemplate } from '../../shared/helpers'
+import { EVENTS } from '../lib/types'
 
 export class Block {
   static DATA_ID_ATTR = 'data-id'
@@ -12,9 +12,9 @@ export class Block {
   private _eventBus: () => EventBus<string, Record<string, unknown[]>>
   private _element: HTMLElement | undefined
   private _lists: Record<string, Block[]>
-  private _props: Props
+  private _props: Record<string, unknown>
 
-  constructor(propsWithChildren: Props) {
+  constructor(propsWithChildren: Record<string, unknown>) {
     const eventBus = new EventBus()
 
     const { props, children, lists } =
@@ -37,7 +37,7 @@ export class Block {
     this._element = value
   }
 
-  protected get getProps(): Props {
+  protected get getProps(): Record<string, unknown> {
     return this._props
   }
 
@@ -105,18 +105,18 @@ export class Block {
   }
 
   protected _addEvents() {
-    const events: EventMap | undefined = this._props.events
+    const events = (this._props as Record<string, unknown>).events
 
-    if (typeof events === 'object' && events !== null) {
-      Object.entries(events).forEach(([eventName, listener]) => {
-        if (typeof listener === 'function') {
-          this._element!.addEventListener(eventName, listener as EventListener)
-        }
-      })
+    if (!events) {
+      return
     }
+
+    Object.entries(events).forEach(([event, listener]) => {
+      this._element!.addEventListener(event, listener)
+    })
   }
 
-  protected _makePropsProxy(props: Props) {
+  protected _makePropsProxy(props: Record<string, unknown>) {
     const self = this
 
     return new Proxy(props, {
@@ -136,7 +136,9 @@ export class Block {
     })
   }
 
-  protected _extractPropsAndChildren(propsAndChildren: Props) {
+  protected _extractPropsAndChildren(
+    propsAndChildren: Record<string, unknown>,
+  ) {
     const lists: Record<string, Block[]> = {}
     const props: Record<string, unknown> = {}
     const children: Record<string, Block> = {}
@@ -169,7 +171,9 @@ export class Block {
 
   private _render() {
     const propsAndStubs = { ...this._props }
-    const styles: Record<string, string> | undefined = this._props!.styles
+    const styles: Record<string, string> | unknown = (
+      this._props as Record<string, unknown>
+    ).styles
     const _tmpId = Math.floor(100000 + Math.random() * 900000)
 
     this._removeEvents()
@@ -190,7 +194,7 @@ export class Block {
     fragment.innerHTML = renderTemplate({
       template,
       context: propsAndStubs,
-      styles,
+      styles: styles || {},
     })
 
     Object.values(this.children).forEach((child) => {
@@ -258,15 +262,14 @@ export class Block {
   }
 
   private _removeEvents() {
-    const events: EventMap | undefined = this._props.events
+    const events = (this._props as Record<string, unknown>).events
 
-    if (typeof events === 'object' && events !== null) {
-      Object.keys(events).forEach((eventName) => {
-        this._element?.removeEventListener(
-          eventName,
-          events[eventName] as EventListenerOrEventListenerObject,
-        )
-      })
+    if (!events || !this._element) {
+      return
     }
+
+    Object.entries(events).forEach(([event, listener]) => {
+      this._element!.removeEventListener(event, listener)
+    })
   }
 }
